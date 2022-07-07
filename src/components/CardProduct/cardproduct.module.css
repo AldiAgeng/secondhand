@@ -1,0 +1,34 @@
+.productCard {
+    padding: 8px 8px 6px;
+    width: 210px;
+    gap: 8px;
+    height: 200px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+  }
+  
+  .imgCard {
+    width: 190.67px;
+    height: 100px;
+    border-radius: 4px;
+  }
+  
+  .titleText {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 4px;
+  }
+  
+  .categoryText {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 14px;
+    color: #8a8a8a;
+    margin-bottom: 8px;
+  }
+  

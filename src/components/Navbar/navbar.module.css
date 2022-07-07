@@ -1,0 +1,50 @@
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 84px;
+    background: #DFF6FF;
+}
+
+.logo {
+    width: max-content;
+    height: 48px;
+}
+
+.formSearch {
+    display: flex;
+    flex-direction: row;
+    width: 356px;
+    background: white;
+    padding: 3px 0px 3px 0px;
+    border: 1px solid #EEEEEE;
+    border-radius: 16px;
+}
+
+.formInput {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.formInput:focus {
+    outline: none;
+}
+
+.iconSearch {
+    border: none;
+    border-top-right-radius: 25px;
+}
+
+.btnText {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    margin: 0px;
+    padding: 4px;
+}

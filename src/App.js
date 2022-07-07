@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import {
+  Homepage,
+  DaftarJual,
+  Login, 
+  SignUp,
+  UserForm,
+  ProductForm,
+  ProductDetail,
+  InfoPenawar1,
+  InfoPenawar2,
+} from "./pages";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="daftar-jual" element={<DaftarJual />} />
+          <Route path="login" element={<Login />} />
+          <Route path="sign-up" element={<SignUp />} />
+          <Route path="product-detail" element={<ProductDetail />} />
+          <Route path="info-penawar" element={<InfoPenawar1 />} />
+          <Route path="info-penawar2" element={<InfoPenawar2 />} />
+          <Route path="edit-profile" element={<UserForm />} />
+          <Route path="edit-product" element={<ProductForm />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

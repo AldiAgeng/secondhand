@@ -1,0 +1,9 @@
+export { default as Homepage } from "./Homepage/Homepage";
+export { default as DaftarJual } from "./DaftarJual/DaftarJual";
+export { default as Login } from "./Login/Login";
+export { default as SignUp } from "./SignUp/SignUp";
+export { default as UserForm } from "./UserForm/UserForm";
+export { default as ProductForm } from "./ProductForm/ProductForm";
+export { default as ProductDetail } from "./ProductDetail/ProductDetail";
+export { default as InfoPenawar1 } from "./InfoPenawar/InfoPenawar1";
+export { default as InfoPenawar2 } from "./InfoPenawar/InfoPenawar2";
