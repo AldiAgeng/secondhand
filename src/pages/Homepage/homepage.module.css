@@ -1,0 +1,11 @@
+.cardList {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.cardList::after {
+    content: "";
+    flex: auto;
+}

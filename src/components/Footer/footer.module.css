@@ -1,0 +1,36 @@
+.styleFooter {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background: #DFF6FF;
+}
+
+.footerText {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.textLink {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 20px;
+    text-decoration: none;
+    color: black;
+}
+
+.styleIcon {
+    width: 30px;
+    height: 30px;
+}
+
+.styleLogo {
+    width: max-content;
+    height: 100px;
+    margin-bottom: 12px;
+    align-items: center;
+}
