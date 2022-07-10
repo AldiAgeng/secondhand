@@ -2,13 +2,13 @@ import { FormLabel, FormControl, FormSelect } from '../../components/Form/FormEl
 import { BtnFormProduct, UploadProductPicture } from '../../components/Form/ProductsFormElements';
 import { Form, Row, Col } from 'react-bootstrap';
 import { Container } from 'react-bootstrap';
-import { Navbars } from "../../components";
+import { NavbarPlain } from "../../components";
 
 function ProductForm() {
     return (
         <>
             <div>
-                <Navbars />
+                <NavbarPlain title="Lengkapi Info Produk" />
                 <Container className="mt-5 py-5">
                     <Form>
                         <Form.Group className='mt-4 mb-2'>
@@ -36,7 +36,7 @@ function ProductForm() {
                         <Form.Group>
                             <Row>
                                 <Col>
-                                    <BtnFormProduct className='mt-2 mb-4' type="submit">Submit</BtnFormProduct>
+                                    <BtnFormProduct className='mt-2 mb-4' type="submit">Cancel</BtnFormProduct>
                                 </Col>
                                 <Col>
                                     <BtnFormProduct className='mt-2 mb-4' type="submit">Submit</BtnFormProduct>

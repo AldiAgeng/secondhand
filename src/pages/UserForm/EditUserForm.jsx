@@ -1,15 +1,15 @@
 
-import { FormLabel, FormControl, FormSelect } from './../../components/Form/FormElements';
-import { UploadProfilePicture, BtnFormUser } from './../../components/Form/UsersFormElements';
+import { FormLabel, FormControl, FormSelect } from '../../components/Form/FormElements';
+import { UploadProfilePicture, BtnFormUser } from '../../components/Form/UsersFormElements';
 import { Form } from 'react-bootstrap';
 import { Container } from 'react-bootstrap';
-import { Navbars } from "../../components";
+import { NavbarPlain } from "../../components";
 
 function UserForm() {
     return (
         <>
             <div>
-                <Navbars />
+                <NavbarPlain title="Lengkapi Info Akun" />
                 <Container className="mt-5 py-5">
                     <Form>
                         <Form.Group className='mt-4 mb-2'>

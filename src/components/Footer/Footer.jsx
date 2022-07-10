@@ -19,7 +19,7 @@ function Footers() {
                     <Col className="mb-3" md={4}>
                         <a className={style.textLink} href="/login"><p>Login</p></a>
                         <a className={style.textLink} href="/sign-up"><p>Daftar</p></a>
-                        <a className={style.textLink} href="/Daftar-Jual"><p>Product</p></a>
+                        <a className={style.textLink} href="/daftar-jual"><p>Product</p></a>
                         <a className={style.textLink} href="#"><p>FAQ</p></a>
                     </Col>
                     <Col className="mb-4" md={3}>

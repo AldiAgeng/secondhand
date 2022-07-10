@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
-import { Navbar2 } from "../../components";
+import { NavbarPlain } from "../../components";
+import { BtnSubmit } from "../../components/Buttons/ButtonElements";
+
 
 export default class SignUp extends Component {
   render() {
     return (
         <div className="App">
-            <Navbar2 />
+            <NavbarPlain title="Sign Up" />
             <div className="auth-wrapper">
                 <div className="auth-inner">
                     <form>
@@ -35,11 +37,11 @@ export default class SignUp extends Component {
                             />
                         </div>
                         <div className="d-grid">
-                            <button type="submit" className="btn btn-primary">
+                            <BtnSubmit className="w-100">
                                 Sign Up
-                            </button>
+                            </BtnSubmit>
                         </div>
-                        <p className="forgot-password text-right">
+                        <p className="forgot-password text-right mt-3">
                         Already registered? <a href="/login">sign in</a>
                         </p>
                     </form>

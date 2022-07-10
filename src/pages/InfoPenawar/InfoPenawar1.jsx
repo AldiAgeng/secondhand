@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { Container, Card, Button } from 'react-bootstrap';
-import { Navbar2 } from "../../components";
+import { Container, Card } from 'react-bootstrap';
+import { NavbarPlain } from "../../components";
+import { BtnPrimary } from "../../components/Buttons/ButtonElements";
 import penjual from '../../assets/images/profile1.png';
 import jam from '../../assets/images/img1.png';
 
@@ -8,7 +9,7 @@ export default class InfoPenawar1 extends Component {
     render() {
         return (
             <div className="App">
-                <Navbar2 />
+                <NavbarPlain title="Info Penawar" />
                 <Container className='my-5 pt-5'>
                     <Card className='mt-2 mb-5 profileinfopenawar' style={{ width: '18rem' }}>
                         <Card.Body>
@@ -27,8 +28,8 @@ export default class InfoPenawar1 extends Component {
                                 <Card.Title>Jam Mahal</Card.Title>
                                 <Card.Text>Aksesoris</Card.Text>
                                 <Card.Title>Rp2.000.000</Card.Title>
-                                <Button className='buybutton1' variant="primary">Tolak</Button>
-                                <Button className='buybutton1' variant="primary">Terima</Button>
+                                <BtnPrimary className='buybutton1'>Tolak</BtnPrimary>
+                                <BtnPrimary className='buybutton1'>Terima</BtnPrimary>
                             </Card.Body>
                         </Card><br />
                     </div>
