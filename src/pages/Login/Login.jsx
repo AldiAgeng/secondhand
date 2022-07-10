@@ -1,11 +1,12 @@
 import React from "react";
-import { Navbar2 } from "../../components";
+import { NavbarPlain } from "../../components";
+import { BtnSubmit } from "../../components/Buttons/ButtonElements";
 import "../../App.css";
 
 function Login() {
     return (
         <div className="App">
-            <Navbar2 />
+            <NavbarPlain title="Login"/>
             <div className="auth-wrapper">
                 <div className="auth-inner">
                     <form>
@@ -35,13 +36,16 @@ function Login() {
                             </div>
                         </div>
                         <div className="d-grid">
-                            <button type="submit" className="btn btn-primary">
-                            Submit
-                            </button>
+                            <BtnSubmit className="w-100">Submit</BtnSubmit>
                         </div>
-                        <p className="forgot-password text-right">
-                            <a href="#">Forgot password?</a>
-                        </p>
+                        <div className="mt-3 text-end">
+                            <p>
+                                <a className="font-login" href="#">Forgot password?</a>
+                            </p>
+                            <p>
+                                don't have an account?&nbsp;<a className="font-login" href="/sign-up">Register here</a>
+                            </p>
+                        </div>
                     </form>
                 </div>
             </div>
