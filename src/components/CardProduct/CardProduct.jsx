@@ -4,10 +4,11 @@ import style from "./cardproduct.module.css";
 import img1 from "../../assets/images/img1.png";
 
 function CardProduct({id, name, price, picture, category}) {
+  let imgUrl = "http://localhost:8000/uploads/products/";
     return (
       <>
           <Card className={style.productCard} key={id}>
-            <Card.Img className={style.imgCard} variant="top" src={picture} alt={picture} />
+            <Card.Img className={style.imgCard} variant="top" src={imgUrl + picture} alt={imgUrl + picture} />
             <Card.Body className="px-1 py-0">
               <Card.Text className={style.titleText}>{name}</Card.Text>
               <Card.Text className={style.categoryText}>{category}</Card.Text>

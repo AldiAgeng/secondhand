@@ -5,7 +5,7 @@ import { NavbarLogin, CardProduct, Carousels, Category, Footers } from "../../co
 
 function HomePage() {
     const [products, setProducts] = useState([]);
-    const [category, setCategory] = useState([]);
+    // const [category, setCategory] = useState([]);
 
     const getData = async () => {
       const response = await fetch(`http://localhost:8000/api/v1/buyer/product`);
@@ -18,12 +18,12 @@ function HomePage() {
       getData();
     }, []);
 
-    const getCategory = async () => {
-        const response = await fetch(`http://localhost:8000/api/v1/buyer/product`);
-        const data = await response.json();
-        console.log(data.data);
-        setCategory(data.data);
-    };
+    // const getCategory = async () => {
+    //     const response = await fetch(`http://localhost:8000/api/v1/buyer/category`);
+    //     const data = await response.json();
+    //     console.log(data.data);
+    //     setCategory(data.data);
+    // };
 
     return (
         <div>
@@ -36,11 +36,11 @@ function HomePage() {
                     </Col>
                 </Row>
                 <Row className="d-flex justify-content-start align-items-start">
+                    {products.map((product) => (
                     <Col md={3} className="d-flex justify-content-center mb-4">
-                        {products.map((product) => (
                             <CardProduct key={product.id} id={product.id} name={product.name} price={product.price} picture={product.picture} category={product.CategoryProduct.name} />
-                        ))}
                     </Col>
+                    ))}
                 </Row>
             </Container>
             <Footers />
