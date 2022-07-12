@@ -9,3 +9,24 @@
     content: "";
     flex: auto;
 }
+
+.categoryList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.imgIcon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+}
+
+.styleText {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: white;
+    margin: 0px;
+    padding: 4px;
+}
