@@ -14,10 +14,10 @@ import style from "./daftarjual.module.css";
 
 function Daftarjual() {
     const [products, setProducts] = useState([]);
-    const [buttons, setButtons] = useState([]);
+    const [buttons, setButtons] = useState('');
 
     const getData = async () => {
-        const response = await fetch(`http://localhost:8000/api/v1/buyer/product`);
+        const response = await fetch(`https://tokoku-api.herokuapp.com/api/v1/buyer/product`);
         const data = await response.json();
         console.log(data.data, "data");
         setProducts(data.data);
@@ -67,7 +67,7 @@ function Daftarjual() {
                     <Col lg className="mx-auto mt-4">
                     {
                         (() => {
-                            if (buttons == "Semua Produk" || buttons == "" ) {
+                            if (buttons === "Semua Produk" || buttons === "" ) {
                                 return (
                                     <div className={style.cardList}>
                                         <div className={style.addBox}>
@@ -78,19 +78,21 @@ function Daftarjual() {
                                         </div>
                                         {products.map((product) => {
                                             return (
-                                                <CardProduct key={product.id} id={product.id} name={product.name} price={product.price} picture={product.picture} category={product.CategoryProduct.name} />
+                                                <div key={product.id}>
+                                                    <CardProduct id={product.id} name={product.name} price={product.price} picture={product.picture} category={product.CategoryProduct.name} />
+                                                </div>
                                             )
                                         })}
                                     </div>
                                 )
-                            } if (buttons == "Diminati") {
+                            } if (buttons === "Diminati") {
                                 return (
                                     <div className={style.contentDiv}>
                                         <img className={style.imgContent} src={imgContent} alt="" />
                                         <h5 className={style.contentText}>Belum ada produkmu yang diminati nih, <br />sabar ya rejeki nggak kemana kok</h5>
                                     </div>
                                 )
-                            } if (buttons == "Terjual") {
+                            } if (buttons === "Terjual") {
                                 return (
                                     <div className={style.contentDiv}>
                                         <img className={style.imgContent} src={imgContent} alt="" />

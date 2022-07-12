@@ -33,7 +33,7 @@ function UserForm() {
                             <FormLabel>No. Handphone*</FormLabel>
                             <FormControl type="text" placeholder="Contoh: +628912345678" />
                         </Form.Group>
-                        <BtnFormUser className='mt-2 mb-4' type="submit">Submit</BtnFormUser>
+                        <BtnFormUser className='mt-2 mb-4' type="submit" href="/">Submit</BtnFormUser>
                     </Form>
                 </Container>
             </div>

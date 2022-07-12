@@ -1,10 +1,9 @@
 import toRupiah from '@develoka/angka-rupiah-js';
 import { Card } from "react-bootstrap";
 import style from "./cardproduct.module.css";
-import img1 from "../../assets/images/img1.png";
 
 function CardProduct({id, name, price, picture, category}) {
-  let imgUrl = "http://localhost:8000/uploads/products/";
+  let imgUrl = "https://tokoku-api.herokuapp.com/uploads/products/";
     return (
       <>
           <Card className={style.productCard} key={id}>

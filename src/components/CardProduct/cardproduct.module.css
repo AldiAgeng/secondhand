@@ -1,6 +1,6 @@
 .productCard {
     padding: 8px 8px 6px;
-    width: 210px;
+    min-width: 210px !important;
     gap: 8px;
     height: 288px;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);

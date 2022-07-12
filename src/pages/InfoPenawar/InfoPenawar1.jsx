@@ -1,15 +1,20 @@
-import React, { Component } from 'react'
-import { Container, Card } from 'react-bootstrap';
+import React, { Component } from "react";
+import { Container, Card, Button } from "react-bootstrap";
 import { NavbarPlain } from "../../components";
 import { BtnPrimary } from "../../components/Buttons/ButtonElements";
-import penjual from '../../assets/images/profile1.png';
-import jam from '../../assets/images/img1.png';
+import penjual from "../../assets/images/profile1.png";
+import jam from "../../assets/images/img1.png";
+import back from '../../assets/icons/fi_arrow-left.svg';
+
 
 export default class InfoPenawar1 extends Component {
     render() {
         return (
             <div className="App">
                 <NavbarPlain title="Info Penawar" />
+                <Button href="/">
+                    <img src={back} alt="" className="back" />
+                </Button>
                 <Container className='my-5 pt-5'>
                     <Card className='mt-2 mb-5 profileinfopenawar' style={{ width: '18rem' }}>
                         <Card.Body>

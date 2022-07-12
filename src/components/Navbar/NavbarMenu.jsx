@@ -1,8 +1,5 @@
 import { Navbar, Nav, Container, Form, Button, Offcanvas, NavDropdown } from 'react-bootstrap';
-import { Link } from "react-router-dom";
-import { BtnLogin } from "../Buttons/ButtonElements";
 import fi_logo from "../../assets/images/imgLogo.png";
-import fi_login from "../../assets/icons/fi_log-in.svg";
 import fi_search from "../../assets/icons/fi_search-bar.svg";
 import fi_list from "../../assets/icons/fi_list.svg";
 import fi_bell from "../../assets/icons/fi_bell.svg";
@@ -65,13 +62,16 @@ function NavbarMenu() {
                             </Form>
                             <Nav className="justify-content-end flex-grow-1 mt-2">
                                 <NavDropdown title={listMenu} id={`offcanvasNavbarDropdown-expand-lg`}>
-                                    <NavDropdown.Item>Menu</NavDropdown.Item>
+                                    <NavDropdown.Item href="/daftar-jual">Product</NavDropdown.Item>
+                                    <NavDropdown.Item href="/order">Order</NavDropdown.Item>
+                                    <NavDropdown.Item href="/history">History</NavDropdown.Item>
                                 </NavDropdown>
                                 <NavDropdown title={notif} id={`offcanvasNavbarDropdown-expand-lg`}>
                                     <NavDropdown.Item>Notif</NavDropdown.Item>
                                 </NavDropdown>
                                 <NavDropdown title={user} id={`offcanvasNavbarDropdown-expand-lg`}>
                                     <NavDropdown.Item href="/edit-profile">User Profile</NavDropdown.Item>
+                                    <NavDropdown.Item>Logout</NavDropdown.Item>
                                 </NavDropdown>
                             </Nav>
                         </Offcanvas.Body>
