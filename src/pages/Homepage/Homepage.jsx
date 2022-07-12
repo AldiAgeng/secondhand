@@ -29,11 +29,9 @@ function HomePage() {
       getData();
       getCategories();
     }, []);
-
-    const semua = "semua";
     
     const handleButton = e => setButtons (e.target.innerText)
-    console.log(buttons, "apa");
+    console.log(buttons, "data btn");
 
     return (
         <div>
