@@ -36,7 +36,7 @@ function Login() {
                             </div>
                         </div>
                         <div className="d-grid">
-                            <BtnSubmit className="w-100">Submit</BtnSubmit>
+                            <BtnSubmit className="w-100" href="/">Submit</BtnSubmit>
                         </div>
                         <div className="mt-3 text-end">
                             <p>
