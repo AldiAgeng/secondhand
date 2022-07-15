@@ -203,19 +203,21 @@ function Daftarjual() {
                               </Card.Text>
                               <Card.Text className={style.titleText}>
                                 Rp{" "}
-                                {toRupiah(order.Product.price.toString(), {
+                                {/* {toRupiah(order.Product.price.toString(), {
                                   symbol: false,
                                   floatingPoint: 0,
                                   spaceBeforeUnit: true,
-                                })}
+                                })} */}
+                                {order.Product.price.toLocaleString("id-ID")}
                               </Card.Text>
                               <Card.Text className={style.titleText}>
                                 Ditawar Rp{" "}
-                                {toRupiah(order.price.toString(), {
+                                {/* {toRupiah(order.price.toString(), {
                                   symbol: false,
                                   floatingPoint: 0,
                                   spaceBeforeUnit: true,
-                                })}
+                                })} */}
+                                {order.price.toLocaleString("id-ID")}
                               </Card.Text>
                             </Card.Body>
                           </Card>
