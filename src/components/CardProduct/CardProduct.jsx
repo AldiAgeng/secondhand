@@ -6,7 +6,7 @@ function CardProduct({id, name, price, picture, category}) {
   let imgUrl = "https://tokoku-api.herokuapp.com/uploads/products/";
     return (
       <>
-          <Card className={style.productCard} key={id}>
+          <Card className={style.productCard} key={id} type="button">
             <div className={style.cardBox}>
               <Card.Img className={style.imgCard} variant="top" src={imgUrl + picture} alt={imgUrl + picture} />
             </div>

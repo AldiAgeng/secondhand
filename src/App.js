@@ -2,7 +2,7 @@ import {
   Homepage,
   DaftarJual,
   Login, 
-  SignUp,
+  SignUp, 
   EditUserForm,
   AddProductForm,
   EditProductForm,
@@ -12,22 +12,60 @@ import {
   InfoPenawar2,
 } from "./pages";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ProtectedToken from "./auth/ProtectedToken";
+import NavigateToHome from "./auth/NavigateToHome";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
           <Route path="/" element={<Homepage />} />
-          <Route path="daftar-jual" element={<DaftarJual />} />
-          <Route path="login" element={<Login />} />
+          <Route path="login" element={ 
+            <NavigateToHome>
+              <Login />
+            </NavigateToHome>
+          } />
           <Route path="sign-up" element={<SignUp />} />
-          <Route path="seller/product-detail" element={<SellerProductDetail />} />
-          <Route path="buyer/product-detail" element={<BuyerProductDetail />} />
-          <Route path="info-penawar" element={<InfoPenawar1 />} />
-          <Route path="info-penawar2" element={<InfoPenawar2 />} />
-          <Route path="edit-profile" element={<EditUserForm />} />
-          <Route path="add-product" element={<AddProductForm />} />
-          <Route path="edit-product" element={<EditProductForm />} />
+          <Route path="daftar-jual" element={
+            <ProtectedToken>
+              <DaftarJual />
+            </ProtectedToken>
+           } />
+          <Route path="seller/product-detail" element={
+            <ProtectedToken>
+              <SellerProductDetail />
+            </ProtectedToken>
+            } />
+          <Route path="buyer/product-detail" element={
+            <ProtectedToken>
+              <BuyerProductDetail />
+            </ProtectedToken>
+            } />
+          <Route path="info-penawar/:id" element={ 
+            <ProtectedToken>
+              <InfoPenawar1 />
+            </ProtectedToken>
+            } />
+          <Route path="info-penawar2" element={
+            <ProtectedToken>
+              <InfoPenawar2 />
+            </ProtectedToken>
+            } />
+          <Route path="edit-profile" element={ 
+            <ProtectedToken>
+              <EditUserForm />
+            </ProtectedToken>
+            } />
+          <Route path="add-product" element={
+            <ProtectedToken>
+              <AddProductForm />
+            </ProtectedToken>
+            } />
+          <Route path="edit-product" element={
+            <ProtectedToken>
+              <EditProductForm />
+            </ProtectedToken>
+              } />
       </Routes>
     </BrowserRouter>
   );

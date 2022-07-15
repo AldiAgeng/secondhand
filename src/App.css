@@ -182,3 +182,9 @@ body, html, .App, #root, .auth-wrapper {
   margin-top: 100px;
   width: 40px;
 }
+
+.imgPreview {
+  width: 96px;
+  height: 96px;
+  border-radius: 12px;
+}

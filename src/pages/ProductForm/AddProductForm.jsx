@@ -39,7 +39,7 @@ function ProductForm() {
                                     <BtnFormProduct className='mt-2 mb-4' type="submit">Cancel</BtnFormProduct>
                                 </Col>
                                 <Col>
-                                    <BtnFormProduct className='mt-2 mb-4' type="submit" href="/daftar-jual">Submit</BtnFormProduct>
+                                    <BtnFormProduct className='mt-2 mb-4' type="submit">Submit</BtnFormProduct>
                                 </Col>
                             </Row>
                         </Form.Group>
