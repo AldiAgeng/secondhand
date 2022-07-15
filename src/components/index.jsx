@@ -1,4 +1,3 @@
-export { default as NavbarLogin } from "./Navbar/NavbarLogin";
 export { default as NavbarMenu } from "./Navbar/NavbarMenu";
 export { default as NavbarPlain } from "./Navbar/NavbarPlain";
 export { default as Carousels } from "./Carousels/Carousels";

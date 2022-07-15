@@ -155,3 +155,43 @@
     color: #151515;
     margin-top: 24px;
 }
+
+.productCard {
+    padding: 8px 8px 6px;
+    min-width: 210px !important;
+    gap: 8px;
+    height: 288px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+  }
+  
+  .cardBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 192px;
+    height: 192px;
+    padding: 0px;
+  }
+
+  .imgCard {
+    width: 192px;
+    height: min-content;
+    border-radius: 4px;
+  }
+  
+  .bodyCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: flex-start;
+    padding: 0px !important;
+    border-top: 1px solid rgba(0, 0, 0, 0.15);
+  }
+
+  .titleText {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 4px;
+  }
