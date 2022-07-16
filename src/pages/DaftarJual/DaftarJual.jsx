@@ -144,15 +144,20 @@ function Daftarjual() {
                     </div>
                     {products.map((product) => {
                       return (
-                        <div key={product.id}>
-                          <CardProduct
-                            id={product.id}
-                            name={product.name}
-                            price={product.price}
-                            picture={product.picture}
-                            category={product.CategoryProduct.name}
-                          />
-                        </div>
+                        <Link
+                          style={{ textDecoration: "none", color: "black" }}
+                          to={`/detail-produk/${product.id}`}
+                        >
+                          <div key={product.id}>
+                            <CardProduct
+                              id={product.id}
+                              name={product.name}
+                              price={product.price}
+                              picture={product.picture}
+                              category={product.CategoryProduct.name}
+                            />
+                          </div>
+                        </Link>
                       );
                     })}
                   </div>
@@ -181,7 +186,7 @@ function Daftarjual() {
                     {orders.map((order) => {
                       return (
                         <Link
-                          style={{ textDecoration: "none" }}
+                          style={{ textDecoration: "none", color: "black" }}
                           to={`/info-penawar/${order.id}`}
                         >
                           <Card
@@ -251,15 +256,20 @@ function Daftarjual() {
                       {products.map((product) => {
                         if (product.status === "sold") {
                           return (
-                            <div key={product.id}>
-                              <CardProduct
-                                id={product.id}
-                                name={product.name}
-                                price={product.price}
-                                picture={product.picture}
-                                category={product.CategoryProduct.name}
-                              />
-                            </div>
+                            <Link
+                              style={{ textDecoration: "none", color: "black" }}
+                              to={`/detail-produk/${product.id}`}
+                            >
+                              <div key={product.id}>
+                                <CardProduct
+                                  id={product.id}
+                                  name={product.name}
+                                  price={product.price}
+                                  picture={product.picture}
+                                  category={product.CategoryProduct.name}
+                                />
+                              </div>
+                            </Link>
                           );
                         }
                         // else {

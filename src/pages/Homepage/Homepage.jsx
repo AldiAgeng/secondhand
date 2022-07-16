@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Container, Row, Col, Stack } from "react-bootstrap";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { NavbarMenu, CardProduct, Carousels, Footers } from "../../components";
 import { BtnPrimary } from "../../components/Buttons/ButtonElements";
 import fi_search from "../../assets/icons/fi_search.svg";
@@ -75,30 +75,36 @@ function HomePage() {
               if (buttons === product.CategoryProduct.name) {
                 return (
                   <div key={product.id} type="button">
-                    {/* <Link to={`/detail-product/${product.id}`}> */}
-                    <CardProduct
-                      id={product.id}
-                      name={product.name}
-                      price={product.price}
-                      picture={product.picture}
-                      category={product.CategoryProduct.name}
-                    />
-                    {/* </Link> */}
+                    <Link
+                      style={{ textDecoration: "none", color: "black" }}
+                      to={`/detail-produk/${product.id}`}
+                    >
+                      <CardProduct
+                        id={product.id}
+                        name={product.name}
+                        price={product.price}
+                        picture={product.picture}
+                        category={product.CategoryProduct.name}
+                      />
+                    </Link>
                   </div>
                 );
               }
               if (buttons === "Semua" || buttons === "") {
                 return (
                   <div key={product.id} type="button">
-                    {/* <Link to={`/detail-product/${product.id}`}> */}
-                    <CardProduct
-                      id={product.id}
-                      name={product.name}
-                      price={product.price}
-                      picture={product.picture}
-                      category={product.CategoryProduct.name}
-                    />
-                    {/* </Link> */}
+                    <Link
+                      style={{ textDecoration: "none", color: "black" }}
+                      to={`/detail-produk/${product.id}`}
+                    >
+                      <CardProduct
+                        id={product.id}
+                        name={product.name}
+                        price={product.price}
+                        picture={product.picture}
+                        category={product.CategoryProduct.name}
+                      />
+                    </Link>
                   </div>
                 );
               }

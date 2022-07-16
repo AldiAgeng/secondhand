@@ -6,9 +6,9 @@ import {
   EditUserForm,
   AddProductForm,
   EditProductForm,
-  SellerProductDetail,
+  ProductDetail,
   BuyerProductDetail,
-  InfoPenawar1,
+  InfoPenawar,
   InfoPenawar2,
 } from "./pages";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -31,9 +31,9 @@ function App() {
               <DaftarJual />
             </ProtectedToken>
            } />
-          <Route path="seller/product-detail" element={
+          <Route path="detail-produk/:id" element={
             <ProtectedToken>
-              <SellerProductDetail />
+              <ProductDetail />
             </ProtectedToken>
             } />
           <Route path="buyer/product-detail" element={
@@ -43,7 +43,7 @@ function App() {
             } />
           <Route path="info-penawar/:id" element={ 
             <ProtectedToken>
-              <InfoPenawar1 />
+              <InfoPenawar />
             </ProtectedToken>
             } />
           <Route path="info-penawar2" element={

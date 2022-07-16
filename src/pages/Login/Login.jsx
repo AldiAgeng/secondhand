@@ -5,8 +5,6 @@ import "react-toastify/dist/ReactToastify.css";
 import "../../App.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Alert } from "react-bootstrap";
-import logo from "../../assets/images/logo.png";
 
 function Login() {
   const [email, setEmail] = useState("");
