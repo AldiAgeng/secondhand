@@ -7,9 +7,7 @@ import {
   AddProductForm,
   EditProductForm,
   ProductDetail,
-  BuyerProductDetail,
   InfoPenawar,
-  InfoPenawar2,
 } from "./pages";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProtectedToken from "./auth/ProtectedToken";
@@ -36,19 +34,9 @@ function App() {
               <ProductDetail />
             </ProtectedToken>
             } />
-          <Route path="buyer/product-detail" element={
-            <ProtectedToken>
-              <BuyerProductDetail />
-            </ProtectedToken>
-            } />
           <Route path="info-penawar/:id" element={ 
             <ProtectedToken>
               <InfoPenawar />
-            </ProtectedToken>
-            } />
-          <Route path="info-penawar2" element={
-            <ProtectedToken>
-              <InfoPenawar2 />
             </ProtectedToken>
             } />
           <Route path="edit-profile" element={ 
