@@ -178,7 +178,8 @@ body, html, .App, #root, .auth-wrapper {
 .backButton{
   position: fixed;
   margin-top: 78px;
-  width: 40px;
+  width: 24px;
+  height: 24px;
   z-index: 1;
 }
 

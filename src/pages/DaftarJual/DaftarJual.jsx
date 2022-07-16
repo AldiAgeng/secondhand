@@ -190,6 +190,7 @@ function Daftarjual() {
                 return (
                   <div className={style.cardList}>
                     {orders.map((order) => {
+                      // if (order.status === "bid") {
                       return (
                         <Link
                           style={{ textDecoration: "none", color: "black" }}
@@ -222,6 +223,7 @@ function Daftarjual() {
                           </Card>
                         </Link>
                       );
+                      // }
                     })}
                   </div>
                 );

@@ -17,8 +17,6 @@ function ProductDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-
-
   const imgUser =
     "https://tokoku-api.herokuapp.com/uploads/users/" + users.picture;
   const imgProduct =
@@ -58,7 +56,6 @@ function ProductDetail() {
     getProduct();
   }, []);
 
-
   function handleDelete() {
     swal({
       title: "Apakah anda yakin?",
@@ -66,33 +63,34 @@ function ProductDetail() {
       icon: "warning",
       buttons: true,
       dangerMode: true,
-    })
-      .then((willDelete) => {
-        if (willDelete) {
-          axios
-            .delete(`https://tokoku-api.herokuapp.com/api/v1/seller/product/${id}`, {
+    }).then((willDelete) => {
+      if (willDelete) {
+        axios
+          .delete(
+            `https://tokoku-api.herokuapp.com/api/v1/seller/product/${id}`,
+            {
               headers: {
                 Authorization: "Bearer " + localStorage.getItem("token"),
               },
-            })
-            .then((response) => {
-              console.log(response);
-            }).catch((error) => {
-              console.log(error);
-            }).finally(() => {
-              window.location.href = "/daftar-jual";
             }
-            );
-          swal("Data produk berhasil dihapus!", {
-            icon: "success",
+          )
+          .then((response) => {
+            console.log(response);
+          })
+          .catch((error) => {
+            console.log(error);
+          })
+          .finally(() => {
+            window.location.href = "/daftar-jual";
           });
-        } else {
-          swal("Data produk tidak jadi dihapus!");
-        }
-      });
+        swal("Data produk berhasil dihapus!", {
+          icon: "success",
+        });
+      } else {
+        swal("Data produk tidak jadi dihapus!");
+      }
+    });
   }
-
-
 
   return (
     <>
@@ -141,11 +139,12 @@ function ProductDetail() {
                       >
                         <BtnPrimary className="w-25 me-2">Edit</BtnPrimary>
                       </Link>
-                      <BtnPrimary onClick={handleDelete}
-                        className="w-25 ms-2">Delete</BtnPrimary>
+                      <BtnPrimary onClick={handleDelete} className="w-25 ms-2">
+                        Delete
+                      </BtnPrimary>
                     </>
                   ) : (
-                    <ModalTawar products={products} />  
+                    <ModalTawar products={products} />
                   )}
                 </Card.Body>
               </Card>

@@ -97,6 +97,8 @@ button {
   cursor: pointer;
 } */
 
-/* .btnModals {
-
-} */
+.imgProductTawar {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+}

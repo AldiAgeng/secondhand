@@ -11,7 +11,7 @@ import {
 import { CardModal, CardModalHeader } from "./CardElements";
 import { BtnPrimary } from "../Buttons/ButtonElements";
 
-function ModalInfoProduct() {
+function ModalInfoProduct({ orders }) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -49,8 +49,8 @@ function ModalInfoProduct() {
                   <ModalFoto />
                 </Col>
                 <Col md={6} className="mb-2">
-                  <ModalTextBold>Nama Pembeli</ModalTextBold>
-                  <ModalTextLight>Kota</ModalTextLight>
+                  <ModalTextBold>{orders.User.name}</ModalTextBold>
+                  <ModalTextLight>{orders.User.city}</ModalTextLight>
                 </Col>
               </Row>
               {/* Barang */}
@@ -59,12 +59,12 @@ function ModalInfoProduct() {
                   <ModalFoto />
                 </Col>
                 <Col md={6} className="mt-2">
+                  <ModalText>{orders.Product.name}</ModalText>
                   <ModalText>
-                    Jam Tangan Casio
-                    <br />
-                    Harga Awal
-                    <br />
-                    Harga Akhir
+                    <s>Rp {orders.Product.price.toLocaleString("id-ID")}</s>
+                  </ModalText>
+                  <ModalText>
+                    Ditawar Rp {orders.price.toLocaleString("id-ID")}
                   </ModalText>
                 </Col>
               </Row>
@@ -72,7 +72,13 @@ function ModalInfoProduct() {
           </CardModal>
         </Modal.Body>
         <ModalFooter>
-          <BtnPrimary className="w-100">Hubungi via Wazap</BtnPrimary>
+          <BtnPrimary
+            target="_blank"
+            href={`https://api.whatsapp.com/send?phone=${orders.User.phone_number}`}
+            className="w-100"
+          >
+            Contact to +{orders.User.phone_number}
+          </BtnPrimary>
         </ModalFooter>
       </Modal>
     </>
