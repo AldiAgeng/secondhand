@@ -3,10 +3,8 @@ import { BtnSubmit } from "../../components/Buttons/ButtonElements";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../../App.css";
-import { useRef, useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import { Alert } from "react-bootstrap";
-import logo from "../../assets/images/logo.png";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -38,19 +36,16 @@ function Login() {
       .catch((error) => {
         console.log(error.response, "error");
         // setErrors(error.response.data);
-        if (typeof error.response.data.message === "array") {
+        if (Array.isArray(error.response.data.message)) {
           error.response.data.message.forEach((err) => {
-            toast(error.response.data.message, {
+            toast(err, {
               type: "error",
             });
           });
         } else {
-          toast(
-            "please fill all required fields and make sure the data is valid",
-            {
-              type: "error",
-            }
-          );
+          toast("email or password are wrong", {
+            type: "error",
+          });
         }
       });
     console.log(email.target.value);

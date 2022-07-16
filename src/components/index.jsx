@@ -7,3 +7,4 @@ export { default as ModalInfoProduct } from "./Modals/ModalInfoProduct";
 export { default as ModalTawar } from "./Modals/ModalTawar";
 export { default as ModalStatus } from "./Modals/ModalStatus";
 export { default as NotificationToast } from "./Notification/index";
+export { default as BackButton } from "./Buttons/BackButton";

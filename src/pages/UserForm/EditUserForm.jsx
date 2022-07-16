@@ -21,6 +21,8 @@ function UserForm() {
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
   const [image, setImage] = useState(null);
+  const imgUrl =
+    "https://tokoku-api.herokuapp.com/uploads/users/" + users.picture;
 
   const whoami = () => {
     axios
@@ -87,11 +89,6 @@ function UserForm() {
       }
     }
   }
-
-  const imgUrl =
-    "https://tokoku-api.herokuapp.com/uploads/users/" + users.picture;
-
-  // console.log(imgUrl);
 
   return (
     <>
