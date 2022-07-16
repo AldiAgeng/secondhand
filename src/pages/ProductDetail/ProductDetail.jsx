@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Container, Card, Row, Col } from "react-bootstrap";
-import { NavbarMenu, BackButton } from "../../components";
+import { NavbarMenu, BackButton, ModalTawar } from "../../components";
 import { BtnPrimary } from "../../components/Buttons/ButtonElements";
 import axios from "axios";
 import style from "./productdetail.module.css";
@@ -145,9 +145,7 @@ function ProductDetail() {
                         className="w-25 ms-2">Delete</BtnPrimary>
                     </>
                   ) : (
-                    <BtnPrimary className="w-25 ms-2">
-                      Ajukan Penawaran
-                    </BtnPrimary>
+                    <ModalTawar products={products} />  
                   )}
                 </Card.Body>
               </Card>
