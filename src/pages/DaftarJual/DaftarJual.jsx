@@ -3,7 +3,6 @@ import { Container, Row, Col, ListGroup, Card } from "react-bootstrap";
 import { NavbarMenu, CardProduct, Footers } from "../../components";
 import { BtnPrimary } from "../../components/Buttons/ButtonElements";
 import { Link } from "react-router-dom";
-import toRupiah from "@develoka/angka-rupiah-js";
 import imgContent from "../../assets/images/imgContent.png";
 import fi_box from "../../assets/icons/fi_box.svg";
 import fi_heart from "../../assets/icons/fi_heart.svg";
@@ -18,12 +17,12 @@ function Daftarjual() {
   const [products, setProducts] = useState([]);
   const [orders, setOrders] = useState([]);
   const [buttons, setButtons] = useState("");
+  const [history, setHistory] = useState("");
   const imgUser =
     "https://tokoku-api.herokuapp.com/uploads/users/" + users.picture;
   const imgProduct = "https://tokoku-api.herokuapp.com/uploads/products/";
 
   const handleButton = (e) => setButtons(e.target.innerText);
-  console.log(buttons, "data btn");
 
   const whoami = () => {
     axios
@@ -34,8 +33,6 @@ function Daftarjual() {
       })
       .then((response) => {
         setUsers(response.data.data);
-        console.log(response.data.data, "data");
-        // console.log(localStorage.getItem('token'));
       });
   };
 
@@ -48,8 +45,6 @@ function Daftarjual() {
       })
       .then((response) => {
         setProducts(response.data.data);
-        console.log(response.data.data, "data product");
-        // console.log(localStorage.getItem('token'));
       });
   };
 
@@ -62,15 +57,26 @@ function Daftarjual() {
       })
       .then((response) => {
         setOrders(response.data.product);
-        // console.log(localStorage.getItem('token'));
       });
   };
-  console.log(orders, "data order");
+
+  const getHistory = async () => {
+    await axios
+      .get(`https://tokoku-api.herokuapp.com/api/v1/history`, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((response) => {
+        setHistory(response.data.Seller);
+      });
+  };
 
   useEffect(() => {
     whoami();
     getProductSeller();
     getOrderSeller();
+    getHistory();
   }, []);
 
   return (
@@ -207,22 +213,10 @@ function Daftarjual() {
                                 {order.Product.name}
                               </Card.Text>
                               <Card.Text className={style.titleText}>
-                                Rp{" "}
-                                {/* {toRupiah(order.Product.price.toString(), {
-                                  symbol: false,
-                                  floatingPoint: 0,
-                                  spaceBeforeUnit: true,
-                                })} */}
-                                {order.Product.price.toLocaleString("id-ID")}
+                                Rp {order.Product.price.toLocaleString("id-ID")}
                               </Card.Text>
                               <Card.Text className={style.titleText}>
-                                Ditawar Rp{" "}
-                                {/* {toRupiah(order.price.toString(), {
-                                  symbol: false,
-                                  floatingPoint: 0,
-                                  spaceBeforeUnit: true,
-                                })} */}
-                                {order.price.toLocaleString("id-ID")}
+                                Ditawar Rp {order.price.toLocaleString("id-ID")}
                               </Card.Text>
                             </Card.Body>
                           </Card>
@@ -232,7 +226,7 @@ function Daftarjual() {
                   </div>
                 );
               }
-              if (buttons === "Terjual" && products.length === 0) {
+              if (buttons === "Terjual" && history.length === 0) {
                 return (
                   <div className={style.cardList}>
                     <div className={style.contentDiv}>
@@ -249,62 +243,46 @@ function Daftarjual() {
                   </div>
                 );
               }
-              if (buttons === "Terjual") {
-                if (products.length > 0) {
-                  return (
-                    <div className={style.cardList}>
-                      {products.map((product) => {
-                        if (product.status === "sold") {
-                          return (
-                            <Link
-                              style={{ textDecoration: "none", color: "black" }}
-                              to={`/detail-produk/${product.id}`}
-                            >
-                              <div key={product.id}>
-                                <CardProduct
-                                  id={product.id}
-                                  name={product.name}
-                                  price={product.price}
-                                  picture={product.picture}
-                                  category={product.CategoryProduct.name}
-                                />
-                              </div>
-                            </Link>
-                          );
-                        }
-                        // else {
-                        //   return (
-                        //     <div className={style.contentDiv}>
-                        //       <img
-                        //         className={style.imgContent}
-                        //         src={imgContent}
-                        //         alt=""
-                        //       />
-                        //       <h5 className={style.contentText}>
-                        //         Belum ada produkmu yang terjual nih, <br />
-                        //         sabar ya rejeki nggak kemana kok
-                        //       </h5>
-                        //     </div>
-                        //   );
-                        // }
-                      })}
-                    </div>
-                  );
-                } else {
-                  return (
-                    <div className={style.contentDiv}>
-                      <img
-                        className={style.imgContent}
-                        src={imgContent}
-                        alt=""
-                      />
-                      <h5 className={style.contentText}>
-                        Belum ada produkmu yang terjual nih, <br />
-                        sabar ya rejeki nggak kemana kok
-                      </h5>
-                    </div>
-                  );
-                }
+              if (buttons === "Terjual" && history.length !== 0) {
+                return (
+                  <div className={style.cardList}>
+                    {history.map((data) => {
+                      return (
+                        <Link
+                          style={{ textDecoration: "none", color: "black" }}
+                          to={`/detail-produk/${data.Product.id}`}
+                        >
+                          <Card
+                            className={style.productCard}
+                            key={data.Product.id}
+                            type="button"
+                          >
+                            <div className={style.cardBox}>
+                              <Card.Img
+                                className={style.imgCard}
+                                variant="top"
+                                src={imgProduct + data.Product.picture}
+                                alt={data.Product.picture}
+                              />
+                            </div>
+                            <Card.Body className={style.bodyCard}>
+                              <Card.Text className={style.titleText}>
+                                {data.Product.name}
+                              </Card.Text>
+                              <Card.Text className={style.titleText}>
+                                Rp {data.Product.price.toLocaleString("id-ID")}
+                              </Card.Text>
+                              <Card.Text className={style.titleText}>
+                                Harga Akhir Rp{" "}
+                                {data.price.toLocaleString("id-ID")}
+                              </Card.Text>
+                            </Card.Body>
+                          </Card>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                );
               }
             })()}
           </Col>

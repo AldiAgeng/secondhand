@@ -6,6 +6,4 @@ export { default as EditUserForm } from "./UserForm/EditUserForm";
 export { default as AddProductForm } from "./ProductForm/AddProductForm";
 export { default as EditProductForm } from "./ProductForm/EditProductForm";
 export { default as ProductDetail } from "./ProductDetail/ProductDetail";
-export { default as BuyerProductDetail } from "./ProductDetail/BuyerProductDetail";
 export { default as InfoPenawar } from "./InfoPenawar/InfoPenawar";
-export { default as InfoPenawar2 } from "./InfoPenawar/InfoPenawar2";
