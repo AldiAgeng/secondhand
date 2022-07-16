@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
-import { Container, Card, Button } from "react-bootstrap";
+import { Container, Card } from "react-bootstrap";
+import { useParams, useNavigate } from "react-router-dom";
 import {
   NavbarPlain,
-  ModalStatus,
+  ModalStatusOrder,
   ModalInfoProduct,
   BackButton,
 } from "../../components";
 import { ToastContainer, toast } from "react-toastify";
 import { BtnPrimary } from "../../components/Buttons/ButtonElements";
 import axios from "axios";
-import { useParams, useNavigate } from "react-router-dom";
+import swal from "sweetalert";
 
 function InfoPenawar() {
   const [users, setUsers] = useState("");
@@ -44,38 +45,72 @@ function InfoPenawar() {
   };
 
   const Accepted = () => {
-    const data = {
-      status: "accepted",
-    };
-    axios
-      .put(`https://tokoku-api.herokuapp.com/api/v1/seller/order/${id}`, data, {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      })
-      .then((response) => {
-        console.log(response, "ress");
-        toast("Order Berhasil diUpdate", {
-          type: "success",
+    swal({
+      title: "Apakah anda yakin?",
+      text: "Setelah status order diganti, Anda tidak akan dapat mengubahnya lagi!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willAccpted) => {
+      if (willAccpted) {
+        const data = {
+          status: "accepted",
+        };
+        axios
+          .put(
+            `https://tokoku-api.herokuapp.com/api/v1/seller/order/${id}`,
+            data,
+            {
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("token"),
+              },
+            }
+          )
+          .then((response) => {
+            console.log(response, "ress");
+            // toast("Order Berhasil diUpdate", {
+            //   type: "success",
+            // });
+            window.location.reload();
+          });
+        swal("Status order berhasil diubah!", {
+          icon: "success",
         });
-      });
+      } else {
+        swal("Status order tidak jadi diubah!");
+      }
+    });
   };
   const Rejected = () => {
-    const data = {
-      status: "rejected",
-    };
-    axios
-      .put(`https://tokoku-api.herokuapp.com/api/v1/seller/order/${id}`, data, {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      })
-      .then((response) => {
-        console.log(response, "ress");
-        toast("Order Berhasil diUpdate", {
-          type: "success",
-        });
-      });
+    swal({
+      title: "Apakah anda yakin?",
+      text: "Setelah status order diganti, Anda tidak akan dapat mengubahnya lagi!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willRejected) => {
+      if (willRejected) {
+        const data = {
+          status: "rejected",
+        };
+        axios
+          .put(
+            `https://tokoku-api.herokuapp.com/api/v1/seller/order/${id}`,
+            data,
+            {
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("token"),
+              },
+            }
+          )
+          .then((response) => {
+            console.log(response, "ress");
+            window.location.reload();
+          });
+      } else {
+        swal("Status order tidak jadi diubah!");
+      }
+    });
   };
 
   useEffect(() => {
@@ -111,8 +146,8 @@ function InfoPenawar() {
               <Card.Title>Ditawar Rp {bid.toLocaleString("id-ID")}</Card.Title>
               {orders.status === "accepted" || orders.status === "rejected" ? (
                 <div>
-                  <BtnPrimary className="buybutton1 me-2">Status</BtnPrimary>
-                  <ModalInfoProduct />
+                  <ModalStatusOrder products={products} orders={orders} />
+                  <ModalInfoProduct orders={orders} />
                 </div>
               ) : (
                 <div>

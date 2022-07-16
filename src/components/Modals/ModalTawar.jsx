@@ -6,7 +6,6 @@ import {
   ModalTextBold,
   ModalTextLight,
   ModalText,
-  ModalFoto,
 } from "./ModalElements";
 import { FormControl } from "../Form/FormElements";
 import { CardModal } from "./CardElements";
@@ -20,7 +19,9 @@ function ModalTawar({ products }) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [bid, setBid] = useState();
-  console.log(localStorage.getItem("token"));
+
+  const imgProduct =
+    "https://tokoku-api.herokuapp.com/uploads/products/" + products.picture;
   const bidProduct = async () => {
     const data = {
       price: bid,
@@ -54,7 +55,9 @@ function ModalTawar({ products }) {
   return (
     <>
       <ToastContainer />
-      <BtnPrimary onClick={handleShow}>Ajukan Penawaran</BtnPrimary>
+      <BtnPrimary className="ms-2 px-5" onClick={handleShow}>
+        Ajukan Penawaran
+      </BtnPrimary>
 
       <Modal
         show={show}
@@ -74,7 +77,17 @@ function ModalTawar({ products }) {
               {/* Barang */}
               <Row>
                 <Col md={4}>
-                  <ModalFoto />
+                  <div>
+                    <img
+                      style={{
+                        width: "48px",
+                        height: "48px",
+                        borderRadius: "16px",
+                      }}
+                      src={imgProduct}
+                      alt={products.picture}
+                    />
+                  </div>
                 </Col>
                 <Col md={6}>
                   <ModalTextBold>{products.name}</ModalTextBold>

@@ -9,7 +9,6 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  //   const [errors, setErrors] = useState();
   const [users, setUsers] = useState("");
   const token = localStorage.getItem("token");
 
@@ -134,7 +133,7 @@ function Login() {
             </form>
           ) : (
             <div>
-              <h1>{users}</h1>
+              <h1 className="text-center">Anda sudah login sebagai {users}</h1>
               <BtnSubmit className="w-100" onClick={logout}>
                 Logout
               </BtnSubmit>

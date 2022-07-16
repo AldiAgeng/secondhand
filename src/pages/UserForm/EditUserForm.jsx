@@ -1,17 +1,14 @@
 import { useState, useEffect } from "react";
-import {
-  FormLabel,
-  FormControl,
-  FormSelect,
-} from "../../components/Form/FormElements";
+import { FormLabel, FormControl } from "../../components/Form/FormElements";
 import {
   UploadProfilePicture,
   BtnFormUser,
 } from "../../components/Form/UsersFormElements";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Form, Image, Container } from "react-bootstrap";
-import { NavbarPlain } from "../../components";
+import { Form, Image, Container, InputGroup } from "react-bootstrap";
+import { NavbarPlain, BackButton } from "../../components";
+import swal from "sweetalert";
 import axios from "axios";
 
 function UserForm() {
@@ -57,7 +54,7 @@ function UserForm() {
     form.append("name", name);
     form.append("city", city);
     form.append("address", address);
-    form.append("phone_number", phone);
+    form.append("phone_number", "62" + phone);
 
     try {
       const response = await axios.put(
@@ -71,9 +68,15 @@ function UserForm() {
         }
       );
       console.log(response, "res");
-      window.location.reload();
-      // Kalo di upload langsung di-server
-      //   setUploadedFileURL("http://localhost:8080/" + response.data.url);
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+      swal({
+        title: "Berhasil!",
+        text: "Profil berhasil anda ubah!",
+        icon: "success",
+        button: "Uhuyy!",
+      });
     } catch (error) {
       console.log(error, "err");
       if (Array.isArray(error.response.data.message)) {
@@ -95,6 +98,7 @@ function UserForm() {
       <div>
         <NavbarPlain title="Lengkapi Info Akun" />
         <ToastContainer />
+        <BackButton />
         <Container className="mt-5 py-5">
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mt-4 mb-2">
@@ -138,20 +142,22 @@ function UserForm() {
             </Form.Group>
             <Form.Group className="mb-2">
               <FormLabel>No. Handphone*</FormLabel>
-              <FormControl
-                type="text"
-                placeholder="Contoh: +628912345678"
-                required
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-              />
+              <InputGroup className="mb-3">
+                <InputGroup.Text id="basic-addon1">+62</InputGroup.Text>
+                <FormControl
+                  type="text"
+                  placeholder="Contoh: 628912345678"
+                  required
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                />
+              </InputGroup>
             </Form.Group>
             <Form.Group>
               <FormLabel>Picture</FormLabel>
               <FormControl
                 type="file"
                 id="image"
-                required
                 onChange={(e) => setImage(e.target.files[0])}
               />
             </Form.Group>
