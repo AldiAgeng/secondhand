@@ -61,7 +61,7 @@ function App() {
               <AddProductForm />
             </ProtectedToken>
             } />
-          <Route path="edit-product" element={
+          <Route path="edit-product/:id" element={
             <ProtectedToken>
               <EditProductForm />
             </ProtectedToken>

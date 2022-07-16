@@ -3,51 +3,172 @@ import { BtnFormProduct, UploadProductPicture } from '../../components/Form/Prod
 import { Form, Row, Col } from 'react-bootstrap';
 import { Container } from 'react-bootstrap';
 import { NavbarPlain } from "../../components";
+import axios from 'axios';
+import { ToastContainer, toast } from "react-toastify";
+import { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
-function ProductForm() {
+
+function EditProductForm() {
+    const [name, setName] = useState("");
+    const [picture, setPicture] = useState(null);
+    const [price, setPrice] = useState("");
+    const [location, setLocation] = useState("");
+    const [description, setDescription] = useState("");
+    const [category, setCategory] = useState("");
+    const navigate = useNavigate();
+    const { id } = useParams();
+
+    const getProduct = async () => {
+        try {
+            const res = await axios.get(`https://tokoku-api.herokuapp.com/api/v1/seller/product/${id}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('token')}`,
+                    }
+                });
+            console.log(res, 'res');
+            console.log(category, 'category');
+
+            setName(res.data.data.name);
+            setPicture(res.data.data.picture);
+            setPrice(res.data.data.price);
+            setLocation(res.data.data.location);
+            setDescription(res.data.data.description);
+            setCategory(res.data.data.CategoryProduct.name);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+
+    async function handleEdit(e) {
+        e.preventDefault();
+        const form = new FormData();
+
+        form.append("name", name);
+        form.append("picture", picture);
+        form.append("price", price);
+        form.append("location", location);
+        form.append("description", description);
+        form.append("id_category_product", category);
+
+        try {
+            const res = await axios.put(`https://tokoku-api.herokuapp.com/api/v1/seller/product/${id}`, form, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                    'Content-Type': 'multipart/form-data',
+                }
+            });
+            console.log(res);
+            navigate('/daftar-jual');
+            toast('Produk berhasil diubah', {
+                type: "success",
+            });
+        }
+        catch (err) {
+            if (Array.isArray(err.response.data.message)) {
+                err.response.data.message.forEach((err) => {
+                    toast(err, {
+                        type: "error",
+                    });
+                });
+            } else {
+                toast(err.response.data.message, {
+                    type: "error",
+                });
+            }
+        }
+
+    }
+    useEffect(() => {
+        getProduct();
+    }, [])
+
+
     return (
         <>
-            <div>
-                <NavbarPlain title="Lengkapi Info Produk" />
-                <Container className="mt-5 py-5">
-                    <Form>
-                        <Form.Group className='mt-4 mb-2'>
-                            <FormLabel>Nama Produk</FormLabel>
-                            <FormControl type="text" placeholder="Nama Produk" />
-                        </Form.Group>
-                        <Form.Group className='my-2'>
-                            <FormLabel>Harga Produk</FormLabel>
-                            <FormControl type="text" placeholder="Rp. 0,00" />
-                        </Form.Group>
-                        <Form.Group className='my-2'>
-                            <FormLabel>Kategori</FormLabel>
-                            <FormSelect>
-                                <option>Pilih Kategori</option>
-                            </FormSelect>
-                        </Form.Group>
-                        <Form.Group className='my-2'>
-                            <FormLabel>Deskripsi</FormLabel>
-                            <FormControl as="textarea" placeholder="Contoh: Produk Penghilang Rorombeheun" />
-                        </Form.Group>
-                        <Form.Group className='my-2'>
-                            <FormLabel>Foto Produk</FormLabel>
-                            <UploadProductPicture className='mx-auto' />
-                        </Form.Group>
-                        <Form.Group>
-                            <Row>
-                                <Col>
-                                    <BtnFormProduct className='mt-2 mb-4' type="submit">Cancel</BtnFormProduct>
-                                </Col>
-                                <Col>
-                                    <BtnFormProduct className='mt-2 mb-4' type="submit" href="/daftar-jual">Submit</BtnFormProduct>
-                                </Col>
-                            </Row>
-                        </Form.Group>
-                    </Form>
-                </Container>
-            </div>
+            <NavbarPlain title="Lengkapi Info Produk" />
+            <ToastContainer />
+            <Container className="mt-5 py-5">
+                <Form onSubmit={handleEdit}>
+                    <Form.Group className='mt-4 mb-2'>
+                        <FormLabel>Nama Produk</FormLabel>
+                        <FormControl type="text"
+                            placeholder="Nama Produk"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            required
+                        />
+                    </Form.Group>
+                    <Form.Group className='my-2'>
+                        <FormLabel>Harga Produk</FormLabel>
+                        <FormControl type="text"
+                            placeholder="Rp. 0,00"
+                            value={price}
+                            onChange={(e) => setPrice(e.target.value)}
+                            required
+                        />
+                    </Form.Group>
+                    <Form.Group className='my-2'>
+                        <FormLabel>Kategori</FormLabel>
+                        <FormSelect
+                            onChange={(e) => {
+                                const selectedCategory = e.target.value;
+                                setCategory(selectedCategory);
+                            }}
+                        >
+                            <option selected={category === 'Hobi' ? 'selected' : ''} value={1}>Hobi</option>
+                            <option selected={category === 'Kendaraan' ? 'selected' : ''} value={2}>Kendaraan</option>
+                            <option selected={category === 'Baju' ? 'selected' : ''} value={3}  >Baju</option>
+                            <option selected={category === 'Elektronik' ? 'selected' : ''} value={4}>Elektronik</option>
+                            <option selected={category === 'Kesehatan' ? 'selected' : ''} value={5}>Kesehatan</option>
+                        </FormSelect>
+                    </Form.Group>
+                    <Form.Group className='mt-4 mb-2'>
+                        <FormLabel>Lokasi</FormLabel>
+                        <FormControl
+                            type="text"
+                            placeholder="Lokasi Produk"
+                            value={location}
+                            onChange={(e) => setLocation(e.target.value)}
+                            required
+                        />
+                    </Form.Group>
+                    <Form.Group className='my-2'>
+                        <FormLabel>Deskripsi</FormLabel>
+                        <FormControl as="textarea"
+                            placeholder="Contoh: Produk Penghilang Rorombeheun"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                            required
+                        />
+                    </Form.Group>
+                    <Form.Group className='my-2'>
+                        <FormLabel>Foto Produk</FormLabel>
+                        <FormControl
+                            className='mx-auto'
+                            type="file"
+                            id="picture"
+                            onChange={(e) => setPicture(e.target.files[0])}
+                        />
+                    </Form.Group>
+                    <Form.Group>
+                        <Row>
+                            <Col>
+                                <BtnFormProduct className='mt-2 mb-4' type="reset">Cancel</BtnFormProduct>
+                            </Col>
+                            <Col>
+                                <BtnFormProduct className='mt-2 mb-4' type="submit" >Submit</BtnFormProduct>
+                            </Col>
+                        </Row>
+                    </Form.Group>
+                </Form>
+            </Container>
+
         </>
     )
 }
 
-export default ProductForm;
+
+export default EditProductForm;

@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Container, Card, Row, Col } from "react-bootstrap";
 import { NavbarMenu, BackButton } from "../../components";
 import { BtnPrimary } from "../../components/Buttons/ButtonElements";
 import axios from "axios";
 import style from "./productdetail.module.css";
+import { useNavigate } from "react-router-dom";
+import swal from "sweetalert";
 
 function ProductDetail() {
   const [sellers, setSellers] = useState("");
@@ -13,6 +15,9 @@ function ProductDetail() {
   const [price, setPrice] = useState(0);
   const [category, setCategory] = useState("");
   const { id } = useParams();
+  const navigate = useNavigate();
+
+
 
   const imgUser =
     "https://tokoku-api.herokuapp.com/uploads/users/" + users.picture;
@@ -52,6 +57,42 @@ function ProductDetail() {
     whoami();
     getProduct();
   }, []);
+
+
+  function handleDelete() {
+    swal({
+      title: "Apakah anda yakin?",
+      text: "Setelah dihapus, Anda tidak akan dapat mengembalikan produk ini!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          axios
+            .delete(`https://tokoku-api.herokuapp.com/api/v1/seller/product/${id}`, {
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("token"),
+              },
+            })
+            .then((response) => {
+              console.log(response);
+            }).catch((error) => {
+              console.log(error);
+            }).finally(() => {
+              window.location.href = "/daftar-jual";
+            }
+            );
+          swal("Data produk berhasil dihapus!", {
+            icon: "success",
+          });
+        } else {
+          swal("Data produk tidak jadi dihapus!");
+        }
+      });
+  }
+
+
 
   return (
     <>
@@ -94,8 +135,14 @@ function ProductDetail() {
                   </Card.Text>
                   {sellers.email === users.email ? (
                     <>
-                      <BtnPrimary className="w-25 me-2">Edit</BtnPrimary>
-                      <BtnPrimary className="w-25 ms-2">Delete</BtnPrimary>
+                      <Link
+                        style={{ textDecoration: "none", color: "black" }}
+                        to={`/edit-product/${products.id}`}
+                      >
+                        <BtnPrimary className="w-25 me-2">Edit</BtnPrimary>
+                      </Link>
+                      <BtnPrimary onClick={handleDelete}
+                        className="w-25 ms-2">Delete</BtnPrimary>
                     </>
                   ) : (
                     <BtnPrimary className="w-25 ms-2">

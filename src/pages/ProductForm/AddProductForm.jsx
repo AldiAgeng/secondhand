@@ -8,7 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function ProductForm() {
+function AddProductForm() {
     const [name, setName] = useState("");
     const [picture, setPicture] = useState(null);
     const [price, setPrice] = useState("");
@@ -148,4 +148,4 @@ function ProductForm() {
     )
 }
 
-export default ProductForm;
+export default AddProductForm;
