@@ -37,6 +37,7 @@ function UserForm() {
       });
   };
 
+  console.log(city, "users city");
   useEffect(() => {
     whoami();
   }, []);
@@ -53,22 +54,28 @@ function UserForm() {
     form.append("phone_number", phone);
 
     try {
-      const response = await axios.put("https://tokoku-api.herokuapp.com/api/v1/auth/user", form, {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      console.log(response, "res");
-      setTimeout(() => {
-        window.location.reload();
-      }, 1000);
-      swal({
-        title: "Berhasil!",
-        text: "Profil berhasil anda ubah!",
-        icon: "success",
-        button: "Uhuyy!",
-      });
+      if (city === null || address === null || phone === null) {
+        toast("Please fill all the fields!", {
+          type: "error",
+        });
+      } else {
+        const response = await axios.put("https://tokoku-api.herokuapp.com/api/v1/auth/user", form, {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+            "Content-Type": "multipart/form-data",
+          },
+        });
+        console.log(response, "res");
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+        swal({
+          title: "Berhasil!",
+          text: "Profil berhasil anda ubah!",
+          icon: "success",
+          button: "Uhuyy!",
+        });
+      }
     } catch (error) {
       console.log(error, "err");
       if (Array.isArray(error.response.data.message)) {
