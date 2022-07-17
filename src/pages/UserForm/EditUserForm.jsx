@@ -105,7 +105,7 @@ function UserForm() {
                 <UploadProfilePicture className="mx-auto" />
               ) : (
                 <div className="d-flex justify-content-center">
-                  <Image className="imgPreview" src={imgUrl} />
+                  <Image className="imgPreview" src={users.picture} />
                 </div>
               )}
             </Form.Group>

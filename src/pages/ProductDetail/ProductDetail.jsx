@@ -17,10 +17,8 @@ function ProductDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const imgUser =
-    "https://tokoku-api.herokuapp.com/uploads/users/" + users.picture;
-  const imgProduct =
-    "https://tokoku-api.herokuapp.com/uploads/products/" + products.picture;
+  const imgUser = "https://tokoku-api.herokuapp.com/uploads/users/" + users.picture;
+  const imgProduct = "https://tokoku-api.herokuapp.com/uploads/products/" + products.picture;
 
   const whoami = () => {
     axios
@@ -66,14 +64,11 @@ function ProductDetail() {
     }).then((willDelete) => {
       if (willDelete) {
         axios
-          .delete(
-            `https://tokoku-api.herokuapp.com/api/v1/seller/product/${id}`,
-            {
-              headers: {
-                Authorization: "Bearer " + localStorage.getItem("token"),
-              },
-            }
-          )
+          .delete(`https://tokoku-api.herokuapp.com/api/v1/seller/product/${id}`, {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+          })
           .then((response) => {
             console.log(response);
           })
@@ -99,7 +94,7 @@ function ProductDetail() {
       <Container className="mt-5 py-5">
         <Card className={style.userCard}>
           <div className="w-100 pt-3">
-            <img className={style.userImg} src={imgUser} alt={users.picture} />
+            <img className={style.userImg} src={users.picture} alt={users.picture} />
           </div>
           <Card.Body>
             <Card.Title className={style.fontName}>{users.name}</Card.Title>
@@ -110,11 +105,7 @@ function ProductDetail() {
           <Row>
             <Col className="d-flex justify-content-center w-50">
               <div className={style.productImgBox}>
-                <img
-                  className={style.productImg}
-                  src={imgProduct}
-                  alt={products.picture}
-                />
+                <img className={style.productImg} src={products.picture} alt={products.picture} />
               </div>
             </Col>
           </Row>
@@ -122,21 +113,12 @@ function ProductDetail() {
             <Col>
               <Card className="w-100 text-center border-0">
                 <Card.Body>
-                  <Card.Title className={style.fontProduct}>
-                    {products.name}
-                  </Card.Title>
-                  <Card.Text className={style.fontContent}>
-                    {category}
-                  </Card.Text>
-                  <Card.Text className={style.fontProduct}>
-                    Rp {price.toLocaleString("id-ID")}
-                  </Card.Text>
+                  <Card.Title className={style.fontProduct}>{products.name}</Card.Title>
+                  <Card.Text className={style.fontContent}>{category}</Card.Text>
+                  <Card.Text className={style.fontProduct}>Rp {price.toLocaleString("id-ID")}</Card.Text>
                   {sellers.email === users.email ? (
                     <>
-                      <Link
-                        style={{ textDecoration: "none", color: "black" }}
-                        to={`/edit-product/${products.id}`}
-                      >
+                      <Link style={{ textDecoration: "none", color: "black" }} to={`/edit-product/${products.id}`}>
                         <BtnPrimary className="w-25 me-2">Edit</BtnPrimary>
                       </Link>
                       <BtnPrimary onClick={handleDelete} className="w-25 ms-2">

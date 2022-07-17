@@ -1,12 +1,7 @@
 import { useState, useEffect } from "react";
 import { Container, Card } from "react-bootstrap";
 import { useParams, useNavigate } from "react-router-dom";
-import {
-  NavbarPlain,
-  ModalStatusOrder,
-  ModalInfoProduct,
-  BackButton,
-} from "../../components";
+import { NavbarPlain, ModalStatusOrder, ModalInfoProduct, BackButton } from "../../components";
 import { ToastContainer, toast } from "react-toastify";
 import { BtnPrimary } from "../../components/Buttons/ButtonElements";
 import axios from "axios";
@@ -22,10 +17,8 @@ function InfoPenawar() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const imgUser =
-    "https://tokoku-api.herokuapp.com/uploads/users/" + users.picture;
-  const imgProduct =
-    "https://tokoku-api.herokuapp.com/uploads/products/" + products.picture;
+  const imgUser = "https://tokoku-api.herokuapp.com/uploads/users/" + users.picture;
+  const imgProduct = "https://tokoku-api.herokuapp.com/uploads/products/" + products.picture;
 
   const orderProduct = async () => {
     await axios
@@ -57,15 +50,11 @@ function InfoPenawar() {
           status: "accepted",
         };
         axios
-          .put(
-            `https://tokoku-api.herokuapp.com/api/v1/seller/order/${id}`,
-            data,
-            {
-              headers: {
-                Authorization: "Bearer " + localStorage.getItem("token"),
-              },
-            }
-          )
+          .put(`https://tokoku-api.herokuapp.com/api/v1/seller/order/${id}`, data, {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+          })
           .then((response) => {
             console.log(response, "ress");
             // toast("Order Berhasil diUpdate", {
@@ -94,15 +83,11 @@ function InfoPenawar() {
           status: "rejected",
         };
         axios
-          .put(
-            `https://tokoku-api.herokuapp.com/api/v1/seller/order/${id}`,
-            data,
-            {
-              headers: {
-                Authorization: "Bearer " + localStorage.getItem("token"),
-              },
-            }
-          )
+          .put(`https://tokoku-api.herokuapp.com/api/v1/seller/order/${id}`, data, {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+          })
           .then((response) => {
             console.log(response, "ress");
             window.location.reload();
@@ -122,12 +107,9 @@ function InfoPenawar() {
       <ToastContainer />
       <BackButton />
       <Container className="my-5 pt-5">
-        <Card
-          className="mt-2 mb-5 profileinfopenawar"
-          style={{ width: "18rem" }}
-        >
+        <Card className="mt-2 mb-5 profileinfopenawar" style={{ width: "18rem" }}>
           <Card.Body>
-            <img className="fotopenjual" src={imgUser} alt={imgUser} />
+            <img className="fotopenjual" src={users.picture} alt={users.picture} />
             <Card.Title>{users.name}</Card.Title>
             <Card.Text>{users.city}</Card.Text>
           </Card.Body>
@@ -135,11 +117,7 @@ function InfoPenawar() {
         <div className="d-flex flex-column align-items-center">
           <h5 className="mb-3">Daftar Produkmu yang ditawarkan</h5>
           <Card className="cardinfopenawar" style={{ width: "50rem" }}>
-            <img
-              className="mx-auto mt-3 jam"
-              src={imgProduct}
-              alt={imgProduct}
-            />
+            <img className="mx-auto mt-3 jam" src={products.picture} alt={products.picture} />
             <Card.Body>
               <Card.Title>{products.name}</Card.Title>
               <Card.Title>Rp {price.toLocaleString("id-ID")}</Card.Title>
