@@ -1,12 +1,19 @@
 import { useState } from "react";
 import { Modal, Card, Row, Col, Form } from "react-bootstrap";
-import { ModalHeader, ModalFooter, ModalTextBold, ModalTextLight, ModalText } from "./ModalElements";
+import {
+  ModalHeader,
+  ModalFooter,
+  ModalTextBold,
+  ModalTextLight,
+  ModalText,
+} from "./ModalElements";
 import { FormControl } from "../Form/FormElements";
 import { CardModal } from "./CardElements";
 import { BtnPrimary } from "../Buttons/ButtonElements";
 import axios from "axios";
 import swal from "sweetalert";
 import { toast, ToastContainer } from "react-toastify";
+import style from "./modals.module.css";
 
 function ModalTawar({ products }) {
   const [show, setShow] = useState(false);
@@ -14,7 +21,8 @@ function ModalTawar({ products }) {
   const handleShow = () => setShow(true);
   const [bid, setBid] = useState();
 
-  const imgProduct = "https://tokoku-api.herokuapp.com/uploads/products/" + products.picture;
+  const imgProduct =
+    "https://tokoku-api.herokuapp.com/uploads/products/" + products.picture;
   const bidProduct = async () => {
     const data = {
       price: bid,
@@ -48,42 +56,47 @@ function ModalTawar({ products }) {
   return (
     <>
       <ToastContainer />
-      <BtnPrimary className="ms-2 px-5" onClick={handleShow}>
+      <BtnPrimary className="w-100 mt-3" onClick={handleShow}>
         Ajukan Penawaran
       </BtnPrimary>
 
-      <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+      >
         <ModalHeader closeButton></ModalHeader>
         <Modal.Body>
           <ModalTextBold className="mb-2">Masukkan Harga Tawarmu</ModalTextBold>
-          <ModalTextLight className="my-2">Harga tawaranmu akan diketahui penual, jika penjual cocok kamu akan segera dihubungi penjual.</ModalTextLight>
+          <ModalTextLight className="my-2">
+            Harga tawaranmu akan diketahui penual, jika penjual cocok kamu akan
+            segera dihubungi penjual.
+          </ModalTextLight>
           <CardModal className="my-2">
-            <Card.Body>
+            <Card.Body className={style.boxBody}>
               {/* Barang */}
-              <Row>
-                <Col md={4}>
-                  <div>
-                    <img
-                      style={{
-                        width: "48px",
-                        height: "48px",
-                        borderRadius: "16px",
-                      }}
-                      src={products.picture}
-                      alt={products.picture}
-                    />
-                  </div>
-                </Col>
-                <Col md={6}>
-                  <ModalTextBold>{products.name}</ModalTextBold>
-                  <ModalText>{products.price}</ModalText>
-                </Col>
-              </Row>
+              <div className={style.imgBox}>
+                <img
+                  className={style.imgModals}
+                  src={products.picture}
+                  alt={products.picture}
+                />
+              </div>
+              <div>
+                <ModalTextBold>{products.name}</ModalTextBold>
+                <ModalText>Rp {products.price}</ModalText>
+              </div>
             </Card.Body>
           </CardModal>
           <Form.Group className="mt-4">
             <ModalTextBold className="mb-2">Harga Tawar</ModalTextBold>
-            <FormControl value={bid} onChange={(e) => setBid(e.target.value)} type="text" placeholder="Rp. 0,-" />
+            <FormControl
+              value={bid}
+              onChange={(e) => setBid(e.target.value)}
+              type="text"
+              placeholder="Rp. 0,-"
+            />
           </Form.Group>
         </Modal.Body>
         <ModalFooter>

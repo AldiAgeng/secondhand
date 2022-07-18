@@ -27,7 +27,6 @@ export const CardPrices = styled(Card.Text)`
 `
 
 export const CardModal = styled(Card)`
-    background: #EEEEEE;
     border: 0;
 `
 

@@ -17,8 +17,10 @@ function ProductDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const imgUser = "https://tokoku-api.herokuapp.com/uploads/users/" + users.picture;
-  const imgProduct = "https://tokoku-api.herokuapp.com/uploads/products/" + products.picture;
+  const imgUser =
+    "https://tokoku-api.herokuapp.com/uploads/users/" + users.picture;
+  const imgProduct =
+    "https://tokoku-api.herokuapp.com/uploads/products/" + products.picture;
 
   const whoami = () => {
     axios
@@ -64,11 +66,14 @@ function ProductDetail() {
     }).then((willDelete) => {
       if (willDelete) {
         axios
-          .delete(`https://tokoku-api.herokuapp.com/api/v1/seller/product/${id}`, {
-            headers: {
-              Authorization: "Bearer " + localStorage.getItem("token"),
-            },
-          })
+          .delete(
+            `https://tokoku-api.herokuapp.com/api/v1/seller/product/${id}`,
+            {
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("token"),
+              },
+            }
+          )
           .then((response) => {
             console.log(response);
           })
@@ -92,47 +97,76 @@ function ProductDetail() {
       <NavbarMenu />
       <BackButton />
       <Container className="mt-5 py-5">
-        <Card className={style.userCard}>
-          <div className="w-100 pt-3">
-            <img className={style.userImg} src={users.picture} alt={users.picture} />
-          </div>
-          <Card.Body>
-            <Card.Title className={style.fontName}>{users.name}</Card.Title>
-            <Card.Text className={style.fontCity}>{users.city}</Card.Text>
-          </Card.Body>
-        </Card>
-        <Container className={style.productBox}>
-          <Row>
-            <Col className="d-flex justify-content-center w-50">
-              <div className={style.productImgBox}>
-                <img className={style.productImg} src={products.picture} alt={products.picture} />
+        <Row>
+          <Col
+            md={8}
+            className="d-flex justify-content-center align-items-center mb-4"
+          >
+            <Container className={style.productBox}>
+              <img
+                className={style.productImg}
+                src={products.picture}
+                alt={products.picture}
+              />
+            </Container>
+          </Col>
+          <Col md={4}>
+            <Card
+              style={{
+                border: "none",
+                borderRadius: "16px",
+                boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.15)",
+              }}
+            >
+              <Card.Body>
+                <Card.Title className={style.fontProduct}>
+                  {products.name}
+                </Card.Title>
+                <Card.Text className={style.fontContent}>{category}</Card.Text>
+                <Card.Text className={style.fontProduct}>
+                  Rp {price.toLocaleString("id-ID")}
+                </Card.Text>
+                {sellers.email === users.email ? (
+                  <div className="text-center">
+                    <Link
+                      style={{ textDecoration: "none", color: "black" }}
+                      to={`/edit-product/${products.id}`}
+                    >
+                      <BtnPrimary className={style.button}>Edit</BtnPrimary>
+                    </Link>
+                    <BtnPrimary onClick={handleDelete} className={style.button}>
+                      Delete
+                    </BtnPrimary>
+                  </div>
+                ) : (
+                  <ModalTawar products={products} />
+                )}
+              </Card.Body>
+            </Card>
+            <div className={style.userCard}>
+              <div>
+                <img
+                  className={style.userImg}
+                  src={users.picture}
+                  alt={users.picture}
+                />
               </div>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <Card className="w-100 text-center border-0">
-                <Card.Body>
-                  <Card.Title className={style.fontProduct}>{products.name}</Card.Title>
-                  <Card.Text className={style.fontContent}>{category}</Card.Text>
-                  <Card.Text className={style.fontProduct}>Rp {price.toLocaleString("id-ID")}</Card.Text>
-                  {sellers.email === users.email ? (
-                    <>
-                      <Link style={{ textDecoration: "none", color: "black" }} to={`/edit-product/${products.id}`}>
-                        <BtnPrimary className="w-25 me-2">Edit</BtnPrimary>
-                      </Link>
-                      <BtnPrimary onClick={handleDelete} className="w-25 ms-2">
-                        Delete
-                      </BtnPrimary>
-                    </>
-                  ) : (
-                    <ModalTawar products={products} />
-                  )}
-                </Card.Body>
-              </Card>
-            </Col>
-          </Row>
-        </Container>
+              <div className="d-flex flex-column justify-between w-100 me-2">
+                <h3 className={style.fontName}>{users.name}</h3>
+                <p className={style.fontCity}>{users.city}</p>
+              </div>
+              <div className="mt-0">
+                <p className={style.fontSeller}>Penjual</p>
+              </div>
+            </div>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Container></Container>
+          </Col>
+        </Row>
+
         <br />
         <div className="desc">
           <h2 className={style.fontProduct}>Deskripsi Produk</h2>

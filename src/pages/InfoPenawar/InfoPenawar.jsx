@@ -1,11 +1,17 @@
 import { useState, useEffect } from "react";
-import { Container, Card } from "react-bootstrap";
+import { Container, Card, Row, Col } from "react-bootstrap";
 import { useParams, useNavigate } from "react-router-dom";
-import { NavbarPlain, ModalStatusOrder, ModalInfoProduct, BackButton } from "../../components";
+import {
+  NavbarPlain,
+  ModalStatusOrder,
+  ModalInfoProduct,
+  BackButton,
+} from "../../components";
 import { ToastContainer, toast } from "react-toastify";
 import { BtnPrimary } from "../../components/Buttons/ButtonElements";
 import axios from "axios";
 import swal from "sweetalert";
+import style from "./infopenawar.module.css";
 
 function InfoPenawar() {
   const [users, setUsers] = useState("");
@@ -17,8 +23,10 @@ function InfoPenawar() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const imgUser = "https://tokoku-api.herokuapp.com/uploads/users/" + users.picture;
-  const imgProduct = "https://tokoku-api.herokuapp.com/uploads/products/" + products.picture;
+  const imgUser =
+    "https://tokoku-api.herokuapp.com/uploads/users/" + users.picture;
+  const imgProduct =
+    "https://tokoku-api.herokuapp.com/uploads/products/" + products.picture;
 
   const orderProduct = async () => {
     await axios
@@ -50,11 +58,15 @@ function InfoPenawar() {
           status: "accepted",
         };
         axios
-          .put(`https://tokoku-api.herokuapp.com/api/v1/seller/order/${id}`, data, {
-            headers: {
-              Authorization: "Bearer " + localStorage.getItem("token"),
-            },
-          })
+          .put(
+            `https://tokoku-api.herokuapp.com/api/v1/seller/order/${id}`,
+            data,
+            {
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("token"),
+              },
+            }
+          )
           .then((response) => {
             console.log(response, "ress");
             // toast("Order Berhasil diUpdate", {
@@ -83,11 +95,15 @@ function InfoPenawar() {
           status: "rejected",
         };
         axios
-          .put(`https://tokoku-api.herokuapp.com/api/v1/seller/order/${id}`, data, {
-            headers: {
-              Authorization: "Bearer " + localStorage.getItem("token"),
-            },
-          })
+          .put(
+            `https://tokoku-api.herokuapp.com/api/v1/seller/order/${id}`,
+            data,
+            {
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("token"),
+              },
+            }
+          )
           .then((response) => {
             console.log(response, "ress");
             window.location.reload();
@@ -107,40 +123,73 @@ function InfoPenawar() {
       <ToastContainer />
       <BackButton />
       <Container className="my-5 pt-5">
-        <Card className="mt-2 mb-5 profileinfopenawar" style={{ width: "18rem" }}>
-          <Card.Body>
-            <img className="fotopenjual" src={users.picture} alt={users.picture} />
-            <Card.Title>{users.name}</Card.Title>
-            <Card.Text>{users.city}</Card.Text>
-          </Card.Body>
-        </Card>
-        <div className="d-flex flex-column align-items-center">
-          <h5 className="mb-3">Daftar Produkmu yang ditawarkan</h5>
-          <Card className="cardinfopenawar" style={{ width: "50rem" }}>
-            <img className="mx-auto mt-3 jam" src={products.picture} alt={products.picture} />
-            <Card.Body>
-              <Card.Title>{products.name}</Card.Title>
-              <Card.Title>Rp {price.toLocaleString("id-ID")}</Card.Title>
-              <Card.Title>Ditawar Rp {bid.toLocaleString("id-ID")}</Card.Title>
-              {orders.status === "accepted" || orders.status === "rejected" ? (
-                <div>
-                  <ModalStatusOrder products={products} orders={orders} />
-                  <ModalInfoProduct orders={orders} />
-                </div>
-              ) : (
-                <div>
-                  <BtnPrimary className="buybutton1" onClick={Rejected}>
-                    Tolak
-                  </BtnPrimary>
-                  <BtnPrimary className="buybutton1" onClick={Accepted}>
-                    Terima
-                  </BtnPrimary>
-                </div>
-              )}
-            </Card.Body>
-          </Card>
-          <br />
-        </div>
+        <Row>
+          <Col
+            md={8}
+            className="d-flex justify-content-center align-items-center mb-4"
+          >
+            <Container className={style.productBox}>
+              <img
+                className={style.productImg}
+                src={products.picture}
+                alt={products.picture}
+              />
+            </Container>
+          </Col>
+          <Col md={4}>
+            <div className={style.userCard}>
+              <div>
+                <img
+                  className={style.userImg}
+                  src={users.picture}
+                  alt={users.picture}
+                />
+              </div>
+              <div className="d-flex flex-column justify-between w-100 me-2">
+                <h3 className={style.fontName}>{users.name}</h3>
+                <p className={style.fontCity}>{users.city}</p>
+              </div>
+              <div className="mt-0">
+                <p className={style.fontSeller}>Penawar</p>
+              </div>
+            </div>
+            <Card
+              style={{
+                border: "none",
+                borderRadius: "16px",
+                boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.15)",
+              }}
+            >
+              <Card.Body>
+                <Card.Title className={style.fontProduct}>
+                  {products.name}
+                </Card.Title>
+                <Card.Text className={style.fontPrice}>
+                  Harga &emsp;:&emsp; Rp {price.toLocaleString("id-ID")}
+                </Card.Text>
+                <Card.Text className={style.fontPrice}>
+                  Ditawar &nbsp;:&emsp; Rp {bid.toLocaleString("id-ID")}
+                </Card.Text>
+                {orders.status === "accepted" ||
+                orders.status === "rejected" ? (
+                  <div>
+                    <ModalStatusOrder products={products} orders={orders} />
+                    <ModalInfoProduct orders={orders} />
+                  </div>
+                ) : (
+                  <div>
+                    <BtnPrimary className={style.button} onClick={Rejected}>
+                      Tolak
+                    </BtnPrimary>
+                    <BtnPrimary className={style.button} onClick={Accepted}>
+                      Terima
+                    </BtnPrimary>
+                  </div>
+                )}
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
       </Container>
     </div>
   );
