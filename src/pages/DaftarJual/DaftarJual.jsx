@@ -18,7 +18,8 @@ function Daftarjual() {
   const [orders, setOrders] = useState([]);
   const [buttons, setButtons] = useState("");
   const [history, setHistory] = useState("");
-  const imgUser = "https://tokoku-api.herokuapp.com/uploads/users/" + users.picture;
+  const imgUser =
+    "https://tokoku-api.herokuapp.com/uploads/users/" + users.picture;
   const imgProduct = "https://tokoku-api.herokuapp.com/uploads/products/";
 
   const handleButton = (e) => setButtons(e.target.innerText);
@@ -100,21 +101,33 @@ function Daftarjual() {
             <div className={style.categoryBox}>
               <h5 className={style.categoryText}>Kategori</h5>
               <ListGroup className={style.categoryList}>
-                <ListGroup.Item className="border-0 px-0 mb-3" onClick={handleButton} type="button">
+                <ListGroup.Item
+                  className="border-0 px-0 mb-3"
+                  onClick={handleButton}
+                  type="button"
+                >
                   <p className={style.listText}>
                     <img className="me-2" src={fi_box} />
                     Semua Produk
                     <img className="float-end" src={fi_chevron} />
                   </p>
                 </ListGroup.Item>
-                <ListGroup.Item className="border-0 px-0 mb-3" onClick={handleButton} type="button">
+                <ListGroup.Item
+                  className="border-0 px-0 mb-3"
+                  onClick={handleButton}
+                  type="button"
+                >
                   <p className={style.listText}>
                     <img className="me-2" src={fi_heart} />
                     Diminati
                     <img className="float-end" src={fi_chevron} />
                   </p>
                 </ListGroup.Item>
-                <ListGroup.Item className="border-0 px-0" onClick={handleButton} type="button">
+                <ListGroup.Item
+                  className="border-0 px-0"
+                  onClick={handleButton}
+                  type="button"
+                >
                   <p className={style.listText}>
                     <img className="me-2" src={fi_dollar} />
                     Terjual
@@ -137,9 +150,18 @@ function Daftarjual() {
                     </div>
                     {products.map((product) => {
                       return (
-                        <Link style={{ textDecoration: "none", color: "black" }} to={`/detail-produk/${product.id}`}>
+                        <Link
+                          style={{ textDecoration: "none", color: "black" }}
+                          to={`/detail-produk/${product.id}`}
+                        >
                           <div key={product.id}>
-                            <CardProduct id={product.id} name={product.name} price={product.price} picture={product.picture} category={product.CategoryProduct.name} />
+                            <CardProduct
+                              id={product.id}
+                              name={product.name}
+                              price={product.price}
+                              picture={product.picture}
+                              category={product.CategoryProduct.name}
+                            />
                           </div>
                         </Link>
                       );
@@ -151,7 +173,11 @@ function Daftarjual() {
                 return (
                   <div className={style.cardList}>
                     <div className={style.contentDiv}>
-                      <img className={style.imgContent} src={imgContent} alt="" />
+                      <img
+                        className={style.imgContent}
+                        src={imgContent}
+                        alt=""
+                      />
                       <h5 className={style.contentText}>
                         Belum ada produkmu yang diminati nih, <br />
                         sabar ya rejeki nggak kemana kok
@@ -166,15 +192,33 @@ function Daftarjual() {
                     {orders.map((order) => {
                       // if (order.status === "bid") {
                       return (
-                        <Link style={{ textDecoration: "none", color: "black" }} to={`/info-penawar/${order.id}`}>
-                          <Card className={style.productCard} key={order.id} type="button">
+                        <Link
+                          style={{ textDecoration: "none", color: "black" }}
+                          to={`/info-penawar/${order.id}`}
+                        >
+                          <Card
+                            className={style.productCard}
+                            key={order.id}
+                            type="button"
+                          >
                             <div className={style.cardBox}>
-                              <Card.Img className={style.imgCard} variant="top" src={order.Product.picture} alt={order.Product.picture} />
+                              <Card.Img
+                                className={style.imgCard}
+                                variant="top"
+                                src={order.Product.picture}
+                                alt={order.Product.picture}
+                              />
                             </div>
                             <Card.Body className={style.bodyCard}>
-                              <Card.Text className={style.titleText}>{order.Product.name}</Card.Text>
-                              <Card.Text className={style.titleText}>Rp {order.Product.price.toLocaleString("id-ID")}</Card.Text>
-                              <Card.Text className={style.titleText}>Ditawar Rp {order.price.toLocaleString("id-ID")}</Card.Text>
+                              <Card.Text className={style.titleText}>
+                                {order.Product.name}
+                              </Card.Text>
+                              <Card.Text className={style.titleText}>
+                                Rp {order.Product.price.toLocaleString("id-ID")}
+                              </Card.Text>
+                              <Card.Text className={style.titleText}>
+                                Ditawar Rp {order.price.toLocaleString("id-ID")}
+                              </Card.Text>
                             </Card.Body>
                           </Card>
                         </Link>
@@ -188,7 +232,11 @@ function Daftarjual() {
                 return (
                   <div className={style.cardList}>
                     <div className={style.contentDiv}>
-                      <img className={style.imgContent} src={imgContent} alt="" />
+                      <img
+                        className={style.imgContent}
+                        src={imgContent}
+                        alt=""
+                      />
                       <h5 className={style.contentText}>
                         Belum ada produkmu yang terjual nih, <br />
                         sabar ya rejeki nggak kemana kok
@@ -202,15 +250,34 @@ function Daftarjual() {
                   <div className={style.cardList}>
                     {history.map((data) => {
                       return (
-                        <Link style={{ textDecoration: "none", color: "black" }} to={`/detail-produk/${data.Product.id}`}>
-                          <Card className={style.productCard} key={data.Product.id} type="button">
+                        <Link
+                          style={{ textDecoration: "none", color: "black" }}
+                          to={`/detail-produk/${data.Product.id}`}
+                        >
+                          <Card
+                            className={style.productCard}
+                            key={data.Product.id}
+                            type="button"
+                          >
                             <div className={style.cardBox}>
-                              <Card.Img className={style.imgCard} variant="top" src={data.Product.picture} alt={data.Product.picture} />
+                              <Card.Img
+                                className={style.imgCard}
+                                variant="top"
+                                src={data.Product.picture}
+                                alt={data.Product.picture}
+                              />
                             </div>
                             <Card.Body className={style.bodyCard}>
-                              <Card.Text className={style.titleText}>{data.Product.name}</Card.Text>
-                              <Card.Text className={style.titleText}>Rp {data.Product.price.toLocaleString("id-ID")}</Card.Text>
-                              <Card.Text className={style.titleText}>Harga Akhir Rp {data.price.toLocaleString("id-ID")}</Card.Text>
+                              <Card.Text className={style.titleText}>
+                                {data.Product.name}
+                              </Card.Text>
+                              <Card.Text className={style.titleText}>
+                                Rp {data.Product.price.toLocaleString("id-ID")}
+                              </Card.Text>
+                              <Card.Text className={style.titleText}>
+                                Harga Akhir Rp{" "}
+                                {data.price.toLocaleString("id-ID")}
+                              </Card.Text>
                             </Card.Body>
                           </Card>
                         </Link>

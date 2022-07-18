@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { Modal, Card, Row, Col, Form, InputGroup } from "react-bootstrap";
+import { Modal, Card, InputGroup } from "react-bootstrap";
 import {
   ModalHeader,
   ModalFooter,
   ModalTextBold,
   ModalTextLight,
 } from "./ModalElements";
-import { FormControl } from "../Form/FormElements";
 import { CardModal } from "./CardElements";
 import { BtnPrimary } from "../Buttons/ButtonElements";
 import axios from "axios";
@@ -42,6 +41,9 @@ function ModalStatusOrder({ products, orders }) {
             icon: "success",
             button: "Uhuyy!",
           });
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
         })
         .catch((error) => {
           toast("please fill required fields", {
@@ -70,6 +72,9 @@ function ModalStatusOrder({ products, orders }) {
             icon: "success",
             button: "Uhuyy!",
           });
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
         })
         .catch((error) => {
           toast("please fill required fields", {
@@ -82,7 +87,7 @@ function ModalStatusOrder({ products, orders }) {
 
   return (
     <>
-      <BtnPrimary className="ms-2 px-5" onClick={handleShow}>
+      <BtnPrimary className="w-100 mt-3" onClick={handleShow}>
         Status
       </BtnPrimary>
 
@@ -95,39 +100,35 @@ function ModalStatusOrder({ products, orders }) {
         <ToastContainer />
         <ModalHeader closeButton></ModalHeader>
         <Modal.Body>
-          <ModalTextBold className="mb-2">Masukkan Harga Tawarmu</ModalTextBold>
-          <ModalTextLight className="my-2">
+          <ModalTextBold className="mb-2">
             Perbarui status penjualan produkmu
-          </ModalTextLight>
-          <CardModal className="my-2">
+          </ModalTextBold>
+          <CardModal>
             <Card.Body>
-              {/* Barang */}
-              <Row>
-                <Col md={6}>
-                  <InputGroup>
-                    <InputGroup.Radio
-                      value="sold"
-                      name="test"
-                      aria-label="Radio 1"
-                      onChange={(e) => setStatus(e.target.value)}
-                    />
-                    Berhasil Terjual
-                  </InputGroup>
-                </Col>
-              </Row>
-              <Row>
-                <Col md={6}>
-                  <InputGroup>
-                    <InputGroup.Radio
-                      value="bid"
-                      name="test"
-                      aria-label="Radio 2"
-                      onChange={(e) => setStatus(e.target.value)}
-                    />
-                    Batalkan Transaksi
-                  </InputGroup>
-                </Col>
-              </Row>
+              <InputGroup>
+                <InputGroup.Radio
+                  value="sold"
+                  name="test"
+                  aria-label="Radio 1"
+                  onChange={(e) => setStatus(e.target.value)}
+                />
+                &emsp;Berhasil Terjual
+                <ModalTextLight className="ms-5 ps-2 mb-4">
+                  Kamu telah sepakat menjual produk ini kepada pembeli
+                </ModalTextLight>
+              </InputGroup>
+              <InputGroup>
+                <InputGroup.Radio
+                  value="bid"
+                  name="test"
+                  aria-label="Radio 2"
+                  onChange={(e) => setStatus(e.target.value)}
+                />
+                &emsp;Batalkan Transaksi
+                <ModalTextLight className="ms-5 ps-2">
+                  Kamu membatalkan transaksi produk ini dengan pembeli
+                </ModalTextLight>
+              </InputGroup>
             </Card.Body>
           </CardModal>
         </Modal.Body>

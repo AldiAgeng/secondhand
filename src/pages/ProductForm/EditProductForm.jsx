@@ -179,7 +179,10 @@ function EditProductForm() {
           <Form.Group>
             <Row>
               <Col>
-                <BtnFormProduct className="mt-2 mb-4" type="reset">
+                <BtnFormProduct
+                  className="mt-2 mb-4"
+                  onClick={() => navigate(-1)}
+                >
                   Cancel
                 </BtnFormProduct>
               </Col>
