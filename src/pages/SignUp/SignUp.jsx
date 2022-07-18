@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { FormFloating } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import swal from "sweetalert";
 
 function SignUp() {
   const [name, setName] = useState("");
@@ -23,6 +24,12 @@ function SignUp() {
       .then((response) => {
         console.log(response, "res");
         navigate("/login");
+        swal({
+          title: "Berhasil!",
+          text: "Anda berhasil daftar!",
+          icon: "success",
+          button: "Uhuyy!",
+        });
       })
       .catch((error) => {
         console.log(error.response, "error");

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Modal, Card, Row, Col, Form } from "react-bootstrap";
+import { Modal, Card, Form } from "react-bootstrap";
 import {
   ModalHeader,
   ModalFooter,

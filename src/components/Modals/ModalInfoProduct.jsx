@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { Modal, Button, Card, Row, Col } from "react-bootstrap";
+import { Modal, Card } from "react-bootstrap";
 import {
   ModalHeader,
   ModalFooter,
   ModalTextBold,
   ModalTextLight,
   ModalText,
-  ModalFoto,
 } from "./ModalElements";
 import { CardModal, CardModalHeader } from "./CardElements";
 import { BtnPrimary } from "../Buttons/ButtonElements";

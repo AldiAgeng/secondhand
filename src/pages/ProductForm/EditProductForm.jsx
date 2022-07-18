@@ -3,10 +3,7 @@ import {
   FormControl,
   FormSelect,
 } from "../../components/Form/FormElements";
-import {
-  BtnFormProduct,
-  UploadProductPicture,
-} from "../../components/Form/ProductsFormElements";
+import { BtnFormProduct } from "../../components/Form/ProductsFormElements";
 import { Form, Row, Col } from "react-bootstrap";
 import { Container } from "react-bootstrap";
 import { NavbarPlain, BackButton } from "../../components";

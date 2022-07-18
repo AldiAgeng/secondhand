@@ -46,9 +46,10 @@ function ModalStatusOrder({ products, orders }) {
           }, 1000);
         })
         .catch((error) => {
-          toast("please fill required fields", {
+          toast(error.message, {
             type: "error",
           });
+          console.log(error, "err");
         });
     } else {
       const data = {
@@ -77,7 +78,7 @@ function ModalStatusOrder({ products, orders }) {
           }, 1000);
         })
         .catch((error) => {
-          toast("please fill required fields", {
+          toast(error.message, {
             type: "error",
           });
         });

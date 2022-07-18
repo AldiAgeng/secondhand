@@ -26,7 +26,7 @@ function App() {
           <Route path="sign-up" element={<SignUp />} />
           <Route path="daftar-jual" element={
             <ProtectedToken>
-              <DaftarJual />
+                <DaftarJual />
             </ProtectedToken>
            } />
           <Route path="detail-produk/:id" element={

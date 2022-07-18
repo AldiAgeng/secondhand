@@ -5,11 +5,14 @@ import { NavbarMenu, CardProduct, Carousels, Footers } from "../../components";
 import { BtnPrimary } from "../../components/Buttons/ButtonElements";
 import fi_search from "../../assets/icons/fi_search.svg";
 import style from "./homepage.module.css";
+import { TailSpin } from "react-loader-spinner";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 function HomePage() {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [buttons, setButtons] = useState("");
+  const [spinner, setSpinner] = useState(true);
 
   const getData = async () => {
     const response = await fetch(
@@ -17,6 +20,7 @@ function HomePage() {
     );
     const data = await response.json();
     setProducts(data.data);
+    setSpinner(false);
   };
 
   const getCategories = async () => {
@@ -69,48 +73,56 @@ function HomePage() {
             </Stack>
           </Col>
         </Row>
-        <Row className="d-flex justify-content-start align-items-start mt-2">
-          <Stack className={style.cardList} direction="horizontal" gap={3}>
-            {products.map((product) => {
-              if (buttons === product.CategoryProduct.name) {
-                return (
-                  <div key={product.id} type="button">
-                    <Link
-                      style={{ textDecoration: "none", color: "black" }}
-                      to={`/detail-produk/${product.id}`}
-                    >
-                      <CardProduct
-                        id={product.id}
-                        name={product.name}
-                        price={product.price}
-                        picture={product.picture}
-                        category={product.CategoryProduct.name}
-                      />
-                    </Link>
-                  </div>
-                );
-              }
-              if (buttons === "Semua" || buttons === "") {
-                return (
-                  <div key={product.id} type="button">
-                    <Link
-                      style={{ textDecoration: "none", color: "black" }}
-                      to={`/detail-produk/${product.id}`}
-                    >
-                      <CardProduct
-                        id={product.id}
-                        name={product.name}
-                        price={product.price}
-                        picture={product.picture}
-                        category={product.CategoryProduct.name}
-                      />
-                    </Link>
-                  </div>
-                );
-              }
-            })}
-          </Stack>
-        </Row>
+        {spinner ? (
+          <Row>
+            <Col className="d-flex justify-content-center" md={12}>
+              <TailSpin width="100" />
+            </Col>
+          </Row>
+        ) : (
+          <Row className="d-flex justify-content-start align-items-start mt-2">
+            <Stack className={style.cardList} direction="horizontal" gap={3}>
+              {products.map((product) => {
+                if (buttons === product.CategoryProduct.name) {
+                  return (
+                    <div key={product.id} type="button">
+                      <Link
+                        style={{ textDecoration: "none", color: "black" }}
+                        to={`/detail-produk/${product.id}`}
+                      >
+                        <CardProduct
+                          id={product.id}
+                          name={product.name}
+                          price={product.price}
+                          picture={product.picture}
+                          category={product.CategoryProduct.name}
+                        />
+                      </Link>
+                    </div>
+                  );
+                }
+                if (buttons === "Semua" || buttons === "") {
+                  return (
+                    <div key={product.id} type="button">
+                      <Link
+                        style={{ textDecoration: "none", color: "black" }}
+                        to={`/detail-produk/${product.id}`}
+                      >
+                        <CardProduct
+                          id={product.id}
+                          name={product.name}
+                          price={product.price}
+                          picture={product.picture}
+                          category={product.CategoryProduct.name}
+                        />
+                      </Link>
+                    </div>
+                  );
+                }
+              })}
+            </Stack>
+          </Row>
+        )}
       </Container>
       <Footers />
     </div>
