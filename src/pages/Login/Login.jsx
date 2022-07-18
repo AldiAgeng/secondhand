@@ -4,6 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "../../App.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import swal from "sweetalert";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -28,12 +29,18 @@ function Login() {
       })
       .then((response) => {
         localStorage.setItem("token", response.data.data.token);
-        window.location.reload();
-        // console.log(response, "ress");
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+        swal({
+          title: "Berhasil!",
+          text: "Anda berhasil masuk!",
+          icon: "success",
+          button: "Uhuyy!",
+        });
       })
       .catch((error) => {
         console.log(error.response, "error");
-        // setErrors(error.response.data);
         if (Array.isArray(error.response.data.message)) {
           error.response.data.message.forEach((err) => {
             toast(err, {
@@ -98,19 +105,6 @@ function Login() {
                   placeholder="Enter password"
                   onChange={setPassword}
                 />
-                <div className="custom-control custom-checkbox">
-                  <input
-                    type="checkbox"
-                    className="m-2 custom-control-input"
-                    id="customCheck1"
-                  />
-                  <label
-                    className="custom-control-label"
-                    htmlFor="customCheck1"
-                  >
-                    Remember me
-                  </label>
-                </div>
               </div>
               <div className="d-grid">
                 <BtnSubmit className="w-100" onClick={login}>

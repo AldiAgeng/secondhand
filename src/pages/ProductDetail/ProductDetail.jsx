@@ -163,21 +163,22 @@ function ProductDetail() {
         </Row>
         <Row>
           <Col>
-            <Container></Container>
+            <div className="desc">
+              <h2 className={style.fontProduct}>Deskripsi Produk</h2>
+              <div className={style.descBox}>
+                <h5 className={style.fontContent}>
+                  Status : {products.status}
+                </h5>
+                <h5 className={style.fontContent}>
+                  Lokasi : {products.location}
+                </h5>
+              </div>
+              <div className="mt-3">
+                <p className={style.fontContent}>{products.description}</p>
+              </div>
+            </div>
           </Col>
         </Row>
-
-        <br />
-        <div className="desc">
-          <h2 className={style.fontProduct}>Deskripsi Produk</h2>
-          <div className={style.descBox}>
-            <h5 className={style.fontContent}>Status : {products.status}</h5>
-            <h5 className={style.fontContent}>Lokasi : {products.location}</h5>
-          </div>
-          <div className="mt-3">
-            <p className={style.fontContent}>{products.description}</p>
-          </div>
-        </div>
       </Container>
     </>
   );
