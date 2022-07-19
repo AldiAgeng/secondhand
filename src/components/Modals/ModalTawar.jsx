@@ -25,9 +25,6 @@ function ModalTawar({ users, products }) {
 
   console.log(users, "user tawar");
 
-  const imgProduct =
-    "https://tokoku-api.herokuapp.com/uploads/products/" + products.picture;
-
   const bidProduct = async () => {
     if (
       users.city === null ||

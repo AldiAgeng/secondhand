@@ -234,35 +234,8 @@ body, html, .App, #root, .auth-wrapper {
   border-radius: 8px;
   margin-right: 16px;
 }
-/* .orderhistory{
-  margin-right: 500px;
-  margin-left: 500px;
-  display: flex;
-  flex-direction: row;
-  border-style: solid;
-  border-width: 2px;
-  border-radius: 4px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
-}
 
-.qq{
-  margin-top: 200px;
-  margin-left: 500px;
+.btn-primary {
+  outline: none !important;
+  box-shadow: none !important;
 }
-
-.poto{
-  width: 100px;
-  display: flex;
-  flex-direction: row;
-}
-
-.aaa{
-  margin-left: 20px;
-}
-
-.historybutton{
-  margin-left: 650px;
-  margin-bottom: 10px;
-  background-color: rgb(42, 241, 42);
-  border-style: none;
-} */
