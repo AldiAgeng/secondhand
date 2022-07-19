@@ -83,7 +83,11 @@ function ModalInfoProduct({ orders }) {
         <ModalFooter>
           <BtnPrimary
             target="_blank"
-            href={`https://api.whatsapp.com/send?phone=62${phone.substring(1)}`}
+            href={`https://api.whatsapp.com/send?phone=62${phone.substring(
+              1
+            )}&text=Hallo ${
+              orders.User.name
+            }, saya tertarik nih dengan penawaran harga yang kamu tawarkan, untuk proses selanjutnya kamu bisa balas chat ini ya untuk melanjutkan proses transaksi.`}
             className="w-100 py-2"
           >
             Contact to {orders.User.phone_number}

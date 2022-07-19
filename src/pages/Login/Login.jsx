@@ -10,16 +10,11 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [users, setUsers] = useState("");
   const token = localStorage.getItem("token");
 
   useEffect(() => {
     token ? setIsLoggedIn(true) : setIsLoggedIn(false);
   }, [token]);
-
-  useEffect(() => {
-    whoami();
-  }, []);
 
   const login = () => {
     axios
@@ -62,21 +57,6 @@ function Login() {
     localStorage.removeItem("token");
     window.location.reload();
     console.log("udah logout");
-  };
-
-  const whoami = () => {
-    axios
-      .get(`https://tokoku-api.herokuapp.com/api/v1/auth/user`, {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      })
-      .then((response) => {
-        console.log(response, "data");
-        setUsers(response.data.data.name);
-        console.log(response.data.data);
-        console.log(localStorage.getItem("token"));
-      });
   };
 
   return (
@@ -125,14 +105,7 @@ function Login() {
                 </p>
               </div>
             </form>
-          ) : (
-            <div>
-              <h1 className="text-center">Anda sudah login sebagai {users}</h1>
-              <BtnSubmit className="w-100" onClick={logout}>
-                Logout
-              </BtnSubmit>
-            </div>
-          )}
+          ) : null}
         </div>
       </div>
       {/* {() => {

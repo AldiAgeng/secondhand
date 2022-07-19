@@ -13,42 +13,65 @@ import { BtnPrimary } from "../Buttons/ButtonElements";
 import axios from "axios";
 import swal from "sweetalert";
 import { toast, ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import style from "./modals.module.css";
 
-function ModalTawar({ products }) {
+function ModalTawar({ users, products }) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [bid, setBid] = useState();
+  const navigate = useNavigate();
+
+  console.log(users, "user tawar");
 
   const imgProduct =
     "https://tokoku-api.herokuapp.com/uploads/products/" + products.picture;
+
   const bidProduct = async () => {
-    const data = {
-      price: bid,
-      status: "bid",
-      id_product: products.id,
-    };
-    await axios
-      .post(`https://tokoku-api.herokuapp.com/api/v1/buyer/order`, data, {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      })
-      .then((response) => {
-        swal({
-          title: "Berhasil!",
-          text: "Produk berhasil anda tawar!",
-          icon: "success",
-          button: "Uhuyy!",
-        });
-        console.log(response, "response");
-      })
-      .catch((error) => {
-        toast("Masukan data berupa angka dan valid", {
-          type: "error",
-        });
+    if (
+      users.city === null ||
+      users.address === null ||
+      users.phone_number === null ||
+      users.picture === null
+    ) {
+      swal({
+        title: "Perhatian!",
+        text: "Anda belum melengkapi info profile, mohon lengkapi terlebih dahulu!",
+        icon: "warning",
+        button: "Uhuyy!",
       });
+      return navigate("/edit-profile");
+    } else {
+      const data = {
+        price: bid,
+        status: "bid",
+        id_product: products.id,
+      };
+      await axios
+        .post(`https://tokoku-api.herokuapp.com/api/v1/buyer/order`, data, {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        })
+        .then((response) => {
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
+          swal({
+            title: "Berhasil!",
+            text: "Produk berhasil anda tawar!",
+            icon: "success",
+            button: "Uhuyy!",
+          });
+          console.log(response, "response");
+        })
+        .catch((error) => {
+          toast("Masukan data berupa angka dan valid", {
+            type: "error",
+          });
+        });
+    }
   };
 
   console.log(products, "products");

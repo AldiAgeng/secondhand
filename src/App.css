@@ -5,10 +5,6 @@
   font-style: normal;
 }
 
-/* .App {
-  text-align: center;
-} */
-
 .navbar {
   height: 84px;
   width: 100%;
@@ -50,10 +46,6 @@
   }
 }
 
-/* @import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800');
-* {
-  box-sizing: border-box;
-} */
 body {
   min-height: 100vh;
   display: flex;
@@ -129,11 +121,6 @@ body, html, .App, #root, .auth-wrapper {
   width: 250px;
 }
 
-/* .profilecard{
-  margin-top: 400px;
-  margin-left:200px;
-} */
-
 .fotopenjual{
   border-radius: 35%; 
   width: 15%; 
@@ -150,17 +137,11 @@ body, html, .App, #root, .auth-wrapper {
   float: left;
   margin-left: 150px;
 }
-/* .cardinfopenawar{
-  margin-bottom: 300px;
-} */
+
 .profileinfopenawar{
   margin: auto;
 }
-/* .a{
-  margin-left: 865px;
-  margin-bottom: 50px;
-  margin-top: 20px;
-} */
+
 .buybutton1{
   margin-bottom: 10px;
   width: 250px;
@@ -180,7 +161,6 @@ body, html, .App, #root, .auth-wrapper {
   margin-top: 78px;
   width: 24px;
   height: 24px;
-  z-index: 1;
 }
 
 .imgPreview {
@@ -188,3 +168,101 @@ body, html, .App, #root, .auth-wrapper {
   height: 96px;
   border-radius: 12px;
 }
+
+/* Order History CSS */
+
+.boxUserOrder {
+  display: flex;
+  flex-direction: row;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 16px;
+  padding: 16px;
+  width: 100%;
+  height: max-content;
+  margin-bottom: 24px;
+}
+
+.imgUserOrder {
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  margin-right: 16px;
+}
+
+.boxImgOrder {
+  max-width: 99px;
+  height: 99px;
+  margin-right: 8px;
+}
+
+.textContent {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #151515;
+  margin-bottom: 4px;
+}
+
+.textGray {
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 14px;
+  color: #8A8A8A;
+  margin-bottom: 4px;
+}
+
+.textTitle {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 30px;
+}
+
+.productOrder {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  height: max-content;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.imgProductOrder {
+  max-width: 99px;
+  height: max-content;
+  border-radius: 8px;
+  margin-right: 16px;
+}
+/* .orderhistory{
+  margin-right: 500px;
+  margin-left: 500px;
+  display: flex;
+  flex-direction: row;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 4px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+}
+
+.qq{
+  margin-top: 200px;
+  margin-left: 500px;
+}
+
+.poto{
+  width: 100px;
+  display: flex;
+  flex-direction: row;
+}
+
+.aaa{
+  margin-left: 20px;
+}
+
+.historybutton{
+  margin-left: 650px;
+  margin-bottom: 10px;
+  background-color: rgb(42, 241, 42);
+  border-style: none;
+} */

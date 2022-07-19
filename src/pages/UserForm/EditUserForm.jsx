@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { FormLabel, FormControl } from "../../components/Form/FormElements";
-import { UploadProfilePicture, BtnFormUser } from "../../components/Form/UsersFormElements";
+import {
+  UploadProfilePicture,
+  BtnFormUser,
+} from "../../components/Form/UsersFormElements";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Form, Image, Container, InputGroup } from "react-bootstrap";
@@ -15,7 +18,8 @@ function UserForm() {
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
   const [image, setImage] = useState(null);
-  const imgUrl = "https://tokoku-api.herokuapp.com/uploads/users/" + users.picture;
+  const imgUrl =
+    "https://tokoku-api.herokuapp.com/uploads/users/" + users.picture;
 
   const whoami = () => {
     axios
@@ -25,19 +29,15 @@ function UserForm() {
         },
       })
       .then((response) => {
-        // console.log(response, "data");
         setUsers(response.data.data);
         setName(response.data.data.name);
         setCity(response.data.data.city);
         setAddress(response.data.data.address);
         setPhone(response.data.data.phone_number);
         setImage(response.data.data.picture);
-        console.log(response.data, "whoami");
-        // console.log(localStorage.getItem('token'));
       });
   };
 
-  console.log(city, "users city");
   useEffect(() => {
     whoami();
   }, []);
@@ -59,12 +59,16 @@ function UserForm() {
           type: "error",
         });
       } else {
-        const response = await axios.put("https://tokoku-api.herokuapp.com/api/v1/auth/user", form, {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("token"),
-            "Content-Type": "multipart/form-data",
-          },
-        });
+        const response = await axios.put(
+          "https://tokoku-api.herokuapp.com/api/v1/auth/user",
+          form,
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("token"),
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
         console.log(response, "res");
         setTimeout(() => {
           window.location.reload();
@@ -111,25 +115,53 @@ function UserForm() {
             </Form.Group>
             <Form.Group className="my-2">
               <FormLabel>Nama*</FormLabel>
-              <FormControl type="text" placeholder="Nama Kamu" required value={name} onChange={(e) => setName(e.target.value)} />
+              <FormControl
+                type="text"
+                placeholder="Nama Kamu"
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
             </Form.Group>
             <Form.Group className="my-2">
               <FormLabel>Kota*</FormLabel>
-              <FormControl type="text" placeholder="Kota" required value={city} onChange={(e) => setCity(e.target.value)} />
+              <FormControl
+                type="text"
+                placeholder="Kota"
+                required
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+              />
             </Form.Group>
             <Form.Group className="mt-2">
               <FormLabel>Alamat*</FormLabel>
-              <FormControl as="textarea" placeholder="Contoh: Jalan Kaki 5" required value={address} onChange={(e) => setAddress(e.target.value)} />
+              <FormControl
+                as="textarea"
+                placeholder="Contoh: Jalan Kaki 5"
+                required
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+              />
             </Form.Group>
             <Form.Group className="mb-2">
               <FormLabel>No. Handphone*</FormLabel>
               <InputGroup className="mb-3">
-                <FormControl type="text" placeholder="Contoh: 08212345678" required value={phone} onChange={(e) => setPhone(e.target.value)} />
+                <FormControl
+                  type="text"
+                  placeholder="Contoh: 08212345678"
+                  required
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                />
               </InputGroup>
             </Form.Group>
             <Form.Group>
               <FormLabel>Picture</FormLabel>
-              <FormControl type="file" id="image" onChange={(e) => setImage(e.target.files[0])} />
+              <FormControl
+                type="file"
+                id="image"
+                onChange={(e) => setImage(e.target.files[0])}
+              />
             </Form.Group>
             <BtnFormUser className="mt-2 mb-4" type="submit">
               Submit

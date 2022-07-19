@@ -8,9 +8,8 @@ import style from "./productdetail.module.css";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 
-function ProductDetail() {
+function ProductDetail({ users }) {
   const [sellers, setSellers] = useState("");
-  const [users, setUsers] = useState("");
   const [products, setProducts] = useState("");
   const [price, setPrice] = useState(0);
   const [category, setCategory] = useState("");
@@ -18,21 +17,10 @@ function ProductDetail() {
   const navigate = useNavigate();
 
   const imgUser =
-    "https://tokoku-api.herokuapp.com/uploads/users/" + users.picture;
+    "https://tokoku-api.herokuapp.com/uploads/users/" + sellers.picture;
   const imgProduct =
     "https://tokoku-api.herokuapp.com/uploads/products/" + products.picture;
 
-  const whoami = () => {
-    axios
-      .get(`https://tokoku-api.herokuapp.com/api/v1/auth/user`, {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      })
-      .then((response) => {
-        setSellers(response.data.data, "ress");
-      });
-  };
   const getProduct = async () => {
     await axios
       .get(`https://tokoku-api.herokuapp.com/api/v1/seller/product/${id}`, {
@@ -41,18 +29,17 @@ function ProductDetail() {
         },
       })
       .then((response) => {
-        setUsers(response.data.data.User);
+        setSellers(response.data.data.User);
         setProducts(response.data.data);
         setPrice(response.data.data.price);
         setCategory(response.data.data.CategoryProduct.name);
       });
   };
   console.log(products, "produk");
-  console.log(users, "user");
+  console.log(sellers, "user");
   console.log(category);
 
   useEffect(() => {
-    whoami();
     getProduct();
   }, []);
 
@@ -97,7 +84,7 @@ function ProductDetail() {
       <NavbarMenu />
       <BackButton />
       <Container className="mt-5 py-5">
-        <Row>
+        <Row className="mb-4">
           <Col
             md={8}
             className="d-flex justify-content-center align-items-center mb-4"
@@ -126,11 +113,11 @@ function ProductDetail() {
                 <Card.Text className={style.fontProduct}>
                   Rp {price.toLocaleString("id-ID")}
                 </Card.Text>
-                {sellers.email === users.email ? (
+                {users.email === sellers.email ? (
                   <div className="text-center">
                     <Link
                       style={{ textDecoration: "none", color: "black" }}
-                      to={`/edit-product/${products.id}`}
+                      to={`/edit-produk/${products.id}`}
                     >
                       <BtnPrimary className={style.button}>Edit</BtnPrimary>
                     </Link>
@@ -139,7 +126,7 @@ function ProductDetail() {
                     </BtnPrimary>
                   </div>
                 ) : (
-                  <ModalTawar products={products} />
+                  <ModalTawar users={users} products={products} />
                 )}
               </Card.Body>
             </Card>
@@ -147,13 +134,13 @@ function ProductDetail() {
               <div>
                 <img
                   className={style.userImg}
-                  src={users.picture}
-                  alt={users.picture}
+                  src={sellers.picture}
+                  alt={sellers.picture}
                 />
               </div>
               <div className="d-flex flex-column justify-between w-100 me-2">
-                <h3 className={style.fontName}>{users.name}</h3>
-                <p className={style.fontCity}>{users.city}</p>
+                <h3 className={style.fontName}>{sellers.name}</h3>
+                <p className={style.fontCity}>{sellers.city}</p>
               </div>
               <div className="mt-0">
                 <p className={style.fontSeller}>Penjual</p>
