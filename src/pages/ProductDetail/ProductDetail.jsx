@@ -16,11 +16,6 @@ function ProductDetail({ users }) {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const imgUser =
-    "https://tokoku-api.herokuapp.com/uploads/users/" + sellers.picture;
-  const imgProduct =
-    "https://tokoku-api.herokuapp.com/uploads/products/" + products.picture;
-
   const getProduct = async () => {
     await axios
       .get(`https://tokoku-api.herokuapp.com/api/v1/seller/product/${id}`, {
@@ -35,9 +30,8 @@ function ProductDetail({ users }) {
         setCategory(response.data.data.CategoryProduct.name);
       });
   };
-  console.log(products, "produk");
-  console.log(sellers, "user");
-  console.log(category);
+
+  console.log(sellers, "seller");
 
   useEffect(() => {
     getProduct();
@@ -113,7 +107,7 @@ function ProductDetail({ users }) {
                 <Card.Text className={style.fontProduct}>
                   Rp {price.toLocaleString("id-ID")}
                 </Card.Text>
-                {users.email === sellers.email ? (
+                {users.id === sellers.id ? (
                   <div className="text-center">
                     <Link
                       style={{ textDecoration: "none", color: "black" }}

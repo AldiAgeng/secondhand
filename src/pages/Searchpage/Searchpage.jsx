@@ -7,14 +7,18 @@ import fi_search from "../../assets/icons/fi_search.svg";
 import style from "./searchpage.module.css";
 import { TailSpin } from "react-loader-spinner";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import { useLocation } from "react-router-dom";
 
 function Searchpage() {
   const [products, setProducts] = useState([]);
   const [spinner, setSpinner] = useState(true);
+  const location = new useLocation();
+
+  console.log(location.state.search, "location");
 
   const getData = async () => {
     const response = await fetch(
-      `https://tokoku-api.herokuapp.com/api/v1/buyer/product`
+      `https://tokoku-api.herokuapp.com/api/v1/buyer/product?search=${location.state.search}`
     );
     const data = await response.json();
     setProducts(data.data);
@@ -23,7 +27,7 @@ function Searchpage() {
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [location.state.search]);
 
   return (
     <div>
@@ -31,7 +35,9 @@ function Searchpage() {
       <Container className="my-5 pt-5">
         <Row>
           <Col>
-            <h3 className={style.textTitle}>Hasil pencarian : </h3>
+            <h3 className={style.textTitle}>
+              Hasil pencarian <b>{location.state.search}</b> :
+            </h3>
           </Col>
         </Row>
         {spinner ? (
