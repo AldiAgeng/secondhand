@@ -7,6 +7,9 @@ import {
   Button,
   Offcanvas,
   NavDropdown,
+  Dropdown,
+  Row,
+  Col,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { BtnLogin } from "../Buttons/ButtonElements";
@@ -17,6 +20,7 @@ import fi_list from "../../assets/icons/fi_list.svg";
 import fi_bell from "../../assets/icons/fi_bell.svg";
 import fi_user from "../../assets/icons/fi_user.svg";
 import style from "./navbar.module.css";
+import Notifikasi from "../Notification/Notifikasi";
 
 function NavbarMenu() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -90,29 +94,37 @@ function NavbarMenu() {
                 </Nav>
               ) : (
                 <Nav className="justify-content-end flex-grow-1 mt-2">
-                  <NavDropdown
-                    title={listMenu}
-                    id={`offcanvasNavbarDropdown-expand-lg`}
-                  >
-                    <NavDropdown.Item href="/daftar-jual">
-                      Product
-                    </NavDropdown.Item>
-                  </NavDropdown>
-                  <NavDropdown
-                    title={notif}
-                    id={`offcanvasNavbarDropdown-expand-lg`}
-                  >
-                    <NavDropdown.Item>Notif</NavDropdown.Item>
-                  </NavDropdown>
-                  <NavDropdown
-                    title={user}
-                    id={`offcanvasNavbarDropdown-expand-lg`}
-                  >
-                    <NavDropdown.Item href="/edit-profile">
-                      User Profile
-                    </NavDropdown.Item>
-                    <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
-                  </NavDropdown>
+                  <Row>
+                    <Col>
+                      <NavDropdown
+                        title={listMenu}
+                        id={`offcanvasNavbarDropdown-expand-lg`}
+                      >
+                        <NavDropdown.Item href="/daftar-jual">
+                          Produk
+                        </NavDropdown.Item>
+                        <NavDropdown.Item href="/daftar-order">
+                          Order
+                        </NavDropdown.Item>
+                      </NavDropdown>
+                    </Col>
+                    <Col>
+                      <Notifikasi />
+                    </Col>
+                    <Col>
+                      <NavDropdown
+                        title={user}
+                        id={`offcanvasNavbarDropdown-expand-lg`}
+                      >
+                        <NavDropdown.Item href="/edit-profile">
+                          Info Akun
+                        </NavDropdown.Item>
+                        <NavDropdown.Item onClick={logout}>
+                          Keluar
+                        </NavDropdown.Item>
+                      </NavDropdown>
+                    </Col>
+                  </Row>
                 </Nav>
               )}
             </Offcanvas.Body>

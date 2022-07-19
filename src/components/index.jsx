@@ -8,3 +8,5 @@ export { default as ModalTawar } from "./Modals/ModalTawar";
 export { default as NotificationToast } from "./Notification/index";
 export { default as BackButton } from "./Buttons/BackButton";
 export { default as ModalStatusOrder } from "./Modals/ModalStatusOrder";
+export { default as Notifikasi } from "./Notification/Notifikasi";
+export { default as ModalOrderBuyer } from "./Modals/ModalOrderBuyer";

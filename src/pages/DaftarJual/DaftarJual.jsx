@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Container, Row, Col, ListGroup, Card } from "react-bootstrap";
 import { NavbarMenu, CardProduct, Footers } from "../../components";
 import { BtnPrimary } from "../../components/Buttons/ButtonElements";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import imgContent from "../../assets/images/imgContent.png";
 import fi_box from "../../assets/icons/fi_box.svg";
 import fi_heart from "../../assets/icons/fi_heart.svg";
@@ -11,30 +11,16 @@ import fi_chevron from "../../assets/icons/fi_chevron-right.svg";
 import fi_plus from "../../assets/icons/fi_plus.svg";
 import style from "./daftarjual.module.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-function Daftarjual() {
-  const [users, setUsers] = useState("");
+function Daftarjual({ users }) {
   const [products, setProducts] = useState([]);
   const [orders, setOrders] = useState([]);
   const [buttons, setButtons] = useState("");
   const [history, setHistory] = useState("");
-  const imgUser =
-    "https://tokoku-api.herokuapp.com/uploads/users/" + users.picture;
-  const imgProduct = "https://tokoku-api.herokuapp.com/uploads/products/";
 
   const handleButton = (e) => setButtons(e.target.innerText);
-
-  const whoami = () => {
-    axios
-      .get(`https://tokoku-api.herokuapp.com/api/v1/auth/user`, {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      })
-      .then((response) => {
-        setUsers(response.data.data);
-      });
-  };
+  const navigate = useNavigate();
 
   const getProductSeller = () => {
     axios
@@ -73,7 +59,6 @@ function Daftarjual() {
   };
 
   useEffect(() => {
-    whoami();
     getProductSeller();
     getOrderSeller();
     getHistory();
@@ -143,7 +128,7 @@ function Daftarjual() {
                 return (
                   <div className={style.cardList}>
                     <div className={style.addBox}>
-                      <a href="/add-product" className={style.addBtn}>
+                      <a href="/tambah-produk" className={style.addBtn}>
                         <img src={fi_plus} alt="fi_plus" />
                         <p className="mt-2">Tambah Produk</p>
                       </a>

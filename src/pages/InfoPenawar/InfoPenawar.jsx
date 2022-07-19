@@ -123,7 +123,7 @@ function InfoPenawar() {
       <ToastContainer />
       <BackButton />
       <Container className="my-5 pt-5">
-        <Row>
+        <Row className="mb-4">
           <Col
             md={8}
             className="d-flex justify-content-center align-items-center mb-4"
@@ -136,7 +136,7 @@ function InfoPenawar() {
               />
             </Container>
           </Col>
-          <Col md={4}>
+          <Col md={4} className="mb-4">
             <div className={style.userCard}>
               <div>
                 <img

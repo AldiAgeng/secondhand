@@ -6,9 +6,11 @@ function BackButton() {
   const navigate = useNavigate();
   return (
     <Container>
-      <Button onClick={() => navigate(-1)}>
-        <img src={back} alt="" className="backButton" />
-      </Button>
+      <div className="w-100 bg-primary">
+        <Button onClick={() => navigate(-1)}>
+          <img src={back} alt="fi_arrow-left.svg" className="backButton" />
+        </Button>
+      </div>
     </Container>
   );
 }
