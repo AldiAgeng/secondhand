@@ -35,6 +35,7 @@ function App() {
     whoami();
   },[])
   return (
+    <>
     <BrowserRouter>
       <Routes>
           <Route path="/" element={<Homepage />} />
@@ -86,6 +87,7 @@ function App() {
           } />
       </Routes>
     </BrowserRouter>
+    </>
   );
 }
 

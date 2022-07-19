@@ -170,13 +170,7 @@ function InfoPenawar() {
                 <Card.Text className={style.fontPrice}>
                   Ditawar &nbsp;:&emsp; Rp {bid.toLocaleString("id-ID")}
                 </Card.Text>
-                {orders.status === "accepted" ||
-                orders.status === "rejected" ? (
-                  <div>
-                    <ModalStatusOrder products={products} orders={orders} />
-                    <ModalInfoProduct orders={orders} />
-                  </div>
-                ) : (
+                {orders.status === "bid" ? (
                   <div>
                     <BtnPrimary className={style.button} onClick={Rejected}>
                       Tolak
@@ -184,6 +178,21 @@ function InfoPenawar() {
                     <BtnPrimary className={style.button} onClick={Accepted}>
                       Terima
                     </BtnPrimary>
+                  </div>
+                ) : (
+                  <div>
+                    {orders.status === "accepted" ? (
+                      <>
+                        <ModalStatusOrder products={products} orders={orders} />
+                        <ModalInfoProduct orders={orders} />
+                      </>
+                    ) : (
+                      <>
+                        <h5 className={style.fontProduct}>
+                          Kamu telah menolak penawaran ini!
+                        </h5>
+                      </>
+                    )}
                   </div>
                 )}
               </Card.Body>

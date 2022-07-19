@@ -1,12 +1,32 @@
 import { Dropdown, NavDropdown } from "react-bootstrap";
-import React from "react";
+import { useState, useEffect } from "react";
 import style from "./Notifikasi.module.css";
 import iconRed from "../../assets/icons/icon_red.svg";
 import fi_bell from "../../assets/icons/fi_bell.svg";
 import img from "../../assets/images/img1.png";
+import axios from "axios";
+import swal from "sweetalert";
+import { toast, ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function Notifikasi() {
-  const notif = <img src={fi_bell} alt="fi_bell" style={{ width: "24px" }} />;
+  const [notif, setNotif] = useState("");
+
+  const getNotif = () => {
+    axios
+      .get(`https://tokoku-api.herokuapp.com/api/v1/notification`, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((response) => {
+        console.log(response, "res notif");
+      });
+  };
+
+  useEffect(() => {
+    getNotif();
+  }, []);
 
   return (
     <>

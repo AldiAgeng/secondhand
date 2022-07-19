@@ -7,7 +7,6 @@ import {
   Button,
   Offcanvas,
   NavDropdown,
-  Dropdown,
   Row,
   Col,
 } from "react-bootstrap";
