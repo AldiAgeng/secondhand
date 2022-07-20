@@ -20,10 +20,20 @@ import fi_bell from "../../assets/icons/fi_bell.svg";
 import fi_user from "../../assets/icons/fi_user.svg";
 import style from "./navbar.module.css";
 import Notifikasi from "../Notification/Notifikasi";
+import { useNavigate } from "react-router-dom";
 
 function NavbarMenu() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [search, setSearch] = useState("");
   const token = localStorage.getItem("token");
+
+  const navigate = useNavigate();
+
+  function handleSearch() {
+    navigate("/produk", {
+      state: { search: search },
+    });
+  }
 
   useEffect(() => {
     token ? setIsLoggedIn(true) : setIsLoggedIn(false);
@@ -72,10 +82,13 @@ function NavbarMenu() {
                     boxShadow: "none",
                   }}
                   aria-label="Cari di sini .."
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
                 />
                 <Button
                   variant="link"
                   style={{ borderRadius: "16px", boxShadow: "none" }}
+                  onClick={handleSearch}
                 >
                   <img src={fi_search} alt="" />
                 </Button>

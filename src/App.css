@@ -169,6 +169,11 @@ body, html, .App, #root, .auth-wrapper {
   border-radius: 12px;
 }
 
+.imgPreviewProduct {
+  max-width: 191px;
+  max-height: 191px;
+  border-radius: 12px;
+}
 /* Order History CSS */
 
 .boxUserOrder {
@@ -199,7 +204,6 @@ body, html, .App, #root, .auth-wrapper {
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
-  color: #151515;
   margin-bottom: 4px;
 }
 
@@ -233,6 +237,14 @@ body, html, .App, #root, .auth-wrapper {
   height: max-content;
   border-radius: 8px;
   margin-right: 16px;
+}
+
+.statusOrder {
+  width: max-content;
+  height: max-content;
+  padding: 6px 12px;
+  color: #ffffff !important;
+  border-radius: 12px;
 }
 
 .btn-primary {

@@ -39,7 +39,7 @@ function App() {
     <BrowserRouter>
       <Routes>
           <Route path="/" element={<Homepage />} />
-          <Route path="/search" element={<Searchpage />} />
+          <Route path="/produk" element={<Searchpage />} />
           <Route path="login" element={ 
             <NavigateToHome users={users}>
               <Login />

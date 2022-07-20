@@ -3,8 +3,9 @@ import {
   FormControl,
   FormSelect,
 } from "../../components/Form/FormElements";
+import { UploadProfilePicture } from "../../components/Form/UsersFormElements";
 import { BtnFormProduct } from "../../components/Form/ProductsFormElements";
-import { Form, Row, Col } from "react-bootstrap";
+import { Form, Row, Col, Image } from "react-bootstrap";
 import { Container } from "react-bootstrap";
 import { NavbarPlain, BackButton } from "../../components";
 import axios from "axios";
@@ -98,6 +99,15 @@ function EditProductForm() {
       <BackButton />
       <Container className="mt-5 py-5">
         <Form onSubmit={handleEdit}>
+          <Form.Group className="mt-4 mb-2">
+            {picture == null ? (
+              <UploadProfilePicture className="mx-auto" />
+            ) : (
+              <div className="d-flex justify-content-center">
+                <Image className="imgPreviewProduct" src={picture} />
+              </div>
+            )}
+          </Form.Group>
           <Form.Group className="mt-4 mb-2">
             <FormLabel>Nama Produk</FormLabel>
             <FormControl

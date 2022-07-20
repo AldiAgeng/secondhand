@@ -183,8 +183,19 @@ function InfoPenawar() {
                   <div>
                     {orders.status === "accepted" ? (
                       <>
-                        <ModalStatusOrder products={products} orders={orders} />
-                        <ModalInfoProduct orders={orders} />
+                        {products.status === "sold" ? (
+                          <h5 className={style.fontProduct}>
+                            Produk ini telah Terjual!
+                          </h5>
+                        ) : (
+                          <>
+                            <ModalStatusOrder
+                              products={products}
+                              orders={orders}
+                            />
+                            <ModalInfoProduct orders={orders} />
+                          </>
+                        )}
                       </>
                     ) : (
                       <>
