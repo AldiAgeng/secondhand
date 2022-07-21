@@ -8,4 +8,5 @@ export { default as AddProductForm } from "./ProductForm/AddProductForm";
 export { default as EditProductForm } from "./ProductForm/EditProductForm";
 export { default as ProductDetail } from "./ProductDetail/ProductDetail";
 export { default as InfoPenawar } from "./InfoPenawar/InfoPenawar";
-export { default as OrderHistory } from "./OrderHistory/OrderHistory";
+export { default as OrderHistory } from "./History/OrderHistory";
+export { default as NotifHistory } from "./History/NotifHistory";

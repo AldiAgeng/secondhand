@@ -9,7 +9,8 @@ import {
   EditProductForm,
   ProductDetail,
   InfoPenawar,
-  OrderHistory
+  OrderHistory,
+  NotifHistory,
 } from "./pages";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProtectedToken from "./auth/ProtectedToken";
@@ -83,6 +84,11 @@ function App() {
           <Route path="daftar-order" element={
             <ProtectedToken>
               <OrderHistory users={users} />
+            </ProtectedToken>
+          } />
+          <Route path="daftar-notif" element={
+            <ProtectedToken>
+              <NotifHistory users={users} />
             </ProtectedToken>
           } />
       </Routes>
