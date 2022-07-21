@@ -3,7 +3,6 @@ import { NavbarMenu, BackButton, ModalOrderBuyer } from "../../components";
 import { Container } from "react-bootstrap";
 import poto from "../../assets/images/img2.png";
 import axios from "axios";
-import Login from "../Login/Login";
 import { BtnPrimary } from "../../components/Buttons/ButtonElements";
 
 function OrderHistory({ users }) {

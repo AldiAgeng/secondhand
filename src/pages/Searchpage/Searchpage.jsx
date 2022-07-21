@@ -24,6 +24,7 @@ function Searchpage() {
     setProducts(data.data);
     setSpinner(false);
   };
+  console.log(products, "data");
 
   useEffect(() => {
     getData();
