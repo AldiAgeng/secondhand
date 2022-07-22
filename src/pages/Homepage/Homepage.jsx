@@ -16,7 +16,7 @@ function HomePage() {
 
   const getData = async () => {
     const response = await fetch(
-      `https://tokoku-api.herokuapp.com/api/v1/buyer/product`
+      `https://tokoku-api-2.herokuapp.com/api/v1/buyer/product`
     );
     const data = await response.json();
     setProducts(data.data);
@@ -25,7 +25,7 @@ function HomePage() {
 
   const getCategories = async () => {
     const response = await fetch(
-      `https://tokoku-api.herokuapp.com/api/v1/category`
+      `https://tokoku-api-2.herokuapp.com/api/v1/category`
     );
     const data = await response.json();
     setCategories(data.data);

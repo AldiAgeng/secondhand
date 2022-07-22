@@ -18,12 +18,10 @@ function UserForm() {
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
   const [image, setImage] = useState(null);
-  const imgUrl =
-    "https://tokoku-api.herokuapp.com/uploads/users/" + users.picture;
 
   const whoami = () => {
     axios
-      .get(`https://tokoku-api.herokuapp.com/api/v1/auth/user`, {
+      .get(`https://tokoku-api-2.herokuapp.com/api/v1/auth/user`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
@@ -60,7 +58,7 @@ function UserForm() {
         });
       } else {
         const response = await axios.put(
-          "https://tokoku-api.herokuapp.com/api/v1/auth/user",
+          "https://tokoku-api-2.herokuapp.com/api/v1/auth/user",
           form,
           {
             headers: {
@@ -69,7 +67,6 @@ function UserForm() {
             },
           }
         );
-        console.log(response, "res");
         setTimeout(() => {
           window.location.reload();
         }, 1000);

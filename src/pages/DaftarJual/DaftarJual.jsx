@@ -24,7 +24,7 @@ function Daftarjual({ users }) {
 
   const getProductSeller = () => {
     axios
-      .get(`https://tokoku-api.herokuapp.com/api/v1/seller/product`, {
+      .get(`https://tokoku-api-2.herokuapp.com/api/v1/seller/product`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
@@ -36,25 +36,26 @@ function Daftarjual({ users }) {
 
   const getOrderSeller = () => {
     axios
-      .get(`https://tokoku-api.herokuapp.com/api/v1/seller/order`, {
+      .get(`https://tokoku-api-2.herokuapp.com/api/v1/seller/order`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
       })
       .then((response) => {
-        setOrders(response.data.product);
+        setOrders(response.data.data);
+        console.log(response.data.data, "res dj");
       });
   };
 
   const getHistory = async () => {
     await axios
-      .get(`https://tokoku-api.herokuapp.com/api/v1/history`, {
+      .get(`https://tokoku-api-2.herokuapp.com/api/v1/history`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
       })
       .then((response) => {
-        setHistory(response.data.Seller);
+        setHistory(response.data.data.seller);
       });
   };
 

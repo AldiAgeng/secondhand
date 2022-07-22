@@ -11,6 +11,7 @@ import {
   InfoPenawar,
   OrderHistory,
   NotifHistory,
+  EditPassword,
 } from "./pages";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProtectedToken from "./auth/ProtectedToken";
@@ -22,7 +23,7 @@ function App() {
   const [users, setUsers] = useState("");
   const whoami = () => {
     axios
-      .get(`https://tokoku-api.herokuapp.com/api/v1/auth/user`, {
+      .get('https://tokoku-api-2.herokuapp.com/api/v1/auth/user', {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
@@ -69,6 +70,11 @@ function App() {
           <Route path="edit-profile" element={ 
             <ProtectedToken>
               <EditUserForm users={users} />
+            </ProtectedToken>
+          } />
+          <Route path="ubah-kata-sandi" element={ 
+            <ProtectedToken>
+              <EditPassword />
             </ProtectedToken>
           } />
           <Route path="tambah-produk" element={

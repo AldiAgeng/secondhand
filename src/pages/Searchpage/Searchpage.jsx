@@ -18,7 +18,7 @@ function Searchpage() {
 
   const getData = async () => {
     const response = await fetch(
-      `https://tokoku-api.herokuapp.com/api/v1/buyer/product?search=${location.state.search}`
+      `https://tokoku-api-2.herokuapp.com/api/v1/buyer/product?search=${location.state.search}`
     );
     const data = await response.json();
     setProducts(data.data);

@@ -30,7 +30,7 @@ function ModalOrderBuyer({ order }) {
     };
     axios
       .put(
-        `https://tokoku-api.herokuapp.com/api/v1/buyer/order/${order.id}`,
+        `https://tokoku-api-2.herokuapp.com/api/v1/buyer/order/${order.id}`,
         data,
         {
           headers: {
