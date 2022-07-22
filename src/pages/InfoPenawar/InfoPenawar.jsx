@@ -24,23 +24,23 @@ function InfoPenawar() {
   const navigate = useNavigate();
 
   const imgUser =
-    "https://tokoku-api.herokuapp.com/uploads/users/" + users.picture;
+    "https://tokoku-api-2.herokuapp.com/uploads/users/" + users.picture;
   const imgProduct =
-    "https://tokoku-api.herokuapp.com/uploads/products/" + products.picture;
+    "https://tokoku-api-2.herokuapp.com/uploads/products/" + products.picture;
 
   const orderProduct = async () => {
     await axios
-      .get(`https://tokoku-api.herokuapp.com/api/v1/seller/order/${id}`, {
+      .get(`https://tokoku-api-2.herokuapp.com/api/v1/seller/order/${id}`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
       })
       .then((response) => {
-        setUsers(response.data.order.User);
-        setProduct(response.data.order.Product);
-        setPrice(response.data.order.Product.price);
-        setOrders(response.data.order);
-        setBid(response.data.order.price);
+        setUsers(response.data.data.User);
+        setProduct(response.data.data.Product);
+        setPrice(response.data.data.Product.price);
+        setOrders(response.data.data);
+        setBid(response.data.data.price);
         console.log(response.data, "data");
       });
   };
@@ -59,7 +59,7 @@ function InfoPenawar() {
         };
         axios
           .put(
-            `https://tokoku-api.herokuapp.com/api/v1/seller/order/${id}`,
+            `https://tokoku-api-2.herokuapp.com/api/v1/seller/order/${id}`,
             data,
             {
               headers: {
@@ -82,6 +82,7 @@ function InfoPenawar() {
       }
     });
   };
+
   const Rejected = () => {
     swal({
       title: "Apakah anda yakin?",
@@ -96,7 +97,7 @@ function InfoPenawar() {
         };
         axios
           .put(
-            `https://tokoku-api.herokuapp.com/api/v1/seller/order/${id}`,
+            `https://tokoku-api-2.herokuapp.com/api/v1/seller/order/${id}`,
             data,
             {
               headers: {

@@ -16,7 +16,7 @@ function SignUp() {
 
   const register = () => {
     axios
-      .post("https://tokoku-api.herokuapp.com/api/v1/auth/register", {
+      .post("https://tokoku-api-2.herokuapp.com/api/v1/auth/register", {
         name: String(name.target.value),
         email: String(email.target.value),
         password: String(password.target.value),
@@ -83,6 +83,10 @@ function SignUp() {
                 placeholder="Enter password"
                 onChange={setPassword}
               />
+              <p className="textGray">
+                note : kata sandi harus berisi huruf besar, huruf kecil, angka,
+                dan karakter.
+              </p>
             </div>
             <div className="d-grid">
               <BtnSubmit className="w-100" onClick={register}>

@@ -16,7 +16,7 @@ function Notifikasi() {
 
   const getNotif = () => {
     axios
-      .get(`https://tokoku-api.herokuapp.com/api/v1/notification`, {
+      .get(`https://tokoku-api-2.herokuapp.com/api/v1/notification`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
@@ -25,7 +25,6 @@ function Notifikasi() {
         setBuyers(response.data);
       });
   };
-  console.log(buyers, "res notif");
 
   useEffect(() => {
     getNotif();

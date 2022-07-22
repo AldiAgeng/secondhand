@@ -18,7 +18,7 @@ function Login() {
 
   const login = () => {
     axios
-      .post("https://tokoku-api.herokuapp.com/api/v1/auth/login", {
+      .post("https://tokoku-api-2.herokuapp.com/api/v1/auth/login", {
         email: String(email.target.value),
         password: String(password.target.value),
       })
@@ -56,7 +56,6 @@ function Login() {
     setIsLoggedIn(false);
     localStorage.removeItem("token");
     window.location.reload();
-    console.log("udah logout");
   };
 
   return (
@@ -92,11 +91,6 @@ function Login() {
                 </BtnSubmit>
               </div>
               <div className="mt-3 text-end">
-                <p>
-                  <a className="font-login" href="#">
-                    Forgot password?
-                  </a>
-                </p>
                 <p>
                   don't have an account?&nbsp;
                   <a className="font-login" href="/sign-up">

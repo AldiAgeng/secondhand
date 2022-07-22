@@ -57,7 +57,7 @@ function AddProductForm({ users }) {
 
     try {
       const res = await axios.post(
-        "https://tokoku-api.herokuapp.com/api/v1/seller/product",
+        "https://tokoku-api-2.herokuapp.com/api/v1/seller/product",
         form,
         {
           headers: {

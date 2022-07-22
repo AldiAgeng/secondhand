@@ -10,17 +10,17 @@ function OrderHistory({ users }) {
 
   const getOrderBuyer = () => {
     axios
-      .get("https://tokoku-api.herokuapp.com/api/v1/buyer/order", {
+      .get("https://tokoku-api-2.herokuapp.com/api/v1/buyer/order", {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
       })
       .then((response) => {
-        setOrders(response.data.orders);
+        setOrders(response.data.data);
+        console.log(response, "res buyer");
       });
   };
 
-  console.log(orders, "orders");
   useEffect(() => {
     getOrderBuyer();
   }, []);

@@ -25,7 +25,7 @@ function ModalStatusOrder({ products, orders }) {
       };
       axios
         .put(
-          `https://tokoku-api.herokuapp.com/api/v1/seller/product/${products.id}`,
+          `https://tokoku-api-2.herokuapp.com/api/v1/seller/product/${products.id}`,
           data,
           {
             headers: {
@@ -57,7 +57,7 @@ function ModalStatusOrder({ products, orders }) {
       };
       axios
         .put(
-          `https://tokoku-api.herokuapp.com/api/v1/seller/order/${orders.id}`,
+          `https://tokoku-api-2.herokuapp.com/api/v1/seller/order/${orders.id}`,
           data,
           {
             headers: {

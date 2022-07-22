@@ -131,6 +131,9 @@ function NavbarMenu() {
                         <NavDropdown.Item href="/edit-profile">
                           Info Akun
                         </NavDropdown.Item>
+                        <NavDropdown.Item href="/ubah-kata-sandi">
+                          Ubah Kata Sandi
+                        </NavDropdown.Item>
                         <NavDropdown.Item onClick={logout}>
                           Keluar
                         </NavDropdown.Item>
