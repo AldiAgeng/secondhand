@@ -1,15 +1,5 @@
 import { useState, useEffect } from "react";
-import {
-  Navbar,
-  Nav,
-  Container,
-  Form,
-  Button,
-  Offcanvas,
-  NavDropdown,
-  Row,
-  Col,
-} from "react-bootstrap";
+import { Navbar, Nav, Container, Form, Button, Offcanvas, NavDropdown, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { BtnLogin } from "../Buttons/ButtonElements";
 import fi_logo from "../../assets/images/imgLogo.png";
@@ -29,7 +19,8 @@ function NavbarMenu() {
 
   const navigate = useNavigate();
 
-  function handleSearch() {
+  function handleSearch(e) {
+    e.preventDefault();
     navigate("/produk", {
       state: { search: search },
     });
@@ -46,9 +37,7 @@ function NavbarMenu() {
     console.log("udah logout");
   };
 
-  const listMenu = (
-    <img src={fi_list} alt="fi_list" style={{ width: "24px" }} />
-  );
+  const listMenu = <img src={fi_list} alt="fi_list" style={{ width: "24px" }} />;
   const notif = <img src={fi_bell} alt="fi_bell" style={{ width: "24px" }} />;
   const user = <img src={fi_user} alt="fi_user" style={{ width: "24px" }} />;
   return (
@@ -60,18 +49,12 @@ function NavbarMenu() {
           </Navbar.Brand>
 
           <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-lg`} />
-          <Navbar.Offcanvas
-            id={`offcanvasNavbar-expand-lg`}
-            aria-labelledby={`offcanvasNavbarLabel-expand-lg`}
-            placement="end"
-          >
+          <Navbar.Offcanvas id={`offcanvasNavbar-expand-lg`} aria-labelledby={`offcanvasNavbarLabel-expand-lg`} placement="end">
             <Offcanvas.Header closeButton>
-              <Offcanvas.Title id={`offcanvasNavbarLabel-expand-lg`}>
-                TokoKu
-              </Offcanvas.Title>
+              <Offcanvas.Title id={`offcanvasNavbarLabel-expand-lg`}>TokoKu</Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
-              <Form className={style.formSearch}>
+              <Form className={style.formSearch} onSubmit={handleSearch}>
                 <Form.Control
                   type="search"
                   placeholder="Cari di sini .."
@@ -85,11 +68,7 @@ function NavbarMenu() {
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                 />
-                <Button
-                  variant="link"
-                  style={{ borderRadius: "16px", boxShadow: "none" }}
-                  onClick={handleSearch}
-                >
+                <Button type="submit" variant="link" style={{ borderRadius: "16px", boxShadow: "none" }}>
                   <img src={fi_search} alt="" />
                 </Button>
               </Form>
@@ -108,16 +87,9 @@ function NavbarMenu() {
                 <Nav className="justify-content-end flex-grow-1 mt-2">
                   <Row>
                     <Col>
-                      <NavDropdown
-                        title={listMenu}
-                        id={`offcanvasNavbarDropdown-expand-lg`}
-                      >
-                        <NavDropdown.Item href="/daftar-jual">
-                          Produk
-                        </NavDropdown.Item>
-                        <NavDropdown.Item href="/daftar-order">
-                          Order
-                        </NavDropdown.Item>
+                      <NavDropdown title={listMenu} id={`offcanvasNavbarDropdown-expand-lg`}>
+                        <NavDropdown.Item href="/daftar-jual">Produk</NavDropdown.Item>
+                        <NavDropdown.Item href="/daftar-order">Order</NavDropdown.Item>
                       </NavDropdown>
                     </Col>
                     <Col>
@@ -126,19 +98,10 @@ function NavbarMenu() {
                       </Link>
                     </Col>
                     <Col>
-                      <NavDropdown
-                        title={user}
-                        id={`offcanvasNavbarDropdown-expand-lg`}
-                      >
-                        <NavDropdown.Item href="/edit-profile">
-                          Info Akun
-                        </NavDropdown.Item>
-                        <NavDropdown.Item href="/ubah-kata-sandi">
-                          Ubah Kata Sandi
-                        </NavDropdown.Item>
-                        <NavDropdown.Item onClick={logout}>
-                          Keluar
-                        </NavDropdown.Item>
+                      <NavDropdown title={user} id={`offcanvasNavbarDropdown-expand-lg`}>
+                        <NavDropdown.Item href="/edit-profile">Info Akun</NavDropdown.Item>
+                        <NavDropdown.Item href="/ubah-kata-sandi">Ubah Kata Sandi</NavDropdown.Item>
+                        <NavDropdown.Item onClick={logout}>Keluar</NavDropdown.Item>
                       </NavDropdown>
                     </Col>
                   </Row>

@@ -1,18 +1,15 @@
-import { Dropdown, NavDropdown } from "react-bootstrap";
+import { Dropdown } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import style from "./Notifikasi.module.css";
 import iconRed from "../../assets/icons/icon_red.svg";
 import fi_bell from "../../assets/icons/fi_bell.svg";
 import img from "../../assets/images/img1.png";
 import axios from "axios";
-import swal from "sweetalert";
-import { toast, ToastContainer } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 
 function Notifikasi() {
-  const [notif, setNotif] = useState("");
-  const [buyers, setBuyers] = useState([]);
-  const [status, setStatus] = useState(false);
+  const [notif, setNotif] = useState(0);
+  const [notifSeller, setNotifSeller] = useState([]);
+  const [notifBuyer, setNotifBuyer] = useState([]);
 
   const getNotif = () => {
     axios
@@ -22,45 +19,68 @@ function Notifikasi() {
         },
       })
       .then((response) => {
-        setBuyers(response.data);
+        setNotifBuyer(response.data.data.buyer);
+        setNotifSeller(response.data.data.seller);
       });
+  };
+
+  const checkNotifBuyer = () => {
+    notifBuyer.map((data) => {
+      if (data.is_read === false && data.Order !== null) {
+        axios
+          .get(`https://tokoku-api-2.herokuapp.com/api/v1/notification/${data.id}`, {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+          })
+          .then((response) => {
+            setNotif(notif + 1);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    });
+  };
+
+  const checkNotifSeller = () => {
+    notifSeller.map((data) => {
+      if (data.is_read === false && data.Order !== null) {
+        axios
+          .get(`https://tokoku-api-2.herokuapp.com/api/v1/notification/${data.id}`, {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+          })
+          .then((response) => {
+            setNotif(notif + 1);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    });
   };
 
   useEffect(() => {
     getNotif();
-  }, []);
+    checkNotifBuyer();
+    checkNotifSeller();
+  }, [notifBuyer, notifSeller]);
 
   return (
     <>
       <Dropdown className="pt-0 mt-0">
-        <Dropdown.Toggle
-          className="bg-transparent border-0 pt-2"
-          id="dropdown-basic"
-        >
-          <img src={fi_bell} alt="" />
+        <Dropdown.Toggle className="bg-transparent border-0 pt-2" id="dropdown-basic">
+          {notif === 0 ? (
+            <img src={fi_bell} alt="" />
+          ) : (
+            <div>
+              <img src={fi_bell} alt="" />
+              <img src={iconRed} alt="" />
+            </div>
+          )}
         </Dropdown.Toggle>
-        {/* <Dropdown.Menu className={style.Menu} align="end">
-          <div className={style.boxNotif}>
-            <div className={style.imgBox}>
-              <img className={style.img} src={img} alt="" />
-            </div>
-            <div className={style.boxContent}>
-              <p className={style.textGray}>Penawaran</p>
-              <h5 className={style.textContent}>Jam Tangan Casio</h5>
-              <h5 className={style.textContent}>Rp 250.000</h5>
-              <h5 className={style.textContent}>Ditawar Rp 200.000</h5>
-              <h5 className={style.textGray}>
-                Kamu akan segera dihubungi penjual via whatsapp
-              </h5>
-            </div>
-            <div className={style.time}>
-              <p className={style.textGray}>
-                <img className="float-end mb-1" src={iconRed} alt="" />
-                20 Apr, 14:04
-              </p>
-            </div>
-          </div>
-        </Dropdown.Menu> */}
       </Dropdown>
     </>
   );
