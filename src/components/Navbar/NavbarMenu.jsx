@@ -121,7 +121,9 @@ function NavbarMenu() {
                       </NavDropdown>
                     </Col>
                     <Col>
-                      <Notifikasi />
+                      <Link to="/daftar-notif">
+                        <Notifikasi />
+                      </Link>
                     </Col>
                     <Col>
                       <NavDropdown
