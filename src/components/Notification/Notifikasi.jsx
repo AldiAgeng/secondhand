@@ -39,9 +39,7 @@ function Notifikasi() {
         >
           <img src={fi_bell} alt="" />
         </Dropdown.Toggle>
-        <Dropdown.Menu className={style.Menu} align="end">
-          {/* {buyers.map((buyer) => { */}
-          {/* return ( */}
+        {/* <Dropdown.Menu className={style.Menu} align="end">
           <div className={style.boxNotif}>
             <div className={style.imgBox}>
               <img className={style.img} src={img} alt="" />
@@ -51,9 +49,9 @@ function Notifikasi() {
               <h5 className={style.textContent}>Jam Tangan Casio</h5>
               <h5 className={style.textContent}>Rp 250.000</h5>
               <h5 className={style.textContent}>Ditawar Rp 200.000</h5>
-              {/* <h5 className={style.textGray}>
+              <h5 className={style.textGray}>
                 Kamu akan segera dihubungi penjual via whatsapp
-              </h5> */}
+              </h5>
             </div>
             <div className={style.time}>
               <p className={style.textGray}>
@@ -62,9 +60,7 @@ function Notifikasi() {
               </p>
             </div>
           </div>
-          {/* ); */}
-          {/* })} */}
-        </Dropdown.Menu>
+        </Dropdown.Menu> */}
       </Dropdown>
     </>
   );
