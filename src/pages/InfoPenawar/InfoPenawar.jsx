@@ -172,14 +172,22 @@ function InfoPenawar() {
                   Ditawar &nbsp;:&emsp; Rp {bid.toLocaleString("id-ID")}
                 </Card.Text>
                 {orders.status === "bid" ? (
-                  <div>
-                    <BtnPrimary className={style.button} onClick={Rejected}>
-                      Tolak
-                    </BtnPrimary>
-                    <BtnPrimary className={style.button} onClick={Accepted}>
-                      Terima
-                    </BtnPrimary>
-                  </div>
+                  <>
+                    {products.status === "sold" ? (
+                      <h5 className={style.fontProduct}>
+                        Produk ini telah Terjual!
+                      </h5>
+                    ) : (
+                      <div>
+                        <BtnPrimary className={style.button} onClick={Rejected}>
+                          Tolak
+                        </BtnPrimary>
+                        <BtnPrimary className={style.button} onClick={Accepted}>
+                          Terima
+                        </BtnPrimary>
+                      </div>
+                    )}
+                  </>
                 ) : (
                   <div>
                     {orders.status === "accepted" ? (
