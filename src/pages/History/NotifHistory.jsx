@@ -46,123 +46,146 @@ function NotifHistory({ users }) {
           <Col md={6} className="mb-3">
             <h3 className="textTitle">Notifikasi Seller</h3>
             <div className="scrollContent">
-              {sellers.map((data) => {
-                if (data.Order !== null) {
-                  if (
-                    data.is_read === false &&
-                    data.Order.Product.id_user === users.id
-                  ) {
-                    axios.patch(
-                      `https://tokoku-api-2.herokuapp.com/api/v1/notification/${data.id}`,
-                      null,
-                      {
-                        headers: {
-                          Authorization:
-                            "Bearer " + localStorage.getItem("token"),
-                        },
+              {sellers.length === 0 ? (
+                <p className="textContent">tidak ada notifikasi</p>
+              ) : (
+                <>
+                  {sellers.map((data) => {
+                    if (data.Order !== null) {
+                      if (
+                        data.is_read === false &&
+                        data.Order.Product.id_user === users.id
+                      ) {
+                        axios.patch(
+                          `https://tokoku-api-2.herokuapp.com/api/v1/notification/${data.id}`,
+                          null,
+                          {
+                            headers: {
+                              Authorization:
+                                "Bearer " + localStorage.getItem("token"),
+                            },
+                          }
+                        );
                       }
-                    );
-                  }
-                  return (
-                    <div className="productOrder">
-                      <div className="d-flex flex-row">
-                        <div>
-                          <img
-                            className="imgProductOrder"
-                            src={data.Order.Product.picture}
-                            alt={data.Order.Product.picture}
-                          />
-                        </div>
-                        <div>
-                          <p className="textGray">Penawaran Produk Baru</p>
-                          <h5 className="textContent">
-                            {data.Order.Product.name}
-                          </h5>
-                          <h5 className="textContent">
-                            Rp{" "}
-                            {data.Order.Product.price.toLocaleString("id-ID")}
-                          </h5>
-                          <h5 className="textContent">
-                            Ditawar Rp{" "}
-                            {data.Order.price.toLocaleString("id-ID")}
-                          </h5>
-                        </div>
-                      </div>
-                      <div className="text-end">
-                        <p className="textGray mb-2">
-                          {moment(data.createdAt).format("L")}
-                        </p>
-                        <Link
-                          style={{
-                            textDecoration: "none",
-                            color: "black",
-                          }}
-                          to={`/info-penawar/${data.id_order}`}
-                        >
-                          <BtnPrimary>Detail</BtnPrimary>
-                        </Link>
-                      </div>
-                    </div>
-                  );
-                }
-              })}
-            </div>
-          </Col>
-          <Col md={6}>
-            <h3 className="textTitle">Notifikasi Buyer</h3>
-            <div className="scrollContent">
-              {buyers.map((data) => {
-                if (data.is_read === false && data.Order.id_user === users.id) {
-                  axios.patch(
-                    `https://tokoku-api-2.herokuapp.com/api/v1/notification/${data.id}`,
-                    null,
-                    {
-                      headers: {
-                        Authorization:
-                          "Bearer " + localStorage.getItem("token"),
-                      },
-                    }
-                  );
-                }
-
-                return (
-                  <>
-                    {data.status === "bid" ? (
-                      <div className="productOrder" key={data.id}>
-                        <div className="d-flex flex-row">
-                          <div>
-                            <img
-                              className="imgProductOrder"
-                              src={data.Order.Product.picture}
-                              alt={data.Order.Product.picture}
-                            />
-                          </div>
-                          <div>
-                            <p className="textGray">
-                              Anda berhasil melakukan penawaran
-                            </p>
-                            <h5 className="textContent">
-                              {data.Order.Product.name}
-                            </h5>
-                            <h5 className="textContent">
-                              Rp{" "}
-                              {data.Order.Product.price.toLocaleString("id-ID")}
-                            </h5>
-                            <h5 className="textContent">
-                              Ditawar Rp{" "}
-                              {data.Order.price.toLocaleString("id-ID")}
-                            </h5>
+                      return (
+                        <div className="productOrder">
+                          <div className="d-flex flex-row">
+                            <div>
+                              <img
+                                className="imgProductOrder"
+                                src={data.Order.Product.picture}
+                                alt={data.Order.Product.picture}
+                              />
+                            </div>
+                            <div>
+                              <p className="textGray">Penawaran Produk Baru</p>
+                              <h5 className="textContent">
+                                {data.Order.Product.name}
+                              </h5>
+                              <h5 className="textContent">
+                                Rp{" "}
+                                {data.Order.Product.price.toLocaleString(
+                                  "id-ID"
+                                )}
+                              </h5>
+                              <h5 className="textContent">
+                                Ditawar Rp{" "}
+                                {data.Order.price.toLocaleString("id-ID")}
+                              </h5>
+                            </div>
                           </div>
                           <div className="text-end">
                             <p className="textGray mb-2">
                               {moment(data.createdAt).format("L")}
                             </p>
+                            <Link
+                              style={{
+                                textDecoration: "none",
+                                color: "black",
+                              }}
+                              to={`/info-penawar/${data.id_order}`}
+                            >
+                              <BtnPrimary>Detail</BtnPrimary>
+                            </Link>
                           </div>
                         </div>
-                      </div>
-                    ) : (
-                      <>
-                        {data.status === "accepted" ? (
+                      );
+                    }
+                  })}
+                </>
+              )}
+            </div>
+          </Col>
+          <Col md={6}>
+            <h3 className="textTitle">Notifikasi Buyer</h3>
+            <div className="scrollContent">
+              {buyers.length === 0 ? (
+                <p className="textContent">Tidak ada notifikasi</p>
+              ) : (
+                <>
+                  {buyers.map((data) => {
+                    if (
+                      data.is_read === false &&
+                      data.Order.id_user === users.id
+                    ) {
+                      axios.patch(
+                        `https://tokoku-api-2.herokuapp.com/api/v1/notification/${data.id}`,
+                        null,
+                        {
+                          headers: {
+                            Authorization:
+                              "Bearer " + localStorage.getItem("token"),
+                          },
+                        }
+                      );
+                    }
+
+                    if (data.status === "bid" && data.Order.Product !== null) {
+                      return (
+                        <>
+                          <div className="productOrder" key={data.id}>
+                            <div className="d-flex flex-row">
+                              <div>
+                                <img
+                                  className="imgProductOrder"
+                                  src={data.Order.Product.picture}
+                                  alt={data.Order.Product.picture}
+                                />
+                              </div>
+                              <div>
+                                <p className="textGray">
+                                  Anda berhasil melakukan penawaran
+                                </p>
+                                <h5 className="textContent">
+                                  {data.Order.Product.name}
+                                </h5>
+                                <h5 className="textContent">
+                                  Rp{" "}
+                                  {data.Order.Product.price.toLocaleString(
+                                    "id-ID"
+                                  )}
+                                </h5>
+                                <h5 className="textContent">
+                                  Ditawar Rp{" "}
+                                  {data.Order.price.toLocaleString("id-ID")}
+                                </h5>
+                              </div>
+                              <div className="text-end">
+                                <p className="textGray mb-2">
+                                  {moment(data.createdAt).format("L")}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </>
+                      );
+                    }
+                    if (
+                      data.status === "accepted" &&
+                      data.Order.Product !== null
+                    ) {
+                      return (
+                        <>
                           <div className="productOrder" key={data.id}>
                             <div className="d-flex flex-row">
                               <div>
@@ -197,50 +220,54 @@ function NotifHistory({ users }) {
                               </p>
                             </div>
                           </div>
-                        ) : (
-                          <div className="productOrder" key={data.id}>
-                            <div className="d-flex flex-row">
-                              <div>
-                                <img
-                                  className="imgProductOrder"
-                                  src={data.Order.Product.picture}
-                                  alt={data.Order.Product.picture}
-                                />
-                              </div>
-                              <div>
-                                <p className="textGray">
-                                  Penawaran anda ditolak
-                                </p>
-                                <h5 className="textContent">
-                                  {data.Order.Product.name}
-                                </h5>
-                                <h5 className="textContent">
-                                  Rp{" "}
-                                  {data.Order.Product.price.toLocaleString(
-                                    "id-ID"
-                                  )}
-                                </h5>
-                                <h5 className="textContent">
-                                  Ditawar Rp{" "}
-                                  {data.Order.price.toLocaleString("id-ID")}
-                                </h5>
-                                <p className="textGray">
-                                  cek history order untuk merubah penawaran.
-                                </p>
-                              </div>
+                        </>
+                      );
+                    }
+                    if (
+                      data.status === "rejected" &&
+                      data.Order.Product !== null
+                    ) {
+                      return (
+                        <div className="productOrder" key={data.id}>
+                          <div className="d-flex flex-row">
+                            <div>
+                              <img
+                                className="imgProductOrder"
+                                src={data.Order.Product.picture}
+                                alt={data.Order.Product.picture}
+                              />
                             </div>
-                            <div className="text-end">
-                              <p className="textGray mb-2">
-                                {moment(data.createdAt).format("L")}
+                            <div>
+                              <p className="textGray">Penawaran anda ditolak</p>
+                              <h5 className="textContent">
+                                {data.Order.Product.name}
+                              </h5>
+                              <h5 className="textContent">
+                                Rp{" "}
+                                {data.Order.Product.price.toLocaleString(
+                                  "id-ID"
+                                )}
+                              </h5>
+                              <h5 className="textContent">
+                                Ditawar Rp{" "}
+                                {data.Order.price.toLocaleString("id-ID")}
+                              </h5>
+                              <p className="textGray">
+                                cek history order untuk merubah penawaran.
                               </p>
                             </div>
                           </div>
-                        )}
-                      </>
-                    )}
-                  </>
-                );
-              })}
+                          <div className="text-end">
+                            <p className="textGray mb-2">
+                              {moment(data.createdAt).format("L")}
+                            </p>
+                          </div>
+                        </div>
+                      );
+                    }
+                  })}
+                </>
+              )}
             </div>
           </Col>
         </Row>
