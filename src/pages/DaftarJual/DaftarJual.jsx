@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Container, Row, Col, ListGroup, Card } from "react-bootstrap";
 import { NavbarMenu, CardProduct, Footers } from "../../components";
 import { BtnPrimary } from "../../components/Buttons/ButtonElements";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import imgContent from "../../assets/images/imgContent.png";
 import fi_box from "../../assets/icons/fi_box.svg";
 import fi_heart from "../../assets/icons/fi_heart.svg";
@@ -11,7 +11,6 @@ import fi_chevron from "../../assets/icons/fi_chevron-right.svg";
 import fi_plus from "../../assets/icons/fi_plus.svg";
 import style from "./daftarjual.module.css";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 function Daftarjual({ users }) {
   const [products, setProducts] = useState([]);
@@ -20,7 +19,6 @@ function Daftarjual({ users }) {
   const [history, setHistory] = useState("");
 
   const handleButton = (e) => setButtons(e.target.innerText);
-  const navigate = useNavigate();
 
   const getProductSeller = () => {
     axios
@@ -55,7 +53,6 @@ function Daftarjual({ users }) {
       })
       .then((response) => {
         setHistory(response.data.data.seller);
-        console.log(response.data.data.seller, "hist");
       });
   };
 
@@ -69,7 +66,7 @@ function Daftarjual({ users }) {
     <>
       <NavbarMenu />
       <Container className={style.main}>
-        <h3 className={style.titleText}>Daftar Jual Saya</h3>
+        <h3 className="textTitle">Daftar Jual Saya</h3>
         <div className={style.profileBox}>
           <div className="d-flex flex-row justify-content-center align-items-center">
             <img className={style.profileImg} src={users.picture} />

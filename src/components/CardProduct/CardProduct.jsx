@@ -1,5 +1,5 @@
-import toRupiah from "@develoka/angka-rupiah-js";
 import { Card } from "react-bootstrap";
+import toRupiah from "@develoka/angka-rupiah-js";
 import style from "./cardproduct.module.css";
 
 function CardProduct({ id, name, price, picture, category }) {

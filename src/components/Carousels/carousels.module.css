@@ -11,7 +11,7 @@
 
 .styleImg {
     width: 100%;
-    min-height: 106.33px;
+    min-height: 114.33px;
     max-height: 271px !important;
     border-radius: 20px;
 }
@@ -19,5 +19,6 @@
 .styleContainer {
     width: 100%;
     height: max-content;
+    padding: 0px !important;
 }
   

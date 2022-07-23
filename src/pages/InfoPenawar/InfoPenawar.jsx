@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 import { Container, Card, Row, Col } from "react-bootstrap";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
   NavbarPlain,
   ModalStatusOrder,
   ModalInfoProduct,
   BackButton,
 } from "../../components";
-import { ToastContainer, toast } from "react-toastify";
 import { BtnPrimary } from "../../components/Buttons/ButtonElements";
 import axios from "axios";
 import swal from "sweetalert";
@@ -21,12 +20,6 @@ function InfoPenawar() {
   const [price, setPrice] = useState(0);
 
   const { id } = useParams();
-  const navigate = useNavigate();
-
-  const imgUser =
-    "https://tokoku-api-2.herokuapp.com/uploads/users/" + users.picture;
-  const imgProduct =
-    "https://tokoku-api-2.herokuapp.com/uploads/products/" + products.picture;
 
   const orderProduct = async () => {
     await axios
@@ -41,14 +34,13 @@ function InfoPenawar() {
         setPrice(response.data.data.Product.price);
         setOrders(response.data.data);
         setBid(response.data.data.price);
-        console.log(response.data, "data");
       });
   };
 
   const Accepted = () => {
     swal({
       title: "Apakah anda yakin?",
-      text: "Setelah status order diganti, Anda tidak akan dapat mengubahnya lagi!",
+      text: "Setelah status penawaran diganti, Anda tidak akan dapat mengubahnya lagi!",
       icon: "warning",
       buttons: true,
       dangerMode: true,
@@ -68,17 +60,13 @@ function InfoPenawar() {
             }
           )
           .then((response) => {
-            console.log(response, "ress");
-            // toast("Order Berhasil diUpdate", {
-            //   type: "success",
-            // });
             window.location.reload();
           });
-        swal("Status order berhasil diubah!", {
+        swal("Status penawaran berhasil diubah!", {
           icon: "success",
         });
       } else {
-        swal("Status order tidak jadi diubah!");
+        swal("Status penawaran tidak jadi diubah!");
       }
     });
   };
@@ -86,7 +74,7 @@ function InfoPenawar() {
   const Rejected = () => {
     swal({
       title: "Apakah anda yakin?",
-      text: "Setelah status order diganti, Anda tidak akan dapat mengubahnya lagi!",
+      text: "Setelah status penawaran diganti, Anda tidak akan dapat mengubahnya lagi!",
       icon: "warning",
       buttons: true,
       dangerMode: true,
@@ -106,11 +94,10 @@ function InfoPenawar() {
             }
           )
           .then((response) => {
-            console.log(response, "ress");
             window.location.reload();
           });
       } else {
-        swal("Status order tidak jadi diubah!");
+        swal("Status penawaran tidak jadi diubah!");
       }
     });
   };
@@ -119,9 +106,8 @@ function InfoPenawar() {
     orderProduct();
   }, [orders.price]);
   return (
-    <div className="App">
+    <>
       <NavbarPlain title="Info Penawar" />
-      <ToastContainer />
       <BackButton />
       <Container className="my-5 pt-5">
         <Row className="mb-4">
@@ -220,7 +206,7 @@ function InfoPenawar() {
           </Col>
         </Row>
       </Container>
-    </div>
+    </>
   );
 }
 

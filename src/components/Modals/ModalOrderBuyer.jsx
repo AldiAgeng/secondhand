@@ -1,28 +1,17 @@
 import { useState } from "react";
-import { Modal, Card, Form } from "react-bootstrap";
-import {
-  ModalHeader,
-  ModalFooter,
-  ModalTextBold,
-  ModalTextLight,
-  ModalText,
-} from "./ModalElements";
+import { Modal, Form } from "react-bootstrap";
+import { ModalHeader, ModalFooter, ModalTextBold } from "./ModalElements";
 import { FormControl } from "../Form/FormElements";
-import { CardModal } from "./CardElements";
 import { BtnPrimary } from "../Buttons/ButtonElements";
 import axios from "axios";
 import swal from "sweetalert";
 import { toast, ToastContainer } from "react-toastify";
-import { useNavigate } from "react-router-dom";
-import style from "./modals.module.css";
 
 function ModalOrderBuyer({ order }) {
-  const [status, setStatus] = useState(order.status);
   const [price, setPrice] = useState("");
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const navigate = useNavigate();
 
   const updateOrder = () => {
     const data = {
@@ -39,12 +28,11 @@ function ModalOrderBuyer({ order }) {
         }
       )
       .then((response) => {
-        console.log(response, "res order");
         swal({
           title: "Berhasil!",
           text: "Harga Penawaran telah kamu ubah!",
           icon: "success",
-          button: "Uhuyy!",
+          button: "Oke",
         });
         setTimeout(() => {
           window.location.reload();

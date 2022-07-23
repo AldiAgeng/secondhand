@@ -32,18 +32,16 @@ function EditPassword() {
           },
         }
       );
-      console.log(response, "ress");
       swal({
         title: "Berhasil!",
         text: "Password anda berhasil diubah!",
         icon: "success",
-        button: "Uhuyy!",
+        button: "Oke",
       });
       setTimeout(() => {
         window.location.reload();
       }, 1000);
     } catch (error) {
-      console.log(error, "error coy");
       if (Array.isArray(error.response.data.message)) {
         error.response.data.message.forEach((err) => {
           toast(err, {

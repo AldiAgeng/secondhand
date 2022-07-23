@@ -1,8 +1,7 @@
+import { useState, useEffect } from "react";
 import { NavbarPlain } from "../../components";
 import { BtnSubmit } from "../../components/Buttons/ButtonElements";
 import { ToastContainer, toast } from "react-toastify";
-import "../../App.css";
-import { useState, useEffect } from "react";
 import axios from "axios";
 import swal from "sweetalert";
 
@@ -27,15 +26,11 @@ function Login() {
         setTimeout(() => {
           window.location.reload();
         }, 1000);
-        swal({
-          title: "Berhasil!",
-          text: "Anda berhasil masuk!",
+        swal("Anda berhasil masuk!", {
           icon: "success",
-          button: "Uhuyy!",
         });
       })
       .catch((error) => {
-        console.log(error.response, "error");
         if (Array.isArray(error.response.data.message)) {
           error.response.data.message.forEach((err) => {
             toast(err, {
@@ -48,25 +43,17 @@ function Login() {
           });
         }
       });
-    console.log(email.target.value);
-    console.log(password.target.value);
-  };
-
-  const logout = () => {
-    setIsLoggedIn(false);
-    localStorage.removeItem("token");
-    window.location.reload();
   };
 
   return (
-    <div className="App">
+    <>
       <NavbarPlain title="Login" />
       <ToastContainer />
       <div className="auth-wrapper">
         <div className="auth-inner">
           {!isLoggedIn ? (
-            <form>
-              <h3>Log In</h3>
+            <form className="textContent">
+              <h3 className="textTitle">Log In</h3>
               <div className="mb-3">
                 <label>Email Address</label>
                 <input
@@ -102,16 +89,7 @@ function Login() {
           ) : null}
         </div>
       </div>
-      {/* {() => {
-        if (error.length > 0) {
-          return (
-            <Alert variant="warning" key="warning">
-              {error.message}
-            </Alert>
-          );
-        }
-      }} */}
-    </div>
+    </>
   );
 }
 

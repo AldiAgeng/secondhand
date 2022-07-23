@@ -19,6 +19,7 @@ import ProtectedToken from "./auth/ProtectedToken";
 import NavigateToHome from "./auth/NavigateToHome";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import "./App.css"
 
 function App() {
   const [users, setUsers] = useState("");

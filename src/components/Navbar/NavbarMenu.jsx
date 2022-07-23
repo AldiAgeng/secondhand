@@ -12,6 +12,7 @@ import {
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { BtnLogin } from "../Buttons/ButtonElements";
+import { useNavigate } from "react-router-dom";
 import fi_logo from "../../assets/images/imgLogo.png";
 import fi_search from "../../assets/icons/fi_search-bar.svg";
 import fi_login from "../../assets/icons/fi_log-in.svg";
@@ -20,7 +21,6 @@ import fi_bell from "../../assets/icons/fi_bell.svg";
 import fi_user from "../../assets/icons/fi_user.svg";
 import style from "./navbar.module.css";
 import Notifikasi from "../Notification/Notifikasi";
-import { useNavigate } from "react-router-dom";
 
 function NavbarMenu() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -44,14 +44,8 @@ function NavbarMenu() {
     setIsLoggedIn(false);
     localStorage.removeItem("token");
     window.location.reload();
-    console.log("udah logout");
   };
 
-  const listMenu = (
-    <img src={fi_list} alt="fi_list" style={{ width: "24px" }} />
-  );
-  const notif = <img src={fi_bell} alt="fi_bell" style={{ width: "24px" }} />;
-  const user = <img src={fi_user} alt="fi_user" style={{ width: "24px" }} />;
   return (
     <>
       <Navbar expand="lg" className={style.navbars} fixed="top">

@@ -1,9 +1,7 @@
 import { Dropdown } from "react-bootstrap";
 import { useState, useEffect } from "react";
-import style from "./Notifikasi.module.css";
 import iconRed from "../../assets/icons/icon_red.svg";
 import fi_bell from "../../assets/icons/fi_bell.svg";
-import img from "../../assets/images/img1.png";
 import axios from "axios";
 
 function Notifikasi() {
@@ -39,9 +37,7 @@ function Notifikasi() {
           .then((response) => {
             setNotif(notif + 1);
           })
-          .catch((error) => {
-            console.log(error);
-          });
+          .catch((error) => {});
       }
     });
   };

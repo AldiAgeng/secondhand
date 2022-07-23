@@ -8,9 +8,9 @@ import {
 } from "./ModalElements";
 import { CardModal } from "./CardElements";
 import { BtnPrimary } from "../Buttons/ButtonElements";
+import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
 import swal from "sweetalert";
-import { toast, ToastContainer } from "react-toastify";
 
 function ModalStatusOrder({ products, orders }) {
   const [show, setShow] = useState(false);
@@ -34,12 +34,11 @@ function ModalStatusOrder({ products, orders }) {
           }
         )
         .then((response) => {
-          console.log(response, "res product");
           swal({
             title: "Berhasil!",
             text: "Selamat produk anda telah terjual!",
             icon: "success",
-            button: "Uhuyy!",
+            button: "Oke",
           });
           setTimeout(() => {
             window.location.reload();
@@ -49,7 +48,6 @@ function ModalStatusOrder({ products, orders }) {
           toast(error.message, {
             type: "error",
           });
-          console.log(error, "err");
         });
     } else {
       const data = {
@@ -66,12 +64,11 @@ function ModalStatusOrder({ products, orders }) {
           }
         )
         .then((response) => {
-          console.log(response, "res order");
           swal({
             title: "Berhasil!",
             text: "Transaksi telah anda batalkan!",
             icon: "success",
-            button: "Uhuyy!",
+            button: "Oke",
           });
           setTimeout(() => {
             window.location.reload();
@@ -84,7 +81,6 @@ function ModalStatusOrder({ products, orders }) {
         });
     }
   };
-  console.log(status, "status");
 
   return (
     <>

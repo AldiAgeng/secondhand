@@ -5,7 +5,6 @@ import {
   BtnFormUser,
 } from "../../components/Form/UsersFormElements";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { Form, Image, Container, InputGroup } from "react-bootstrap";
 import { NavbarPlain, BackButton } from "../../components";
 import swal from "sweetalert";
@@ -74,11 +73,10 @@ function UserForm() {
           title: "Berhasil!",
           text: "Profil berhasil anda ubah!",
           icon: "success",
-          button: "Uhuyy!",
+          button: "Oke",
         });
       }
     } catch (error) {
-      console.log(error, "err");
       if (Array.isArray(error.response.data.message)) {
         error.response.data.message.forEach((err) => {
           toast(err, {
@@ -95,77 +93,75 @@ function UserForm() {
 
   return (
     <>
-      <div>
-        <NavbarPlain title="Lengkapi Info Akun" />
-        <ToastContainer />
-        <BackButton />
-        <Container className="mt-5 py-5">
-          <Form onSubmit={handleSubmit}>
-            <Form.Group className="mt-4 mb-2">
-              {users.picture == null ? (
-                <UploadProfilePicture className="mx-auto" />
-              ) : (
-                <div className="d-flex justify-content-center">
-                  <Image className="imgPreview" src={users.picture} />
-                </div>
-              )}
-            </Form.Group>
-            <Form.Group className="my-2">
-              <FormLabel>Nama*</FormLabel>
+      <NavbarPlain title="Lengkapi Info Akun" />
+      <ToastContainer />
+      <BackButton />
+      <Container className="mt-5 py-5">
+        <Form onSubmit={handleSubmit}>
+          <Form.Group className="mt-4 mb-2">
+            {users.picture == null ? (
+              <UploadProfilePicture className="mx-auto" />
+            ) : (
+              <div className="d-flex justify-content-center">
+                <Image className="imgPreview" src={users.picture} />
+              </div>
+            )}
+          </Form.Group>
+          <Form.Group className="my-2">
+            <FormLabel>Nama*</FormLabel>
+            <FormControl
+              type="text"
+              placeholder="Nama Kamu"
+              required
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group className="my-2">
+            <FormLabel>Kota*</FormLabel>
+            <FormControl
+              type="text"
+              placeholder="Kota"
+              required
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group className="mt-2">
+            <FormLabel>Alamat*</FormLabel>
+            <FormControl
+              as="textarea"
+              placeholder="Contoh: Jalan Kaki 5"
+              required
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group className="mb-2">
+            <FormLabel>No. Handphone*</FormLabel>
+            <InputGroup className="mb-3">
               <FormControl
                 type="text"
-                placeholder="Nama Kamu"
+                placeholder="Contoh: 08212345678"
                 required
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
               />
-            </Form.Group>
-            <Form.Group className="my-2">
-              <FormLabel>Kota*</FormLabel>
-              <FormControl
-                type="text"
-                placeholder="Kota"
-                required
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-              />
-            </Form.Group>
-            <Form.Group className="mt-2">
-              <FormLabel>Alamat*</FormLabel>
-              <FormControl
-                as="textarea"
-                placeholder="Contoh: Jalan Kaki 5"
-                required
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-              />
-            </Form.Group>
-            <Form.Group className="mb-2">
-              <FormLabel>No. Handphone*</FormLabel>
-              <InputGroup className="mb-3">
-                <FormControl
-                  type="text"
-                  placeholder="Contoh: 08212345678"
-                  required
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                />
-              </InputGroup>
-            </Form.Group>
-            <Form.Group>
-              <FormLabel>Picture</FormLabel>
-              <FormControl
-                type="file"
-                id="image"
-                onChange={(e) => setImage(e.target.files[0])}
-              />
-            </Form.Group>
-            <BtnFormUser className="mt-2 mb-4" type="submit">
-              Submit
-            </BtnFormUser>
-          </Form>
-        </Container>
-      </div>
+            </InputGroup>
+          </Form.Group>
+          <Form.Group>
+            <FormLabel>Picture</FormLabel>
+            <FormControl
+              type="file"
+              id="image"
+              onChange={(e) => setImage(e.target.files[0])}
+            />
+          </Form.Group>
+          <BtnFormUser className="mt-2 mb-4" type="submit">
+            Submit
+          </BtnFormUser>
+        </Form>
+      </Container>
     </>
   );
 }

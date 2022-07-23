@@ -1,11 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { NavbarPlain } from "../../components";
 import { BtnSubmit } from "../../components/Buttons/ButtonElements";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import axios from "axios";
 import { FormFloating } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import swal from "sweetalert";
 
 function SignUp() {
@@ -22,17 +21,15 @@ function SignUp() {
         password: String(password.target.value),
       })
       .then((response) => {
-        console.log(response, "res");
         navigate("/login");
         swal({
           title: "Berhasil!",
           text: "Anda berhasil daftar!",
           icon: "success",
-          button: "Uhuyy!",
+          button: "Oke",
         });
       })
       .catch((error) => {
-        console.log(error.response, "error");
         if (Array.isArray(error.response.data.message)) {
           error.response.data.message.forEach((err) => {
             toast(err, {
@@ -47,16 +44,14 @@ function SignUp() {
       });
   };
 
-  useEffect(() => {}, []);
-
   return (
-    <div className="App">
+    <>
       <NavbarPlain title="Sign Up" />
       <ToastContainer />
       <div className="auth-wrapper">
         <div className="auth-inner">
-          <FormFloating>
-            <h3>Sign Up</h3>
+          <FormFloating className="textContent">
+            <h3 className="textTitle">Sign Up</h3>
             <div className="mb-3">
               <label>Name</label>
               <input
@@ -64,6 +59,7 @@ function SignUp() {
                 className="form-control"
                 placeholder="Enter your name"
                 onChange={setName}
+                required
               />
             </div>
             <div className="mb-3">
@@ -73,6 +69,7 @@ function SignUp() {
                 className="form-control"
                 placeholder="Enter email"
                 onChange={setEmail}
+                required
               />
             </div>
             <div className="mb-3">
@@ -82,10 +79,11 @@ function SignUp() {
                 className="form-control"
                 placeholder="Enter password"
                 onChange={setPassword}
+                required
               />
               <p className="textGray">
-                note : kata sandi harus berisi huruf besar, huruf kecil, angka,
-                dan karakter.
+                kata sandi harus minimal 8 karakter dan mengandung setidaknya 1
+                huruf besar, 1 huruf kecil, 1 angka, dan 1 karakter khusus.
               </p>
             </div>
             <div className="d-grid">
@@ -93,13 +91,13 @@ function SignUp() {
                 Sign Up
               </BtnSubmit>
             </div>
-            <p className="forgot-password text-right mt-3">
+            <p className="text-end mt-3">
               Already registered? <a href="/login">sign in</a>
             </p>
           </FormFloating>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

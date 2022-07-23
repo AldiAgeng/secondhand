@@ -8,10 +8,10 @@ import { BtnFormProduct } from "../../components/Form/ProductsFormElements";
 import { Form, Row, Col, Image } from "react-bootstrap";
 import { Container } from "react-bootstrap";
 import { NavbarPlain, BackButton } from "../../components";
-import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 
 function EditProductForm() {
   const [name, setName] = useState("");
@@ -33,18 +33,13 @@ function EditProductForm() {
           },
         }
       );
-      console.log(res, "res");
-      console.log(category, "category");
-
       setName(res.data.data.name);
       setPicture(res.data.data.picture);
       setPrice(res.data.data.price);
       setLocation(res.data.data.location);
       setDescription(res.data.data.description);
       setCategory(res.data.data.CategoryProduct.id);
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
 
   async function handleEdit(e) {
@@ -69,7 +64,6 @@ function EditProductForm() {
           },
         }
       );
-      console.log(res);
       navigate("/daftar-jual");
       toast("Produk berhasil diubah", {
         type: "success",
@@ -136,7 +130,6 @@ function EditProductForm() {
                 setCategory(selectedCategory);
               }}
             >
-              {console.log(category, "category in html")}
               <option selected={category === 1 ? "selected" : ""} value={1}>
                 Hobi
               </option>

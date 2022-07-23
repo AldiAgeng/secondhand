@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { NavbarMenu, BackButton } from "../../components";
 import { Container, Row, Col } from "react-bootstrap";
-import axios from "axios";
 import { BtnPrimary } from "../../components/Buttons/ButtonElements";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import moment from "moment";
 
 function NotifHistory({ users }) {
@@ -52,23 +52,16 @@ function NotifHistory({ users }) {
                     data.is_read === false &&
                     data.Order.Product.id_user === users.id
                   ) {
-                    axios
-                      .patch(
-                        `https://tokoku-api-2.herokuapp.com/api/v1/notification/${data.id}`,
-                        null,
-                        {
-                          headers: {
-                            Authorization:
-                              "Bearer " + localStorage.getItem("token"),
-                          },
-                        }
-                      )
-                      .then((response) => {
-                        console.log(response.data, "responsenya seller cuy");
-                      })
-                      .catch((err) => {
-                        console.log(err, "err seller");
-                      });
+                    axios.patch(
+                      `https://tokoku-api-2.herokuapp.com/api/v1/notification/${data.id}`,
+                      null,
+                      {
+                        headers: {
+                          Authorization:
+                            "Bearer " + localStorage.getItem("token"),
+                        },
+                      }
+                    );
                   }
                   return (
                     <div className="productOrder">
@@ -120,23 +113,16 @@ function NotifHistory({ users }) {
             <div className="scrollContent">
               {buyers.map((data) => {
                 if (data.is_read === false && data.Order.id_user === users.id) {
-                  axios
-                    .patch(
-                      `https://tokoku-api-2.herokuapp.com/api/v1/notification/${data.id}`,
-                      null,
-                      {
-                        headers: {
-                          Authorization:
-                            "Bearer " + localStorage.getItem("token"),
-                        },
-                      }
-                    )
-                    .then((response) => {
-                      console.log(response, "responsenya buyer cuy");
-                    })
-                    .catch((err) => {
-                      console.log(err, "err buyer");
-                    });
+                  axios.patch(
+                    `https://tokoku-api-2.herokuapp.com/api/v1/notification/${data.id}`,
+                    null,
+                    {
+                      headers: {
+                        Authorization:
+                          "Bearer " + localStorage.getItem("token"),
+                      },
+                    }
+                  );
                 }
 
                 return (
