@@ -42,7 +42,7 @@ function HomePage() {
     <div>
       <NavbarMenu />
       <Carousels />
-      <Container className="mt-2 mb-5">
+      <Container className="mb-5">
         <Row>
           <Col className="d-flex justify-content-center mb-3 mt-2">
             <Stack

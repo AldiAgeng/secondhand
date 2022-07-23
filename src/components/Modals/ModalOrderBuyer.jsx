@@ -71,8 +71,10 @@ function ModalOrderBuyer({ order }) {
       >
         <ModalHeader closeButton></ModalHeader>
         <Modal.Body>
-          <ModalTextBold className="mb-2">
-            Masukkan harga penawaran baru
+          <ModalTextBold className="mb-2 textContent">
+            Penjual tidak tertarik dengan penawaran kamu, jika kamu ingin
+            menawar produk ini kembali maka kamu bisa mengajukan ulang harga
+            penawaran dibawah ini.
           </ModalTextBold>
           <Form.Group className="mt-4">
             <FormControl

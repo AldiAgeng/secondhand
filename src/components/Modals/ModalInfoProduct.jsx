@@ -32,10 +32,11 @@ function ModalInfoProduct({ orders }) {
         <ModalHeader closeButton></ModalHeader>
         <Modal.Body>
           <ModalTextBold className="mb-1">
-            Yeay kamu berhasil mendapat harga yang sesuai
+            Horee kamu berhasil mendapatkan harga yang sesuai
           </ModalTextBold>
           <ModalTextLight className="my-1">
-            Segera hubungi pembeli melalui whatsapp untuk transaksi selanjutnya
+            Silahkan hubungi pembeli melalui whatsapp untuk melanjutkan
+            transaksi
           </ModalTextLight>
           <CardModal className="mt-1">
             <CardModalHeader>

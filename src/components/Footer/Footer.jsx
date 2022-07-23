@@ -23,7 +23,7 @@ function Footers() {
             <a className={style.textLink} href="/daftar-order">
               <p>Order</p>
             </a>
-            <a className={style.textLink} href="#">
+            <a className={style.textLink} href="/faq">
               <p>FAQ</p>
             </a>
           </Col>

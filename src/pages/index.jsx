@@ -11,3 +11,4 @@ export { default as InfoPenawar } from "./InfoPenawar/InfoPenawar";
 export { default as OrderHistory } from "./History/OrderHistory";
 export { default as NotifHistory } from "./History/NotifHistory";
 export { default as EditPassword } from "./UserForm/EditPassword";
+export { default as FAQ } from "./FAQ/FAQ";
