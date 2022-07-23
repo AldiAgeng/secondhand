@@ -12,6 +12,7 @@ import {
   OrderHistory,
   NotifHistory,
   EditPassword,
+  FAQ,
 } from "./pages";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProtectedToken from "./auth/ProtectedToken";
@@ -97,6 +98,7 @@ function App() {
               <NotifHistory users={users} />
             </ProtectedToken>
           } />
+          <Route path="/faq" element={<FAQ />} />
       </Routes>
     </BrowserRouter>
     </>

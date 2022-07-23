@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Container, Card, Row, Col } from "react-bootstrap";
-import { NavbarMenu, BackButton, ModalTawar } from "../../components";
+import { NavbarMenu, BackButton, ModalTawar, Footers } from "../../components";
 import { BtnPrimary } from "../../components/Buttons/ButtonElements";
 import axios from "axios";
 import style from "./productdetail.module.css";
@@ -161,6 +161,7 @@ function ProductDetail({ users }) {
           </Col>
         </Row>
       </Container>
+      <Footers />
     </>
   );
 }
