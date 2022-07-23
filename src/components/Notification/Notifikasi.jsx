@@ -57,9 +57,7 @@ function Notifikasi() {
           .then((response) => {
             setNotif(notif + 1);
           })
-          .catch((error) => {
-            console.log(error);
-          });
+          .catch((error) => {});
       }
     });
   };
