@@ -41,89 +41,92 @@ function OrderHistory({ users }) {
         <h3 className="textTitle">Daftar produk yang ditawar</h3>
         <div>
           {orders.map((order) => {
-            return (
-              <div className="productOrder" key={order.id}>
-                <div className="d-flex flex-row">
-                  <div>
-                    {order.status === "rejected" ? (
-                      <>
+            if (order.Product !== null) {
+              return (
+                <div className="productOrder" key={order.id}>
+                  <div className="d-flex flex-row">
+                    <div>
+                      {order.status === "rejected" ? (
+                        <>
+                          <img
+                            className="imgProductOrder"
+                            src={order.Product.picture}
+                            alt={order.Product.picture}
+                          />
+                          <ModalOrderBuyer order={order} />
+                        </>
+                      ) : (
                         <img
                           className="imgProductOrder"
                           src={order.Product.picture}
                           alt={order.Product.picture}
                         />
-                        <ModalOrderBuyer order={order} />
-                      </>
-                    ) : (
-                      <img
-                        className="imgProductOrder"
-                        src={order.Product.picture}
-                        alt={order.Product.picture}
-                      />
-                    )}
+                      )}
+                    </div>
+                    <div>
+                      <p className="textGray">Penawaran Produk</p>
+                      <h5 className="textContent">{order.Product.name}</h5>
+                      <h5 className="textContent">
+                        Rp {order.Product.price.toLocaleString("id-ID")}
+                      </h5>
+                      <h5 className="textContent">
+                        Ditawar Rp {order.price.toLocaleString("id-ID")}
+                      </h5>
+                      {order.status === "bid" ? (
+                        <p className="textGray">
+                          Penawaran produk masih diproses.
+                        </p>
+                      ) : (
+                        <>
+                          {order.status === "accepted" ? (
+                            <p className="textGray">
+                              Penawaran produk berhasil, tunggu penjual
+                              menghubungi anda untuk melanjutkan proses
+                              transaksi.
+                            </p>
+                          ) : (
+                            <p className="textGray">
+                              Penawaran produk ditolak, anda bisa mengubah
+                              penawaran dengan klik UPDATE.
+                            </p>
+                          )}
+                        </>
+                      )}
+                    </div>
                   </div>
-                  <div>
-                    <p className="textGray">Penawaran Produk</p>
-                    <h5 className="textContent">{order.Product.name}</h5>
-                    <h5 className="textContent">
-                      Rp {order.Product.price.toLocaleString("id-ID")}
-                    </h5>
-                    <h5 className="textContent">
-                      Ditawar Rp {order.price.toLocaleString("id-ID")}
-                    </h5>
+                  <div className="text-end">
                     {order.status === "bid" ? (
-                      <p className="textGray">
-                        Penawaran produk masih diproses.
-                      </p>
+                      <div
+                        className="statusOrder"
+                        style={{ background: "#47B5FF" }}
+                      >
+                        <p className="textContent">Pending</p>
+                      </div>
                     ) : (
                       <>
                         {order.status === "accepted" ? (
-                          <p className="textGray">
-                            Penawaran produk berhasil, tunggu penjual
-                            menghubungi anda untuk melanjutkan proses transaksi.
-                          </p>
+                          <div
+                            className="statusOrder"
+                            style={{ background: "#3CCF4E" }}
+                          >
+                            <p className="textContent">Success</p>
+                          </div>
                         ) : (
-                          <p className="textGray">
-                            Penawaran produk ditolak, anda bisa mengubah
-                            penawaran dengan klik UPDATE.
-                          </p>
+                          <>
+                            <div
+                              className="statusOrder"
+                              style={{ background: "#F32424" }}
+                            >
+                              <p className="textContent">Rejected</p>
+                            </div>
+                          </>
                         )}
                       </>
                     )}
                   </div>
                 </div>
-                <div className="text-end">
-                  {order.status === "bid" ? (
-                    <div
-                      className="statusOrder"
-                      style={{ background: "#47B5FF" }}
-                    >
-                      <p className="textContent">Pending</p>
-                    </div>
-                  ) : (
-                    <>
-                      {order.status === "accepted" ? (
-                        <div
-                          className="statusOrder"
-                          style={{ background: "#3CCF4E" }}
-                        >
-                          <p className="textContent">Success</p>
-                        </div>
-                      ) : (
-                        <>
-                          <div
-                            className="statusOrder"
-                            style={{ background: "#F32424" }}
-                          >
-                            <p className="textContent">Rejected</p>
-                          </div>
-                        </>
-                      )}
-                    </>
-                  )}
-                </div>
-              </div>
-            );
+              );
+            }
           })}
         </div>
       </Container>
