@@ -17,6 +17,18 @@ function ModalInfoProduct({ orders }) {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const cekPhone = () => {
+    if (phone.substring(0, 2) === "62") {
+      return phone;
+    } else if (phone.substring(0, 3) === "+62") {
+      return phone.substring(1);
+    } else if (phone.substring(0, 1) === "0") {
+      let number = phone.substring(1);
+      return `62${number}`;
+    }
+  };
+
   return (
     <>
       <BtnPrimary className="w-100 mt-3" onClick={handleShow}>
@@ -84,9 +96,7 @@ function ModalInfoProduct({ orders }) {
         <ModalFooter>
           <BtnPrimary
             target="_blank"
-            href={`https://api.whatsapp.com/send?phone=62${phone.substring(
-              1
-            )}&text=Hallo ${
+            href={`https://api.whatsapp.com/send?phone=${cekPhone()}&text=Hallo ${
               orders.User.name
             }, saya tertarik nih dengan penawaran harga yang kamu tawarkan, untuk proses selanjutnya kamu bisa balas chat ini ya untuk melanjutkan proses transaksi.`}
             className="w-100 py-2"
