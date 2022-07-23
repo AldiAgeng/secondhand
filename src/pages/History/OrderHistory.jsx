@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
 import { NavbarMenu, BackButton, ModalOrderBuyer } from "../../components";
 import { Container } from "react-bootstrap";
-import poto from "../../assets/images/img2.png";
 import axios from "axios";
-import { BtnPrimary } from "../../components/Buttons/ButtonElements";
 
 function OrderHistory({ users }) {
   const [orders, setOrders] = useState([]);
@@ -17,7 +15,6 @@ function OrderHistory({ users }) {
       })
       .then((response) => {
         setOrders(response.data.data);
-        console.log(response, "res buyer");
       });
   };
 

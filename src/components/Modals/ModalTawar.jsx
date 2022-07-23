@@ -10,10 +10,10 @@ import {
 import { FormControl } from "../Form/FormElements";
 import { CardModal } from "./CardElements";
 import { BtnPrimary } from "../Buttons/ButtonElements";
-import axios from "axios";
-import swal from "sweetalert";
 import { toast, ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import swal from "sweetalert";
 import style from "./modals.module.css";
 
 function ModalTawar({ users, products }) {
@@ -22,8 +22,6 @@ function ModalTawar({ users, products }) {
   const handleShow = () => setShow(true);
   const [bid, setBid] = useState();
   const navigate = useNavigate();
-
-  console.log(users, "user tawar");
 
   const bidProduct = async () => {
     if (
@@ -34,9 +32,9 @@ function ModalTawar({ users, products }) {
     ) {
       swal({
         title: "Perhatian!",
-        text: "Anda belum melengkapi info profile, mohon lengkapi terlebih dahulu!",
+        text: "Anda belum melengkapi Info Akun, mohon lengkapi terlebih dahulu!",
         icon: "warning",
-        button: "Uhuyy!",
+        button: "Mengerti",
       });
       return navigate("/edit-profile");
     } else {
@@ -59,9 +57,8 @@ function ModalTawar({ users, products }) {
             title: "Berhasil!",
             text: "Produk berhasil anda tawar!",
             icon: "success",
-            button: "Uhuyy!",
+            button: "Oke",
           });
-          console.log(response, "response");
         })
         .catch((error) => {
           toast("Masukan data berupa angka dan valid", {
@@ -70,8 +67,6 @@ function ModalTawar({ users, products }) {
         });
     }
   };
-
-  console.log(products, "products");
 
   return (
     <>

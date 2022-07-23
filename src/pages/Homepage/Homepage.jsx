@@ -3,10 +3,9 @@ import { Container, Row, Col, Stack } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { NavbarMenu, CardProduct, Carousels, Footers } from "../../components";
 import { BtnPrimary } from "../../components/Buttons/ButtonElements";
+import { TailSpin } from "react-loader-spinner";
 import fi_search from "../../assets/icons/fi_search.svg";
 import style from "./homepage.module.css";
-import { TailSpin } from "react-loader-spinner";
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 function HomePage() {
   const [products, setProducts] = useState([]);
@@ -39,7 +38,7 @@ function HomePage() {
   const handleButton = (e) => setButtons(e.target.innerText);
 
   return (
-    <div>
+    <>
       <NavbarMenu />
       <Carousels />
       <Container className="mb-5">
@@ -125,7 +124,7 @@ function HomePage() {
         )}
       </Container>
       <Footers />
-    </div>
+    </>
   );
 }
 

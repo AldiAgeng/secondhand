@@ -1,6 +1,6 @@
-import back from "../../assets/icons/fi_arrow-left.svg";
 import { useNavigate } from "react-router-dom";
 import { Container, Button } from "react-bootstrap";
+import back from "../../assets/icons/fi_arrow-left.svg";
 
 function BackButton() {
   const navigate = useNavigate();

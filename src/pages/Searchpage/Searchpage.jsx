@@ -1,20 +1,15 @@
 import { useState, useEffect } from "react";
 import { Container, Row, Col, Stack } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { NavbarMenu, CardProduct, Carousels, Footers } from "../../components";
-import { BtnPrimary } from "../../components/Buttons/ButtonElements";
-import fi_search from "../../assets/icons/fi_search.svg";
-import style from "./searchpage.module.css";
+import { NavbarMenu, CardProduct } from "../../components";
 import { TailSpin } from "react-loader-spinner";
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { useLocation } from "react-router-dom";
+import style from "./searchpage.module.css";
 
 function Searchpage() {
   const [products, setProducts] = useState([]);
   const [spinner, setSpinner] = useState(true);
   const location = new useLocation();
-
-  console.log(location.state.search, "location");
 
   const getData = async () => {
     const response = await fetch(
@@ -24,7 +19,6 @@ function Searchpage() {
     setProducts(data.data);
     setSpinner(false);
   };
-  console.log(products, "data");
 
   useEffect(() => {
     getData();
@@ -48,28 +42,40 @@ function Searchpage() {
             </Col>
           </Row>
         ) : (
-          <Row className="d-flex justify-content-start align-items-start mt-2">
-            <Stack className={style.cardList} direction="horizontal" gap={3}>
-              {products.map((product) => {
-                return (
-                  <div key={product.id} type="button">
-                    <Link
-                      style={{ textDecoration: "none", color: "black" }}
-                      to={`/detail-produk/${product.id}`}
-                    >
-                      <CardProduct
-                        id={product.id}
-                        name={product.name}
-                        price={product.price}
-                        picture={product.picture}
-                        category={product.CategoryProduct.name}
-                      />
-                    </Link>
-                  </div>
-                );
-              })}
-            </Stack>
-          </Row>
+          <>
+            {products.length === 0 ? (
+              <div className="textTitle text-center mt-5">
+                Produk tidak ditemukan
+              </div>
+            ) : (
+              <Row className="d-flex justify-content-start align-items-start mt-2">
+                <Stack
+                  className={style.cardList}
+                  direction="horizontal"
+                  gap={3}
+                >
+                  {products.map((product) => {
+                    return (
+                      <div key={product.id} type="button">
+                        <Link
+                          style={{ textDecoration: "none", color: "black" }}
+                          to={`/detail-produk/${product.id}`}
+                        >
+                          <CardProduct
+                            id={product.id}
+                            name={product.name}
+                            price={product.price}
+                            picture={product.picture}
+                            category={product.CategoryProduct.name}
+                          />
+                        </Link>
+                      </div>
+                    );
+                  })}
+                </Stack>
+              </Row>
+            )}
+          </>
         )}
       </Container>
     </div>

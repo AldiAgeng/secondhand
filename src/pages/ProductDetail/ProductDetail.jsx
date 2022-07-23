@@ -5,7 +5,6 @@ import { NavbarMenu, BackButton, ModalTawar, Footers } from "../../components";
 import { BtnPrimary } from "../../components/Buttons/ButtonElements";
 import axios from "axios";
 import style from "./productdetail.module.css";
-import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 
 function ProductDetail({ users }) {
@@ -14,7 +13,6 @@ function ProductDetail({ users }) {
   const [price, setPrice] = useState(0);
   const [category, setCategory] = useState("");
   const { id } = useParams();
-  const navigate = useNavigate();
 
   const getProduct = async () => {
     await axios
@@ -30,8 +28,6 @@ function ProductDetail({ users }) {
         setCategory(response.data.data.CategoryProduct.name);
       });
   };
-
-  console.log(sellers, "seller");
 
   useEffect(() => {
     getProduct();
@@ -55,12 +51,8 @@ function ProductDetail({ users }) {
               },
             }
           )
-          .then((response) => {
-            console.log(response);
-          })
-          .catch((error) => {
-            console.log(error);
-          })
+          .then((response) => {})
+          .catch((error) => {})
           .finally(() => {
             window.location.href = "/daftar-jual";
           });

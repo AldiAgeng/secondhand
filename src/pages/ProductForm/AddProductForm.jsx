@@ -3,15 +3,14 @@ import {
   FormControl,
   FormSelect,
 } from "../../components/Form/FormElements";
-import { UploadProfilePicture } from "../../components/Form/UsersFormElements";
 import { BtnFormProduct } from "../../components/Form/ProductsFormElements";
 import { Form, Row, Col, Image } from "react-bootstrap";
 import { Container } from "react-bootstrap";
 import { NavbarPlain } from "../../components";
-import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import swal from "sweetalert";
 
 function AddProductForm({ users }) {
@@ -24,9 +23,6 @@ function AddProductForm({ users }) {
   const [status, setStatus] = useState("available");
   const navigate = useNavigate();
 
-  // const image = fileRef.current.file[0];
-  // const reader = new FileReader();
-
   if (
     users.city === null ||
     users.address === null ||
@@ -35,13 +31,12 @@ function AddProductForm({ users }) {
   ) {
     swal({
       title: "Perhatian!",
-      text: "Anda belum melengkapi info profile, mohon lengkapi terlebih dahulu!",
+      text: "Anda belum melengkapi Info Akun, mohon lengkapi terlebih dahulu!",
       icon: "warning",
-      button: "Uhuyy!",
+      button: "Mengerti",
     });
     return navigate("/edit-profile");
   }
-  console.log(users, "user add product");
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -66,13 +61,12 @@ function AddProductForm({ users }) {
           },
         }
       );
-      console.log(res);
       navigate("/daftar-jual");
       swal({
         title: "Berhasil!",
         text: "Produk berhasil ditambahkan!",
         icon: "success",
-        button: "Uhuyy!",
+        button: "Oke",
       });
     } catch (err) {
       if (Array.isArray(err.response.data.message)) {
@@ -90,7 +84,7 @@ function AddProductForm({ users }) {
   }
 
   return (
-    <div>
+    <>
       <NavbarPlain title="Lengkapi Info Produk" />
       <ToastContainer />
       <Container className="mt-5 py-5">
@@ -160,15 +154,6 @@ function AddProductForm({ users }) {
               required
             />
           </Form.Group>
-          {/* <Form.Group className="mt-4 mb-2">
-            {picture == null ? (
-              <UploadProfilePicture className="mx-auto" />
-            ) : (
-              <div className="d-flex justify-content-center">
-                <Image className="imgPreview" ref={fileRef} src={picture} />
-              </div>
-            )}
-          </Form.Group> */}
           <Form.Group>
             <Row>
               <Col>
@@ -188,7 +173,7 @@ function AddProductForm({ users }) {
           </Form.Group>
         </Form>
       </Container>
-    </div>
+    </>
   );
 }
 
