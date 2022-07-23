@@ -28,11 +28,14 @@ function Notifikasi() {
     notifBuyer.map((data) => {
       if (data.is_read === false && data.Order !== null) {
         axios
-          .get(`https://tokoku-api-2.herokuapp.com/api/v1/notification/${data.id}`, {
-            headers: {
-              Authorization: "Bearer " + localStorage.getItem("token"),
-            },
-          })
+          .get(
+            `https://tokoku-api-2.herokuapp.com/api/v1/notification/${data.id}`,
+            {
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("token"),
+              },
+            }
+          )
           .then((response) => {
             setNotif(notif + 1);
           })
@@ -47,11 +50,14 @@ function Notifikasi() {
     notifSeller.map((data) => {
       if (data.is_read === false && data.Order !== null) {
         axios
-          .get(`https://tokoku-api-2.herokuapp.com/api/v1/notification/${data.id}`, {
-            headers: {
-              Authorization: "Bearer " + localStorage.getItem("token"),
-            },
-          })
+          .get(
+            `https://tokoku-api-2.herokuapp.com/api/v1/notification/${data.id}`,
+            {
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("token"),
+              },
+            }
+          )
           .then((response) => {
             setNotif(notif + 1);
           })
@@ -70,14 +76,17 @@ function Notifikasi() {
 
   return (
     <>
-      <Dropdown className="pt-0 mt-0">
-        <Dropdown.Toggle className="bg-transparent border-0 pt-2" id="dropdown-basic">
+      <Dropdown>
+        <Dropdown.Toggle
+          className="bg-transparent border-0"
+          id="dropdown-basic"
+        >
           {notif === 0 ? (
-            <img src={fi_bell} alt="" />
+            <img src={fi_bell} alt="fi_bell" />
           ) : (
-            <div>
-              <img src={fi_bell} alt="" />
-              <img src={iconRed} alt="" />
+            <div className="notifBox">
+              <img src={fi_bell} alt="fi_bell" />
+              <img className="iconRed" src={iconRed} alt="iconRed" />
             </div>
           )}
         </Dropdown.Toggle>

@@ -256,3 +256,39 @@ body, html, .App, #root, .auth-wrapper {
   overflow: auto;
   height: 369px;
 }
+
+#navMobile {
+  display: none;
+}
+#navDekstop {
+  display: block;
+}
+
+
+@media screen and (max-width: 770px) {
+  #navMobile {
+    display: block;
+  }
+  #navDekstop {
+    display: none;
+  }
+}
+
+/* Icon Red */
+
+.notifBox {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+}
+
+.iconRed {
+  position: absolute;
+  top: -1px;
+  right: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

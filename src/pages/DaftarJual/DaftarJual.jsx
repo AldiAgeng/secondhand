@@ -43,7 +43,6 @@ function Daftarjual({ users }) {
       })
       .then((response) => {
         setOrders(response.data.data);
-        console.log(response.data.data, "res dj");
       });
   };
 
@@ -56,6 +55,7 @@ function Daftarjual({ users }) {
       })
       .then((response) => {
         setHistory(response.data.data.seller);
+        console.log(response.data.data.seller, "hist");
       });
   };
 
@@ -235,39 +235,42 @@ function Daftarjual({ users }) {
                 return (
                   <div className={style.cardList}>
                     {history.map((data) => {
-                      return (
-                        <Link
-                          style={{ textDecoration: "none", color: "black" }}
-                          to={`/detail-produk/${data.Product.id}`}
-                        >
-                          <Card
-                            className={style.productCard}
-                            key={data.Product.id}
-                            type="button"
+                      if (data.status === "accepted") {
+                        return (
+                          <Link
+                            style={{ textDecoration: "none", color: "black" }}
+                            to={`/detail-produk/${data.Product.id}`}
                           >
-                            <div className={style.cardBox}>
-                              <Card.Img
-                                className={style.imgCard}
-                                variant="top"
-                                src={data.Product.picture}
-                                alt={data.Product.picture}
-                              />
-                            </div>
-                            <Card.Body className={style.bodyCard}>
-                              <Card.Text className={style.titleText}>
-                                {data.Product.name}
-                              </Card.Text>
-                              <Card.Text className={style.titleText}>
-                                Rp {data.Product.price.toLocaleString("id-ID")}
-                              </Card.Text>
-                              <Card.Text className={style.titleText}>
-                                Harga Akhir Rp{" "}
-                                {data.price.toLocaleString("id-ID")}
-                              </Card.Text>
-                            </Card.Body>
-                          </Card>
-                        </Link>
-                      );
+                            <Card
+                              className={style.productCard}
+                              key={data.Product.id}
+                              type="button"
+                            >
+                              <div className={style.cardBox}>
+                                <Card.Img
+                                  className={style.imgCard}
+                                  variant="top"
+                                  src={data.Product.picture}
+                                  alt={data.Product.picture}
+                                />
+                              </div>
+                              <Card.Body className={style.bodyCard}>
+                                <Card.Text className={style.titleText}>
+                                  {data.Product.name}
+                                </Card.Text>
+                                <Card.Text className={style.titleText}>
+                                  Rp{" "}
+                                  {data.Product.price.toLocaleString("id-ID")}
+                                </Card.Text>
+                                <Card.Text className={style.titleText}>
+                                  Harga Akhir Rp{" "}
+                                  {data.price.toLocaleString("id-ID")}
+                                </Card.Text>
+                              </Card.Body>
+                            </Card>
+                          </Link>
+                        );
+                      }
                     })}
                   </div>
                 );
