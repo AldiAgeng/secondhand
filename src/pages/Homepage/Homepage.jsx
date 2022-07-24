@@ -49,23 +49,25 @@ function HomePage() {
               direction="horizontal"
               gap={3}
             >
-              <BtnPrimary onClick={handleButton}>
-                <p className={style.styleText}>
-                  <img className={style.imgIcon} src={fi_search} alt="search" />
-                  Semua
-                </p>
+              <BtnPrimary
+                className="d-flex flex-row justify-content-center align-items-center"
+                onClick={handleButton}
+              >
+                <img className={style.imgIcon} src={fi_search} alt="search" />
+                <p className={style.styleText}>Semua</p>
               </BtnPrimary>
               {categories.map((category) => (
                 <div key={category.id}>
-                  <BtnPrimary onClick={handleButton}>
-                    <p className={style.styleText}>
-                      <img
-                        className={style.imgIcon}
-                        src={fi_search}
-                        alt="search"
-                      />
-                      {category.name}
-                    </p>
+                  <BtnPrimary
+                    className="d-flex flex-row justify-content-center align-items-center"
+                    onClick={handleButton}
+                  >
+                    <img
+                      className={style.imgIcon}
+                      src={fi_search}
+                      alt="search"
+                    />
+                    <p className={style.styleText}>{category.name}</p>
                   </BtnPrimary>
                 </div>
               ))}
