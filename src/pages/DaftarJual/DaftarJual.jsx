@@ -5,9 +5,13 @@ import { BtnPrimary } from "../../components/Buttons/ButtonElements";
 import { Link } from "react-router-dom";
 import imgContent from "../../assets/images/imgContent.png";
 import fi_box from "../../assets/icons/fi_box.svg";
+import fi_box_color from "../../assets/icons/fi_box_color.svg";
 import fi_heart from "../../assets/icons/fi_heart.svg";
-import fi_dollar from "../../assets/icons/fi_dollar-sign.svg";
-import fi_chevron from "../../assets/icons/fi_chevron-right.svg";
+import fi_heart_color from "../../assets/icons/fi_heart_color.svg";
+import fi_dollar from "../../assets/icons/fi_dollar.svg";
+import fi_dollar_color from "../../assets/icons/fi_dollar_color.svg";
+import fi_chevron_right from "../../assets/icons/fi_chevron-right.svg";
+import fi_chevron_down from "../../assets/icons/fi_chevron-down.svg";
 import fi_plus from "../../assets/icons/fi_plus.svg";
 import style from "./daftarjual.module.css";
 import axios from "axios";
@@ -85,37 +89,61 @@ function Daftarjual({ users }) {
               <h5 className={style.categoryText}>Kategori</h5>
               <ListGroup className={style.categoryList}>
                 <ListGroup.Item
-                  className="border-0 px-0 mb-3"
+                  className={style.listOption}
                   onClick={handleButton}
                   type="button"
                 >
-                  <p className={style.listText}>
-                    <img className="me-2" src={fi_box} />
-                    Semua Produk
-                    <img className="float-end" src={fi_chevron} />
-                  </p>
+                  {buttons === "Semua Produk" || buttons === "" ? (
+                    <p className={style.listTextColor}>
+                      <img className="me-2" src={fi_box_color} />
+                      Semua Produk
+                      <img className="float-end" src={fi_chevron_down} />
+                    </p>
+                  ) : (
+                    <p className={style.listText}>
+                      <img className="me-2" src={fi_box} />
+                      Semua Produk
+                      <img className="float-end" src={fi_chevron_right} />
+                    </p>
+                  )}
                 </ListGroup.Item>
                 <ListGroup.Item
-                  className="border-0 px-0 mb-3"
+                  className={style.listOption}
                   onClick={handleButton}
                   type="button"
                 >
-                  <p className={style.listText}>
-                    <img className="me-2" src={fi_heart} />
-                    Diminati
-                    <img className="float-end" src={fi_chevron} />
-                  </p>
+                  {buttons === "Diminati" ? (
+                    <p className={style.listTextColor}>
+                      <img className="me-2" src={fi_heart_color} />
+                      Diminati
+                      <img className="float-end" src={fi_chevron_down} />
+                    </p>
+                  ) : (
+                    <p className={style.listText}>
+                      <img className="me-2" src={fi_heart} />
+                      Diminati
+                      <img className="float-end" src={fi_chevron_right} />
+                    </p>
+                  )}
                 </ListGroup.Item>
                 <ListGroup.Item
-                  className="border-0 px-0"
+                  className={style.listOption2}
                   onClick={handleButton}
                   type="button"
                 >
-                  <p className={style.listText}>
-                    <img className="me-2" src={fi_dollar} />
-                    Terjual
-                    <img className="float-end" src={fi_chevron} />
-                  </p>
+                  {buttons === "Terjual" ? (
+                    <p className={style.listTextColor}>
+                      <img className="me-2" src={fi_dollar_color} />
+                      Terjual
+                      <img className="float-end" src={fi_chevron_down} />
+                    </p>
+                  ) : (
+                    <p className={style.listText}>
+                      <img className="me-2" src={fi_dollar} />
+                      Terjual
+                      <img className="float-end" src={fi_chevron_right} />
+                    </p>
+                  )}
                 </ListGroup.Item>
               </ListGroup>
             </div>
