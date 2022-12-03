@@ -16,7 +16,7 @@ function ProductDetail({ users }) {
 
   const getProduct = async () => {
     await axios
-      .get(`https://tokoku-api-2.herokuapp.com/api/v1/seller/product/${id}`, {
+      .get(`https://easy-school-uniform-ant.cyclic.app/api/v1/seller/product/${id}`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
@@ -44,7 +44,7 @@ function ProductDetail({ users }) {
       if (willDelete) {
         axios
           .delete(
-            `https://tokoku-api-2.herokuapp.com/api/v1/seller/product/${id}`,
+            `https://easy-school-uniform-ant.cyclic.app/api/v1/seller/product/${id}`,
             {
               headers: {
                 Authorization: "Bearer " + localStorage.getItem("token"),

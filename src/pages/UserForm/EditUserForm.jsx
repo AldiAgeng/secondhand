@@ -20,7 +20,7 @@ function UserForm() {
 
   const whoami = () => {
     axios
-      .get(`https://tokoku-api-2.herokuapp.com/api/v1/auth/user`, {
+      .get(`https://easy-school-uniform-ant.cyclic.app/api/v1/auth/user`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
@@ -57,7 +57,7 @@ function UserForm() {
         });
       } else {
         const response = await axios.put(
-          "https://tokoku-api-2.herokuapp.com/api/v1/auth/user",
+          "https://easy-school-uniform-ant.cyclic.app/api/v1/auth/user",
           form,
           {
             headers: {

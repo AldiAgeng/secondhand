@@ -8,7 +8,7 @@ function OrderHistory({ users }) {
 
   const getOrderBuyer = () => {
     axios
-      .get("https://tokoku-api-2.herokuapp.com/api/v1/buyer/order", {
+      .get("https://easy-school-uniform-ant.cyclic.app/api/v1/buyer/order", {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },

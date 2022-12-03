@@ -19,7 +19,7 @@ function ModalOrderBuyer({ order }) {
     };
     axios
       .put(
-        `https://tokoku-api-2.herokuapp.com/api/v1/buyer/order/${order.id}`,
+        `https://easy-school-uniform-ant.cyclic.app/api/v1/buyer/order/${order.id}`,
         data,
         {
           headers: {

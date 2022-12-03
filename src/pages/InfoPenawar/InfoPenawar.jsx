@@ -23,7 +23,7 @@ function InfoPenawar() {
 
   const orderProduct = async () => {
     await axios
-      .get(`https://tokoku-api-2.herokuapp.com/api/v1/seller/order/${id}`, {
+      .get(`https://easy-school-uniform-ant.cyclic.app/api/v1/seller/order/${id}`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
@@ -51,7 +51,7 @@ function InfoPenawar() {
         };
         axios
           .put(
-            `https://tokoku-api-2.herokuapp.com/api/v1/seller/order/${id}`,
+            `https://easy-school-uniform-ant.cyclic.app/api/v1/seller/order/${id}`,
             data,
             {
               headers: {
@@ -85,7 +85,7 @@ function InfoPenawar() {
         };
         axios
           .put(
-            `https://tokoku-api-2.herokuapp.com/api/v1/seller/order/${id}`,
+            `https://easy-school-uniform-ant.cyclic.app/api/v1/seller/order/${id}`,
             data,
             {
               headers: {

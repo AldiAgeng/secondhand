@@ -44,7 +44,7 @@ function ModalTawar({ users, products }) {
         id_product: products.id,
       };
       await axios
-        .post(`https://tokoku-api-2.herokuapp.com/api/v1/buyer/order`, data, {
+        .post(`https://easy-school-uniform-ant.cyclic.app/api/v1/buyer/order`, data, {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),
           },
