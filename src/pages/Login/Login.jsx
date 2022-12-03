@@ -17,7 +17,7 @@ function Login() {
 
   const login = () => {
     axios
-      .post("https://tokoku-api-2.herokuapp.com/api/v1/auth/login", {
+      .post("https://easy-school-uniform-ant.cyclic.app/api/v1/auth/login", {
         email: String(email.target.value),
         password: String(password.target.value),
       })

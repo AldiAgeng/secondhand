@@ -11,7 +11,7 @@ function Notifikasi() {
 
   const getNotif = () => {
     axios
-      .get(`https://tokoku-api-2.herokuapp.com/api/v1/notification`, {
+      .get(`https://easy-school-uniform-ant.cyclic.app/api/v1/notification`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
@@ -27,7 +27,7 @@ function Notifikasi() {
       if (data.is_read === false && data.Order !== null) {
         axios
           .get(
-            `https://tokoku-api-2.herokuapp.com/api/v1/notification/${data.id}`,
+            `https://easy-school-uniform-ant.cyclic.app/api/v1/notification/${data.id}`,
             {
               headers: {
                 Authorization: "Bearer " + localStorage.getItem("token"),
@@ -47,7 +47,7 @@ function Notifikasi() {
       if (data.is_read === false && data.Order !== null) {
         axios
           .get(
-            `https://tokoku-api-2.herokuapp.com/api/v1/notification/${data.id}`,
+            `https://easy-school-uniform-ant.cyclic.app/api/v1/notification/${data.id}`,
             {
               headers: {
                 Authorization: "Bearer " + localStorage.getItem("token"),

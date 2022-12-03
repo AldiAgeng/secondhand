@@ -15,7 +15,7 @@ function SignUp() {
 
   const register = () => {
     axios
-      .post("https://tokoku-api-2.herokuapp.com/api/v1/auth/register", {
+      .post("https://easy-school-uniform-ant.cyclic.app/api/v1/auth/register", {
         name: String(name.target.value),
         email: String(email.target.value),
         password: String(password.target.value),

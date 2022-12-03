@@ -25,7 +25,7 @@ function ModalStatusOrder({ products, orders }) {
       };
       axios
         .put(
-          `https://tokoku-api-2.herokuapp.com/api/v1/seller/product/${products.id}`,
+          `https://easy-school-uniform-ant.cyclic.app/api/v1/seller/product/${products.id}`,
           data,
           {
             headers: {
@@ -55,7 +55,7 @@ function ModalStatusOrder({ products, orders }) {
       };
       axios
         .put(
-          `https://tokoku-api-2.herokuapp.com/api/v1/seller/order/${orders.id}`,
+          `https://easy-school-uniform-ant.cyclic.app/api/v1/seller/order/${orders.id}`,
           data,
           {
             headers: {

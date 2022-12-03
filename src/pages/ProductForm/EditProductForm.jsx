@@ -26,7 +26,7 @@ function EditProductForm() {
   const getProduct = async () => {
     try {
       const res = await axios.get(
-        `https://tokoku-api-2.herokuapp.com/api/v1/seller/product/${id}`,
+        `https://easy-school-uniform-ant.cyclic.app/api/v1/seller/product/${id}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -55,7 +55,7 @@ function EditProductForm() {
 
     try {
       const res = await axios.put(
-        `https://tokoku-api-2.herokuapp.com/api/v1/seller/product/${id}`,
+        `https://easy-school-uniform-ant.cyclic.app/api/v1/seller/product/${id}`,
         form,
         {
           headers: {

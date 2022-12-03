@@ -26,7 +26,7 @@ function Daftarjual({ users }) {
 
   const getProductSeller = () => {
     axios
-      .get(`https://tokoku-api-2.herokuapp.com/api/v1/seller/product`, {
+      .get(`https://easy-school-uniform-ant.cyclic.app/api/v1/seller/product`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
@@ -38,7 +38,7 @@ function Daftarjual({ users }) {
 
   const getOrderSeller = () => {
     axios
-      .get(`https://tokoku-api-2.herokuapp.com/api/v1/seller/order`, {
+      .get(`https://easy-school-uniform-ant.cyclic.app/api/v1/seller/order`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
@@ -50,7 +50,7 @@ function Daftarjual({ users }) {
 
   const getHistory = async () => {
     await axios
-      .get(`https://tokoku-api-2.herokuapp.com/api/v1/history`, {
+      .get(`https://easy-school-uniform-ant.cyclic.app/api/v1/history`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },

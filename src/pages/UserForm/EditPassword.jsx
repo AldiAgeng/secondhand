@@ -24,7 +24,7 @@ function EditPassword() {
 
     try {
       const response = await axios.put(
-        "https://tokoku-api-2.herokuapp.com/api/v1/auth/user/password",
+        "https://easy-school-uniform-ant.cyclic.app/api/v1/auth/user/password",
         data,
         {
           headers: {
